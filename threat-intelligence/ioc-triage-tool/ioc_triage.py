@@ -1,11 +1,15 @@
 import csv
 import ipaddress
+import json
 import re
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
 
 INPUT_FILE = Path("sample_iocs.csv")
+OUTPUT_DIR = Path("output")
+CSV_OUTPUT = OUTPUT_DIR / "ioc_triage_results.csv"
+JSON_OUTPUT = OUTPUT_DIR / "ioc_triage_results.json"
 
 
 def load_iocs(file_path):
@@ -169,7 +173,7 @@ def calculate_risk_score(data):
     """
     Calculate a simple evidence-based triage score.
 
-    This score represents investigation priority,
+    The score represents investigation priority,
     not confirmed maliciousness.
     """
     score = 0
@@ -199,7 +203,7 @@ def calculate_risk_score(data):
 
 
 def assign_priority(score):
-    """Convert the numeric score into an analyst triage priority."""
+    """Convert a numeric score into an analyst triage priority."""
     if score >= 6:
         return "CRITICAL"
 
@@ -249,22 +253,105 @@ def score_iocs(correlated_iocs):
     return correlated_iocs
 
 
+def export_csv(results):
+    """Export IOC triage results to CSV."""
+    OUTPUT_DIR.mkdir(exist_ok=True)
+
+    fieldnames = [
+        "indicator",
+        "type",
+        "occurrences",
+        "observed_events",
+        "failed_logins",
+        "sources",
+        "risk_score",
+        "priority",
+        "recommendation",
+        "notes"
+    ]
+
+    with open(
+        CSV_OUTPUT,
+        "w",
+        encoding="utf-8",
+        newline=""
+    ) as csv_file:
+
+        writer = csv.DictWriter(
+            csv_file,
+            fieldnames=fieldnames
+        )
+
+        writer.writeheader()
+
+        for data in results:
+            writer.writerow(
+                {
+                    "indicator": data["indicator"],
+                    "type": data["type"],
+                    "occurrences": data["occurrences"],
+                    "observed_events": data["observed_events"],
+                    "failed_logins": data["failed_logins"],
+                    "sources": "; ".join(sorted(data["sources"])),
+                    "risk_score": data["risk_score"],
+                    "priority": data["priority"],
+                    "recommendation": data["recommendation"],
+                    "notes": " | ".join(data["notes"])
+                }
+            )
+
+
+def export_json(results):
+    """Export IOC triage results to JSON."""
+    OUTPUT_DIR.mkdir(exist_ok=True)
+
+    json_results = []
+
+    for data in results:
+        record = {
+            "indicator": data["indicator"],
+            "type": data["type"],
+            "occurrences": data["occurrences"],
+            "observed_events": data["observed_events"],
+            "failed_logins": data["failed_logins"],
+            "sources": sorted(data["sources"]),
+            "risk_score": data["risk_score"],
+            "priority": data["priority"],
+            "recommendation": data["recommendation"],
+            "notes": data["notes"]
+        }
+
+        json_results.append(record)
+
+    with open(
+        JSON_OUTPUT,
+        "w",
+        encoding="utf-8"
+    ) as json_file:
+
+        json.dump(
+            json_results,
+            json_file,
+            indent=4
+        )
+
+
 def main():
     iocs = load_iocs(INPUT_FILE)
     processed_iocs = validate_and_normalize(iocs)
     correlated_iocs = correlate_iocs(processed_iocs)
     scored_iocs = score_iocs(correlated_iocs)
 
-    print(f"Loaded IOC records: {len(processed_iocs)}")
-    print(f"Unique indicators: {len(scored_iocs)}\n")
-
-    print("=== IOC TRIAGE RESULTS ===")
-
     sorted_iocs = sorted(
         scored_iocs.values(),
         key=lambda item: item["risk_score"],
         reverse=True
     )
+
+    print(f"Loaded IOC records: {len(processed_iocs)}")
+    print(f"Unique indicators: {len(sorted_iocs)}\n")
+
+    print("=== IOC TRIAGE RESULTS ===")
 
     for data in sorted_iocs:
         sources = ", ".join(sorted(data["sources"]))
@@ -280,6 +367,13 @@ def main():
             f"Priority: {data['priority']}\n"
             f"Recommendation: {data['recommendation']}"
         )
+
+    export_csv(sorted_iocs)
+    export_json(sorted_iocs)
+
+    print("\n=== REPORT EXPORT COMPLETE ===")
+    print(f"CSV report:  {CSV_OUTPUT}")
+    print(f"JSON report: {JSON_OUTPUT}")
 
 
 if __name__ == "__main__":
