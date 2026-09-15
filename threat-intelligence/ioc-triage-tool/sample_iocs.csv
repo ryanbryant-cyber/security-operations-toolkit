@@ -1,0 +1,7 @@
+indicator,type,source,observed_events,failed_logins,notes
+203.0.113.77,ipv4,phishing-investigation,4,0,Suspicious destination IP contacted after phishing link click
+198.51.100.24,ipv4,authentication-logs,3,3,External IP associated with failed sign-in attempts
+northstar-login.example,domain,email-analysis,2,0,Suspicious credential-harvesting domain
+hxxps://northstar-login.example/verify,url,email-analysis,2,0,Defanged phishing URL used in training scenario
+44d88612fea8a8f36de82e1278abb02f,md5,malware-sample,1,0,Fictional training hash for parser testing
+203.0.113.77,ipv4,proxy-logs,2,0,Duplicate indicator included to test correlation
