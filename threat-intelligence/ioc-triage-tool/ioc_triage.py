@@ -2,7 +2,7 @@ import csv
 import ipaddress
 import re
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlsplit, urlunsplit
 
 
 INPUT_FILE = Path("sample_iocs.csv")
@@ -25,7 +25,7 @@ def detect_ioc_type(indicator):
     """Detect the IOC type based on the indicator's format."""
     value = indicator.strip()
 
-    # Check for an IPv4 address.
+    # Check for IPv4.
     try:
         ip = ipaddress.ip_address(value)
 
@@ -34,7 +34,7 @@ def detect_ioc_type(indicator):
     except ValueError:
         pass
 
-    # Check for common file hash formats.
+    # Check common file hash formats.
     if re.fullmatch(r"[A-Fa-f0-9]{32}", value):
         return "md5"
 
@@ -44,13 +44,13 @@ def detect_ioc_type(indicator):
     if re.fullmatch(r"[A-Fa-f0-9]{64}", value):
         return "sha256"
 
-    # Refang training URLs only for validation.
-    normalized_url = (
+    # Refang only internally so URLs can be validated.
+    validation_url = (
         value.replace("hxxps://", "https://")
         .replace("hxxp://", "http://")
     )
 
-    parsed_url = urlparse(normalized_url)
+    parsed_url = urlsplit(validation_url)
 
     if (
         parsed_url.scheme in ("http", "https")
@@ -58,7 +58,7 @@ def detect_ioc_type(indicator):
     ):
         return "url"
 
-    # Check for a domain name.
+    # Check for domain names.
     domain_pattern = (
         r"^(?:[A-Za-z0-9]"
         r"(?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+"
@@ -71,9 +71,57 @@ def detect_ioc_type(indicator):
     return "unknown"
 
 
-def validate_iocs(records):
-    """Compare the declared IOC type with the detected IOC type."""
-    validated_records = []
+def normalize_indicator(indicator, ioc_type):
+    """Normalize an IOC so duplicate values can be correlated."""
+    value = indicator.strip()
+
+    if ioc_type == "ipv4":
+        return str(ipaddress.ip_address(value))
+
+    if ioc_type in ("md5", "sha1", "sha256"):
+        return value.lower()
+
+    if ioc_type == "domain":
+        return value.lower().rstrip(".")
+
+    if ioc_type == "url":
+        live_url = (
+            value.replace("hxxps://", "https://")
+            .replace("hxxp://", "http://")
+        )
+
+        parsed = urlsplit(live_url)
+
+        scheme = parsed.scheme.lower()
+        hostname = parsed.hostname.lower() if parsed.hostname else ""
+
+        netloc = hostname
+
+        if parsed.port:
+            netloc = f"{hostname}:{parsed.port}"
+
+        normalized = urlunsplit(
+            (
+                scheme,
+                netloc,
+                parsed.path,
+                parsed.query,
+                ""
+            )
+        )
+
+        # Defang again before storing/displaying the normalized result.
+        return (
+            normalized.replace("https://", "hxxps://")
+            .replace("http://", "hxxp://")
+        )
+
+    return value
+
+
+def validate_and_normalize(records):
+    """Validate IOC types and create normalized indicator values."""
+    processed_records = []
 
     for record in records:
         indicator = record["indicator"]
@@ -82,27 +130,79 @@ def validate_iocs(records):
 
         record["detected_type"] = detected_type
         record["type_match"] = declared_type == detected_type
+        record["normalized_indicator"] = normalize_indicator(
+            indicator,
+            detected_type
+        )
 
-        validated_records.append(record)
+        # Convert numeric CSV fields from text into integers.
+        record["observed_events"] = int(record["observed_events"])
+        record["failed_logins"] = int(record["failed_logins"])
 
-    return validated_records
+        processed_records.append(record)
+
+    return processed_records
+
+
+def correlate_iocs(records):
+    """Combine duplicate IOC observations from multiple data sources."""
+    correlated = {}
+
+    for record in records:
+        key = record["normalized_indicator"]
+
+        if key not in correlated:
+            correlated[key] = {
+                "indicator": key,
+                "type": record["detected_type"],
+                "occurrences": 0,
+                "observed_events": 0,
+                "failed_logins": 0,
+                "sources": set(),
+                "notes": []
+            }
+
+        correlated[key]["occurrences"] += 1
+        correlated[key]["observed_events"] += record["observed_events"]
+        correlated[key]["failed_logins"] += record["failed_logins"]
+        correlated[key]["sources"].add(record["source"])
+        correlated[key]["notes"].append(record["notes"])
+
+    return correlated
 
 
 def main():
     iocs = load_iocs(INPUT_FILE)
-    validated_iocs = validate_iocs(iocs)
+    processed_iocs = validate_and_normalize(iocs)
+    correlated_iocs = correlate_iocs(processed_iocs)
 
-    print(f"Loaded {len(validated_iocs)} IOC records.\n")
+    print(f"Loaded IOC records: {len(processed_iocs)}")
+    print(f"Unique indicators: {len(correlated_iocs)}\n")
 
-    for record in validated_iocs:
+    print("=== VALIDATION RESULTS ===")
+
+    for record in processed_iocs:
         status = "VALID" if record["type_match"] else "REVIEW"
 
         print(
             f"[{status}] "
-            f"Indicator: {record['indicator']} | "
-            f"Declared: {record['type']} | "
+            f"{record['indicator']} | "
             f"Detected: {record['detected_type']} | "
-            f"Source: {record['source']}"
+            f"Normalized: {record['normalized_indicator']}"
+        )
+
+    print("\n=== CORRELATED IOC RESULTS ===")
+
+    for indicator, data in correlated_iocs.items():
+        sources = ", ".join(sorted(data["sources"]))
+
+        print(
+            f"\nIndicator: {indicator}\n"
+            f"Type: {data['type']}\n"
+            f"Occurrences: {data['occurrences']}\n"
+            f"Observed Events: {data['observed_events']}\n"
+            f"Failed Logins: {data['failed_logins']}\n"
+            f"Sources: {sources}"
         )
 
 
