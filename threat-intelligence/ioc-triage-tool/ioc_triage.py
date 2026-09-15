@@ -25,7 +25,6 @@ def detect_ioc_type(indicator):
     """Detect the IOC type based on the indicator's format."""
     value = indicator.strip()
 
-    # Check for IPv4.
     try:
         ip = ipaddress.ip_address(value)
 
@@ -34,7 +33,6 @@ def detect_ioc_type(indicator):
     except ValueError:
         pass
 
-    # Check common file hash formats.
     if re.fullmatch(r"[A-Fa-f0-9]{32}", value):
         return "md5"
 
@@ -44,7 +42,6 @@ def detect_ioc_type(indicator):
     if re.fullmatch(r"[A-Fa-f0-9]{64}", value):
         return "sha256"
 
-    # Refang only internally so URLs can be validated.
     validation_url = (
         value.replace("hxxps://", "https://")
         .replace("hxxp://", "http://")
@@ -58,7 +55,6 @@ def detect_ioc_type(indicator):
     ):
         return "url"
 
-    # Check for domain names.
     domain_pattern = (
         r"^(?:[A-Za-z0-9]"
         r"(?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+"
@@ -110,7 +106,6 @@ def normalize_indicator(indicator, ioc_type):
             )
         )
 
-        # Defang again before storing/displaying the normalized result.
         return (
             normalized.replace("https://", "hxxps://")
             .replace("http://", "hxxp://")
@@ -135,7 +130,6 @@ def validate_and_normalize(records):
             detected_type
         )
 
-        # Convert numeric CSV fields from text into integers.
         record["observed_events"] = int(record["observed_events"])
         record["failed_logins"] = int(record["failed_logins"])
 
@@ -171,38 +165,120 @@ def correlate_iocs(records):
     return correlated
 
 
+def calculate_risk_score(data):
+    """
+    Calculate a simple evidence-based triage score.
+
+    This score represents investigation priority,
+    not confirmed maliciousness.
+    """
+    score = 0
+
+    if data["observed_events"] >= 1:
+        score += 1
+
+    if data["observed_events"] >= 3:
+        score += 1
+
+    if data["observed_events"] >= 5:
+        score += 1
+
+    if data["failed_logins"] >= 1:
+        score += 2
+
+    if data["failed_logins"] >= 3:
+        score += 1
+
+    if data["occurrences"] >= 2:
+        score += 1
+
+    if len(data["sources"]) >= 2:
+        score += 1
+
+    return score
+
+
+def assign_priority(score):
+    """Convert the numeric score into an analyst triage priority."""
+    if score >= 6:
+        return "CRITICAL"
+
+    if score >= 3:
+        return "HIGH"
+
+    if score >= 1:
+        return "MODERATE"
+
+    return "LOW"
+
+
+def generate_recommendation(priority):
+    """Generate an analyst recommendation based on triage priority."""
+    recommendations = {
+        "CRITICAL": (
+            "Escalate immediately. Correlate additional telemetry and "
+            "evaluate containment actions after validating the indicator."
+        ),
+        "HIGH": (
+            "Prioritize analyst investigation. Review related logs and "
+            "consider containment or blocking after validation."
+        ),
+        "MODERATE": (
+            "Perform additional enrichment and correlation. Monitor for "
+            "new activity before taking restrictive action."
+        ),
+        "LOW": (
+            "Retain for context and monitoring. No immediate containment "
+            "action is recommended without additional evidence."
+        )
+    }
+
+    return recommendations[priority]
+
+
+def score_iocs(correlated_iocs):
+    """Assign risk scores, priorities, and recommendations."""
+    for data in correlated_iocs.values():
+        score = calculate_risk_score(data)
+        priority = assign_priority(score)
+
+        data["risk_score"] = score
+        data["priority"] = priority
+        data["recommendation"] = generate_recommendation(priority)
+
+    return correlated_iocs
+
+
 def main():
     iocs = load_iocs(INPUT_FILE)
     processed_iocs = validate_and_normalize(iocs)
     correlated_iocs = correlate_iocs(processed_iocs)
+    scored_iocs = score_iocs(correlated_iocs)
 
     print(f"Loaded IOC records: {len(processed_iocs)}")
-    print(f"Unique indicators: {len(correlated_iocs)}\n")
+    print(f"Unique indicators: {len(scored_iocs)}\n")
 
-    print("=== VALIDATION RESULTS ===")
+    print("=== IOC TRIAGE RESULTS ===")
 
-    for record in processed_iocs:
-        status = "VALID" if record["type_match"] else "REVIEW"
+    sorted_iocs = sorted(
+        scored_iocs.values(),
+        key=lambda item: item["risk_score"],
+        reverse=True
+    )
 
-        print(
-            f"[{status}] "
-            f"{record['indicator']} | "
-            f"Detected: {record['detected_type']} | "
-            f"Normalized: {record['normalized_indicator']}"
-        )
-
-    print("\n=== CORRELATED IOC RESULTS ===")
-
-    for indicator, data in correlated_iocs.items():
+    for data in sorted_iocs:
         sources = ", ".join(sorted(data["sources"]))
 
         print(
-            f"\nIndicator: {indicator}\n"
+            f"\nIndicator: {data['indicator']}\n"
             f"Type: {data['type']}\n"
             f"Occurrences: {data['occurrences']}\n"
             f"Observed Events: {data['observed_events']}\n"
             f"Failed Logins: {data['failed_logins']}\n"
-            f"Sources: {sources}"
+            f"Sources: {sources}\n"
+            f"Risk Score: {data['risk_score']}\n"
+            f"Priority: {data['priority']}\n"
+            f"Recommendation: {data['recommendation']}"
         )
 
 
