@@ -1,0 +1,6 @@
+indicator,type,occurrences,observed_events,failed_logins,sources,risk_score,priority,recommendation,notes
+203.0.113.77,ipv4,2,6,0,phishing-investigation; proxy-logs,5,HIGH,Prioritize analyst investigation. Review related logs and consider containment or blocking after validation.,Suspicious destination IP contacted after phishing link click | Duplicate indicator included to test correlation
+198.51.100.24,ipv4,1,3,3,authentication-logs,5,HIGH,Prioritize analyst investigation. Review related logs and consider containment or blocking after validation.,External IP associated with failed sign-in attempts
+northstar-login.example,domain,1,2,0,email-analysis,1,MODERATE,Perform additional enrichment and correlation. Monitor for new activity before taking restrictive action.,Suspicious credential-harvesting domain
+hxxps://northstar-login.example/verify,url,1,2,0,email-analysis,1,MODERATE,Perform additional enrichment and correlation. Monitor for new activity before taking restrictive action.,Defanged phishing URL used in training scenario
+44d88612fea8a8f36de82e1278abb02f,md5,1,1,0,malware-sample,1,MODERATE,Perform additional enrichment and correlation. Monitor for new activity before taking restrictive action.,Fictional training hash for parser testing

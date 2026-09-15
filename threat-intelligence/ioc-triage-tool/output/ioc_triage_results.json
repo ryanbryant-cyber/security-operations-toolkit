@@ -1,0 +1,84 @@
+[
+    {
+        "indicator": "203.0.113.77",
+        "type": "ipv4",
+        "occurrences": 2,
+        "observed_events": 6,
+        "failed_logins": 0,
+        "sources": [
+            "phishing-investigation",
+            "proxy-logs"
+        ],
+        "risk_score": 5,
+        "priority": "HIGH",
+        "recommendation": "Prioritize analyst investigation. Review related logs and consider containment or blocking after validation.",
+        "notes": [
+            "Suspicious destination IP contacted after phishing link click",
+            "Duplicate indicator included to test correlation"
+        ]
+    },
+    {
+        "indicator": "198.51.100.24",
+        "type": "ipv4",
+        "occurrences": 1,
+        "observed_events": 3,
+        "failed_logins": 3,
+        "sources": [
+            "authentication-logs"
+        ],
+        "risk_score": 5,
+        "priority": "HIGH",
+        "recommendation": "Prioritize analyst investigation. Review related logs and consider containment or blocking after validation.",
+        "notes": [
+            "External IP associated with failed sign-in attempts"
+        ]
+    },
+    {
+        "indicator": "northstar-login.example",
+        "type": "domain",
+        "occurrences": 1,
+        "observed_events": 2,
+        "failed_logins": 0,
+        "sources": [
+            "email-analysis"
+        ],
+        "risk_score": 1,
+        "priority": "MODERATE",
+        "recommendation": "Perform additional enrichment and correlation. Monitor for new activity before taking restrictive action.",
+        "notes": [
+            "Suspicious credential-harvesting domain"
+        ]
+    },
+    {
+        "indicator": "hxxps://northstar-login.example/verify",
+        "type": "url",
+        "occurrences": 1,
+        "observed_events": 2,
+        "failed_logins": 0,
+        "sources": [
+            "email-analysis"
+        ],
+        "risk_score": 1,
+        "priority": "MODERATE",
+        "recommendation": "Perform additional enrichment and correlation. Monitor for new activity before taking restrictive action.",
+        "notes": [
+            "Defanged phishing URL used in training scenario"
+        ]
+    },
+    {
+        "indicator": "44d88612fea8a8f36de82e1278abb02f",
+        "type": "md5",
+        "occurrences": 1,
+        "observed_events": 1,
+        "failed_logins": 0,
+        "sources": [
+            "malware-sample"
+        ],
+        "risk_score": 1,
+        "priority": "MODERATE",
+        "recommendation": "Perform additional enrichment and correlation. Monitor for new activity before taking restrictive action.",
+        "notes": [
+            "Fictional training hash for parser testing"
+        ]
+    }
+]
