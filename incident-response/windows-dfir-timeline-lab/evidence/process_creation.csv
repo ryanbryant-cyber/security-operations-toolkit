@@ -1,0 +1,10 @@
+timestamp,event_id,computer,user,parent_process,image,command_line,description
+2026-09-17T13:05:11Z,4688,NFG-FIN-WS07,finance.user,explorer.exe,C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE,OUTLOOK.EXE,User opened Outlook
+2026-09-17T13:07:42Z,4688,NFG-FIN-WS07,finance.user,OUTLOOK.EXE,C:\Program Files\Google\Chrome\Application\chrome.exe,chrome.exe https://portal.office.com,User opened browser from Outlook workflow
+2026-09-17T13:43:55Z,4688,NFG-FIN-WS07,finance.user,explorer.exe,C:\Windows\System32\cmd.exe,cmd.exe /c whoami,Command shell executed whoami
+2026-09-17T13:44:12Z,4688,NFG-FIN-WS07,finance.user,cmd.exe,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\finance.user\AppData\Local\Temp\update.ps1,PowerShell executed script from user temp directory
+2026-09-17T13:44:39Z,4688,NFG-FIN-WS07,finance.user,powershell.exe,C:\Windows\System32\cmd.exe,cmd.exe /c net user,Local account enumeration command executed
+2026-09-17T13:45:03Z,4688,NFG-FIN-WS07,finance.user,cmd.exe,C:\Windows\System32\cmd.exe,cmd.exe /c net localgroup administrators,Local administrators group enumerated
+2026-09-17T13:47:18Z,4688,NFG-FIN-WS07,finance.user,powershell.exe,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,powershell.exe -Command Get-NetTCPConnection,Network connection enumeration performed
+2026-09-17T13:51:46Z,4688,NFG-FIN-WS07,finance.user,powershell.exe,C:\Windows\System32\cmd.exe,cmd.exe /c sc query,Windows services queried
+2026-09-17T14:16:07Z,4688,NFG-FIN-WS07,it.admin,explorer.exe,C:\Windows\System32\cmd.exe,cmd.exe /c hostname,Approved administrator troubleshooting command
