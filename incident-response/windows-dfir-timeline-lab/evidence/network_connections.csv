@@ -1,0 +1,9 @@
+timestamp,computer,user,process,source_ip,source_port,destination_ip,destination_port,protocol,action,description
+2026-09-17T13:07:43Z,NFG-FIN-WS07,finance.user,chrome.exe,10.10.20.17,52144,203.0.113.10,443,TCP,allowed,Normal HTTPS connection to approved cloud service
+2026-09-17T13:43:22Z,NFG-FIN-WS07,finance.user,svchost.exe,10.10.20.17,52218,198.51.100.24,443,TCP,allowed,Outbound encrypted connection to external documentation address
+2026-09-17T13:44:17Z,NFG-FIN-WS07,finance.user,powershell.exe,10.10.20.17,52241,203.0.113.77,443,TCP,allowed,PowerShell established outbound HTTPS connection
+2026-09-17T13:46:34Z,NFG-FIN-WS07,finance.user,System,10.10.20.17,52302,10.10.20.40,443,TCP,allowed,Connection to internal Finance application service
+2026-09-17T13:48:31Z,NFG-FIN-WS07,finance.user,powershell.exe,10.10.20.17,52361,203.0.113.77,443,TCP,allowed,Second PowerShell HTTPS connection to same external address
+2026-09-17T13:50:12Z,NFG-FIN-WS07,finance.user,cmd.exe,10.10.20.17,52403,10.10.20.40,445,TCP,blocked,Attempted SMB connection to Finance application server blocked by network control
+2026-09-17T13:53:04Z,NFG-FIN-WS07,SYSTEM,svc-helper.exe,10.10.20.17,52488,203.0.113.88,8443,TCP,allowed,New service executable established outbound connection
+2026-09-17T14:16:19Z,NFG-FIN-WS07,it.admin,powershell.exe,10.10.20.17,52612,10.10.10.50,443,TCP,allowed,Approved administrator connection to internal management service
