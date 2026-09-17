@@ -9,6 +9,10 @@ import yaml
 EVENT_FILE = Path("sample_events.json")
 DETECTION_DIR = Path("detections")
 
+OUTPUT_DIR = Path("output")
+DETECTION_OUTPUT = OUTPUT_DIR / "detection_results.json"
+CORRELATION_OUTPUT = OUTPUT_DIR / "correlation_findings.json"
+
 
 def load_events(file_path):
     """Load fictional Windows events from JSON."""
@@ -30,9 +34,7 @@ def load_sigma_rules(directory):
 
 
 def normalize_event(event):
-    """
-    Map training-dataset fields to Sigma-style field names.
-    """
+    """Map training fields to Sigma-style field names."""
     normalized = dict(event)
 
     field_map = {
@@ -54,7 +56,7 @@ def normalize_event(event):
 
 
 def value_matches(event_value, rule_value, operator=None):
-    """Compare an event value to a Sigma-style rule value."""
+    """Compare an event value with a Sigma-style rule value."""
     if event_value is None:
         return False
 
@@ -142,7 +144,7 @@ def test_rule(rule, events):
 
 
 def parse_timestamp(timestamp):
-    """Convert ISO-8601 UTC timestamp text into a datetime."""
+    """Convert ISO-8601 UTC text into a datetime."""
     return datetime.strptime(
         timestamp,
         "%Y-%m-%dT%H:%M:%SZ"
@@ -202,6 +204,7 @@ def correlate_failed_logons(events, threshold=3, window_seconds=60):
 
                 findings.append(
                     {
+                        "finding_type": "Repeated Failed Logons",
                         "source_ip": key[0],
                         "user": key[1],
                         "computer": key[2],
@@ -250,6 +253,56 @@ def print_correlation_findings(findings):
         print()
 
 
+def export_detection_results(
+    detection_matches,
+    total_events,
+    total_rules,
+    correct,
+    false_positive,
+    false_negative
+):
+    """Export Sigma detection test results to JSON."""
+    OUTPUT_DIR.mkdir(exist_ok=True)
+
+    report = {
+        "lab": "Windows Sigma Detection Lab",
+        "summary": {
+            "total_events": total_events,
+            "sigma_rules_loaded": total_rules,
+            "rule_matches": len(detection_matches),
+            "correct_results": correct,
+            "false_positives": false_positive,
+            "false_negatives": false_negative
+        },
+        "detections": detection_matches
+    }
+
+    with open(
+        DETECTION_OUTPUT,
+        "w",
+        encoding="utf-8"
+    ) as output_file:
+        json.dump(report, output_file, indent=4)
+
+
+def export_correlation_findings(findings):
+    """Export behavioral correlation findings to JSON."""
+    OUTPUT_DIR.mkdir(exist_ok=True)
+
+    report = {
+        "analysis_type": "Behavioral Correlation",
+        "finding_count": len(findings),
+        "findings": findings
+    }
+
+    with open(
+        CORRELATION_OUTPUT,
+        "w",
+        encoding="utf-8"
+    ) as output_file:
+        json.dump(report, output_file, indent=4)
+
+
 def main():
     events = load_events(EVENT_FILE)
     rules = load_sigma_rules(DETECTION_DIR)
@@ -259,6 +312,7 @@ def main():
     print(f"Loaded Sigma rules: {len(rules)}\n")
 
     matched_event_indexes = set()
+    detection_matches = []
 
     for rule in rules:
         matches = test_rule(rule, events)
@@ -276,6 +330,22 @@ def main():
         for match in matches:
             event_index = events.index(match)
             matched_event_indexes.add(event_index)
+
+            detection_matches.append(
+                {
+                    "rule_title": rule["title"],
+                    "rule_file": rule["_file"],
+                    "severity": rule.get("level", "unknown").upper(),
+                    "event": {
+                        "timestamp": match["timestamp"],
+                        "event_id": match["event_id"],
+                        "computer": match["computer"],
+                        "user": match.get("user"),
+                        "source_ip": match.get("source_ip"),
+                        "description": match["description"]
+                    }
+                }
+            )
 
             print(
                 f"[MATCH] "
@@ -326,6 +396,21 @@ def main():
 
     correlation_findings = correlate_failed_logons(events)
     print_correlation_findings(correlation_findings)
+
+    export_detection_results(
+        detection_matches,
+        len(events),
+        len(rules),
+        correct,
+        false_positive,
+        false_negative
+    )
+
+    export_correlation_findings(correlation_findings)
+
+    print("=== REPORT EXPORT COMPLETE ===")
+    print(f"Detection report:   {DETECTION_OUTPUT}")
+    print(f"Correlation report: {CORRELATION_OUTPUT}")
 
 
 if __name__ == "__main__":
