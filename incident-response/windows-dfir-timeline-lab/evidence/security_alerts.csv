@@ -1,0 +1,7 @@
+timestamp,alert_id,computer,severity,category,title,user,process_or_file,status,description
+2026-09-17T13:10:21Z,DEF-1001,NFG-FIN-WS07,informational,antivirus,Scheduled antivirus scan completed,finance.user,MsMpEng.exe,resolved,Normal scheduled Defender scan completed with no threats detected
+2026-09-17T13:44:15Z,DEF-1002,NFG-FIN-WS07,medium,execution,Suspicious PowerShell execution,finance.user,powershell.exe,active,PowerShell launched with execution policy bypass and executed a script from the user temporary directory
+2026-09-17T13:48:36Z,DEF-1003,NFG-FIN-WS07,medium,network,Unusual outbound connection,finance.user,powershell.exe,active,PowerShell established repeated outbound HTTPS connections to an uncommon external destination
+2026-09-17T13:52:44Z,DEF-1004,NFG-FIN-WS07,high,persistence,Unusual Windows service installation,SYSTEM,C:\ProgramData\SystemHelper\svc-helper.exe,active,Automatic LocalSystem service installed from an uncommon ProgramData path
+2026-09-17T13:53:09Z,DEF-1005,NFG-FIN-WS07,high,command-and-control,Suspicious service network activity,SYSTEM,svc-helper.exe,active,Newly installed service established outbound TCP connection shortly after service startup
+2026-09-17T14:20:11Z,DEF-1006,NFG-FIN-WS07,informational,response,Suspicious service stopped,it.admin,SystemHelper,resolved,Administrator stopped the SystemHelper service during incident-response investigation
