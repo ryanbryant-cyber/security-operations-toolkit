@@ -26,6 +26,16 @@ Hands-on detection engineering project that tests Sigma-style Windows detections
 
 [View the Windows Sigma Detection Lab](detection-engineering/windows-sigma-lab/)
 
+### Incident Response / DFIR
+
+#### Windows DFIR Incident Timeline Lab
+
+Multi-source Windows incident-response investigation that reconstructs a simulated compromise from authentication, process, file, network, service, and Defender evidence. The project includes timeline reconstruction, persistence analysis, attempted lateral-movement assessment, confidence-based findings, containment priorities, MITRE ATT&CK context, and a finalized investigation report.
+
+**Skills:** DFIR | Incident Response | Windows Event Analysis | Timeline Reconstruction | PowerShell Analysis | Persistence Analysis | Lateral Movement | MITRE ATT&CK | Evidence Correlation | Containment Planning
+
+[View the Windows DFIR Incident Timeline Lab](incident-response/windows-dfir-timeline-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
