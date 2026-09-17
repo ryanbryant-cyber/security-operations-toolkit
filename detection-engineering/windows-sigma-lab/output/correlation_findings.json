@@ -1,0 +1,18 @@
+{
+    "analysis_type": "Behavioral Correlation",
+    "finding_count": 1,
+    "findings": [
+        {
+            "finding_type": "Repeated Failed Logons",
+            "source_ip": "198.51.100.24",
+            "user": "finance.user",
+            "computer": "NFG-FIN-APP01",
+            "attempts": 3,
+            "window_seconds": 41,
+            "first_seen": "2026-09-17T09:12:01Z",
+            "last_seen": "2026-09-17T09:12:42Z",
+            "severity": "HIGH",
+            "assessment": "Repeated failed authentication activity may indicate password guessing."
+        }
+    ]
+}

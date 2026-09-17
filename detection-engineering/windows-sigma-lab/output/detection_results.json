@@ -1,0 +1,78 @@
+{
+    "lab": "Windows Sigma Detection Lab",
+    "summary": {
+        "total_events": 8,
+        "sigma_rules_loaded": 3,
+        "rule_matches": 5,
+        "correct_results": 8,
+        "false_positives": 0,
+        "false_negatives": 0
+    },
+    "detections": [
+        {
+            "rule_title": "Failed Windows Logon",
+            "rule_file": "failed_windows_logon.yml",
+            "severity": "MEDIUM",
+            "event": {
+                "timestamp": "2026-09-17T09:12:01Z",
+                "event_id": 4625,
+                "computer": "NFG-FIN-APP01",
+                "user": "finance.user",
+                "source_ip": "198.51.100.24",
+                "description": "Failed remote logon attempt 1"
+            }
+        },
+        {
+            "rule_title": "Failed Windows Logon",
+            "rule_file": "failed_windows_logon.yml",
+            "severity": "MEDIUM",
+            "event": {
+                "timestamp": "2026-09-17T09:12:18Z",
+                "event_id": 4625,
+                "computer": "NFG-FIN-APP01",
+                "user": "finance.user",
+                "source_ip": "198.51.100.24",
+                "description": "Failed remote logon attempt 2"
+            }
+        },
+        {
+            "rule_title": "Failed Windows Logon",
+            "rule_file": "failed_windows_logon.yml",
+            "severity": "MEDIUM",
+            "event": {
+                "timestamp": "2026-09-17T09:12:42Z",
+                "event_id": 4625,
+                "computer": "NFG-FIN-APP01",
+                "user": "finance.user",
+                "source_ip": "198.51.100.24",
+                "description": "Failed remote logon attempt 3"
+            }
+        },
+        {
+            "rule_title": "Suspicious PowerShell Encoded Command",
+            "rule_file": "suspicious_powershell_encoded_command.yml",
+            "severity": "HIGH",
+            "event": {
+                "timestamp": "2026-09-17T09:31:44Z",
+                "event_id": 4688,
+                "computer": "NFG-WS-017",
+                "user": "finance.user",
+                "source_ip": null,
+                "description": "PowerShell launched with an encoded command"
+            }
+        },
+        {
+            "rule_title": "Suspicious Windows Service Creation",
+            "rule_file": "suspicious_service_creation.yml",
+            "severity": "HIGH",
+            "event": {
+                "timestamp": "2026-09-17T09:51:07Z",
+                "event_id": 7045,
+                "computer": "NFG-FIN-APP01",
+                "user": "SYSTEM",
+                "source_ip": null,
+                "description": "Unexpected service installed from a temporary directory"
+            }
+        }
+    ]
+}
