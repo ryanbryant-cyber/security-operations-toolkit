@@ -49,6 +49,13 @@ All hosts, users, IP addresses, commands, files, and events used in this project
 
 No malware will be executed and no production systems or live credentials are involved.
 
+## Final Investigation Report
+
+The completed DFIR case study consolidates the multi-source evidence, incident timeline, investigative findings, confidence assessments, containment priorities, MITRE ATT&CK context, and final analyst conclusion.
+
+[View the Windows DFIR Incident Investigation Report](report/Northstar_Ridge_Windows_DFIR_Incident_Investigation_Report.pdf)
+
 ## Project Status
 
-🚧 In Development
+✅ Completed
+
