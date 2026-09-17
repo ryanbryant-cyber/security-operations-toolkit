@@ -1,0 +1,8 @@
+timestamp,computer,user,action,path,size_bytes,hash_sha256,description
+2026-09-17T13:06:28Z,NFG-FIN-WS07,finance.user,create,C:\Users\finance.user\Downloads\Q3_Budget.xlsx,84217,9f4d1c2b7a8e6f4d12a77a07ac7b5c4b11ad3fcd49d21c57c66f39a66f8c2a11,Normal Finance spreadsheet download
+2026-09-17T13:43:47Z,NFG-FIN-WS07,finance.user,create,C:\Users\finance.user\AppData\Local\Temp\update.ps1,1842,7f9d4c73404e9a71d9db7c4686d5f55b9bd905754de7e9c8ab904dc855d0dc61,PowerShell script created in user temp directory
+2026-09-17T13:44:08Z,NFG-FIN-WS07,finance.user,modify,C:\Users\finance.user\AppData\Local\Temp\update.ps1,2014,bfc18b718c01b5de968e35cbd91db9b1a0e9c6042142ebf4b5e483315f9308b5,Temporary PowerShell script modified shortly before execution
+2026-09-17T13:48:22Z,NFG-FIN-WS07,finance.user,create,C:\Users\Public\system-cache.dat,65536,1194dd0a2b8576e3c52e3ab0a1bdca54c9e4a9360e20fbbd68b9391e4889b763,Unusual data file created in public directory
+2026-09-17T13:52:11Z,NFG-FIN-WS07,SYSTEM,create,C:\ProgramData\SystemHelper\svc-helper.exe,98304,8b2cb1b95d4b96bc924d1f030f3d8c349748f86321b09bd6b23c1b6f96b69349,Executable created under ProgramData service directory
+2026-09-17T13:58:33Z,NFG-FIN-WS07,finance.user,delete,C:\Users\finance.user\AppData\Local\Temp\update.ps1,0,bfc18b718c01b5de968e35cbd91db9b1a0e9c6042142ebf4b5e483315f9308b,Temporary PowerShell script deleted
+2026-09-17T14:17:42Z,NFG-FIN-WS07,it.admin,create,C:\IR\triage-notes.txt,931,5c7d809b4788e62798c6fbd8ddbc624fc8499c2864d227a78fd0e3e1e4e379fb,Administrator created incident-response notes
