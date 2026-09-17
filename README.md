@@ -16,6 +16,16 @@ Python-based IOC triage utility that validates and normalizes indicators, correl
 
 [View the IOC Enrichment & Triage Tool](threat-intelligence/ioc-triage-tool/)
 
+### Detection Engineering
+
+#### Windows Sigma Detection Lab
+
+Hands-on detection engineering project that tests Sigma-style Windows detections against fictional event data, validates expected matches, measures false positives and false negatives, correlates repeated failed logons, and exports structured JSON findings.
+
+**Skills:** Sigma | Detection Engineering | Windows Event IDs | MITRE ATT&CK | Python | YAML | JSON | Behavioral Correlation | Detection Testing
+
+[View the Windows Sigma Detection Lab](detection-engineering/windows-sigma-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
