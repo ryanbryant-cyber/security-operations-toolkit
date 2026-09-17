@@ -1,0 +1,35 @@
+title: Suspicious Windows Service Creation
+id: 7b1d2c9d-9cf5-4db3-82d6-2d4ce7f85cf7
+status: experimental
+description: Detects Windows service installation events where the service binary is launched from a suspicious temporary path.
+author: Ryan Bryant
+date: 2026-09-17
+
+logsource:
+  product: windows
+  service: system
+
+detection:
+  selection_event:
+    EventID: 7045
+
+  selection_path:
+    ServiceFileName|contains:
+      - '\Temp\'
+      - '\AppData\Local\Temp\'
+      - '\Users\Public\'
+      - '\ProgramData\Temp\'
+
+  condition: selection_event and selection_path
+
+falsepositives:
+  - Legitimate software installers using temporary staging directories
+  - Approved update agents
+  - Enterprise deployment tools
+
+level: high
+
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1543.003
