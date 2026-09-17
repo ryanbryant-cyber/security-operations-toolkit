@@ -1,0 +1,5 @@
+timestamp,event_id,computer,user,service_name,service_path,start_type,service_account,state,description
+2026-09-17T12:40:11Z,7045,NFG-FIN-WS07,SYSTEM,NorthstarEndpointAgent,C:\Program Files\Northstar\endpoint-agent.exe,auto,LocalSystem,installed,Approved endpoint management service installation
+2026-09-17T13:52:38Z,7045,NFG-FIN-WS07,SYSTEM,SystemHelper,C:\ProgramData\SystemHelper\svc-helper.exe,auto,LocalSystem,installed,New automatic service installed from ProgramData
+2026-09-17T13:52:51Z,7036,NFG-FIN-WS07,SYSTEM,SystemHelper,C:\ProgramData\SystemHelper\svc-helper.exe,auto,LocalSystem,running,SystemHelper service entered the running state
+2026-09-17T14:19:26Z,7036,NFG-FIN-WS07,it.admin,SystemHelper,C:\ProgramData\SystemHelper\svc-helper.exe,auto,LocalSystem,stopped,SystemHelper service stopped during administrator investigation
