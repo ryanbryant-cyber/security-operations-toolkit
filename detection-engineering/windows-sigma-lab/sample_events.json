@@ -1,0 +1,92 @@
+[
+  {
+    "timestamp": "2026-09-17T09:00:14Z",
+    "event_id": 4624,
+    "log_source": "Security",
+    "computer": "NFG-WS-017",
+    "user": "jdoe",
+    "source_ip": "10.10.20.15",
+    "logon_type": 2,
+    "description": "Normal successful interactive logon",
+    "expected_detection": false
+  },
+  {
+    "timestamp": "2026-09-17T09:12:01Z",
+    "event_id": 4625,
+    "log_source": "Security",
+    "computer": "NFG-FIN-APP01",
+    "user": "finance.user",
+    "source_ip": "198.51.100.24",
+    "logon_type": 10,
+    "description": "Failed remote logon attempt 1",
+    "expected_detection": true
+  },
+  {
+    "timestamp": "2026-09-17T09:12:18Z",
+    "event_id": 4625,
+    "log_source": "Security",
+    "computer": "NFG-FIN-APP01",
+    "user": "finance.user",
+    "source_ip": "198.51.100.24",
+    "logon_type": 10,
+    "description": "Failed remote logon attempt 2",
+    "expected_detection": true
+  },
+  {
+    "timestamp": "2026-09-17T09:12:42Z",
+    "event_id": 4625,
+    "log_source": "Security",
+    "computer": "NFG-FIN-APP01",
+    "user": "finance.user",
+    "source_ip": "198.51.100.24",
+    "logon_type": 10,
+    "description": "Failed remote logon attempt 3",
+    "expected_detection": true
+  },
+  {
+    "timestamp": "2026-09-17T09:25:10Z",
+    "event_id": 4688,
+    "log_source": "Security",
+    "computer": "NFG-WS-021",
+    "user": "it.admin",
+    "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "command_line": "powershell.exe Get-Service",
+    "description": "Routine PowerShell administration",
+    "expected_detection": false
+  },
+  {
+    "timestamp": "2026-09-17T09:31:44Z",
+    "event_id": 4688,
+    "log_source": "Security",
+    "computer": "NFG-WS-017",
+    "user": "finance.user",
+    "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "command_line": "powershell.exe -NoProfile -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAiAFQAZQBzAHQAIgA=",
+    "description": "PowerShell launched with an encoded command",
+    "expected_detection": true
+  },
+  {
+    "timestamp": "2026-09-17T09:45:22Z",
+    "event_id": 7045,
+    "log_source": "System",
+    "computer": "NFG-APP-02",
+    "user": "SYSTEM",
+    "service_name": "NorthstarUpdateAgent",
+    "service_path": "C:\\Program Files\\Northstar\\update-agent.exe",
+    "start_type": "auto",
+    "description": "Approved software update service installation",
+    "expected_detection": false
+  },
+  {
+    "timestamp": "2026-09-17T09:51:07Z",
+    "event_id": 7045,
+    "log_source": "System",
+    "computer": "NFG-FIN-APP01",
+    "user": "SYSTEM",
+    "service_name": "SystemHelper",
+    "service_path": "C:\\Temp\\svc-helper.exe",
+    "start_type": "auto",
+    "description": "Unexpected service installed from a temporary directory",
+    "expected_detection": true
+  }
+]
