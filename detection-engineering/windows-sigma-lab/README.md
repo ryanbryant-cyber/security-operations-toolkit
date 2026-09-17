@@ -1,47 +1,35 @@
 # Windows Sigma Detection Lab
 
-A hands-on detection engineering project focused on writing and testing Sigma-style rules against fictional Windows security events.
+A hands-on detection engineering project focused on writing, testing, validating, and correlating Sigma-style detections against fictional Windows security events.
 
-## Project Goals
-
-This project will demonstrate how a security analyst can:
-
-- Understand Sigma detection rule structure
-- Identify useful Windows security events
-- Write portable detection logic
-- Test rules against sample event data
-- Distinguish true positives from false positives
-- Tune detections to improve alert quality
-- Document analyst findings and detection limitations
-
-## Planned Detections
-
-The initial version will include detections for:
-
-- Repeated failed Windows logons
-- Suspicious PowerShell activity
-- New Windows service creation
+This project demonstrates how individual Windows events can be converted into analyst-ready detections and higher-value behavioral findings.
 
 ## Project Workflow
 
-Windows Security Events  
+Windows Event Data  
 ↓  
 Sigma Detection Rules  
 ↓  
-Rule Testing  
+Field Normalization  
 ↓  
-Matched Events  
+Event-Level Matching  
 ↓  
-Analyst Review  
+Detection Validation  
 ↓  
-Detection Tuning
+Behavioral Correlation  
+↓  
+Structured JSON Reports  
+↓  
+Analyst Investigation
 
-## Safety
+## Detection Rules
 
-All Windows events, usernames, IP addresses, commands, and systems used in this project are fictional or sanitized training data.
+The lab currently includes three Sigma-style detection rules.
 
-No production systems or live credentials are included.
+### Failed Windows Logon
 
-## Project Status
+Detects:
 
-🚧 In Development
+```text
+Windows Event ID 4625
+
