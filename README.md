@@ -36,6 +36,18 @@ Multi-source Windows incident-response investigation that reconstructs a simulat
 
 [View the Windows DFIR Incident Timeline Lab](incident-response/windows-dfir-timeline-lab/)
 
+### Malware Analysis
+
+#### YARA File Detection Lab
+
+Hands-on static file detection project that uses YARA rules to identify suspicious PowerShell strings, ransomware-style markers, network indicators, command-line utilities, and composite multi-indicator patterns across harmless synthetic files.
+
+The project validates expected and actual matches, measures false positives and false negatives, and exports structured JSON detection results.
+
+**Skills:** YARA | Static File Analysis | Malware Analysis | Detection Engineering | Signature Development | Python | JSON | Rule Tuning | False-Positive Analysis | Composite Detection Logic
+
+[View the YARA File Detection Lab](malware-analysis/yara-file-detection-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
