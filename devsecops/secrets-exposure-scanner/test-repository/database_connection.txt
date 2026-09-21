@@ -1,0 +1,3 @@
+Synthetic database connection string for training only.
+
+postgresql://finance_app:FAKE_DB_SECRET_2026@db.northstar.example:5432/finance_dev
