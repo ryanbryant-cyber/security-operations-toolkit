@@ -1,0 +1,5 @@
+Synthetic training key material only.
+
+-----BEGIN PRIVATE KEY-----
+THIS_IS_NOT_A_REAL_PRIVATE_KEY
+-----END PRIVATE KEY-----
