@@ -48,6 +48,18 @@ The project validates expected and actual matches, measures false positives and 
 
 [View the YARA File Detection Lab](malware-analysis/yara-file-detection-lab/)
 
+### DevSecOps
+
+#### Secrets & Configuration Exposure Scanner
+
+Python-based application-security tool that scans a synthetic source-code repository for exposed credentials, insecure configuration values, API keys, tokens, database connection strings, private-key headers, and debug settings.
+
+The project includes false-positive suppression, secret redaction, severity classification, remediation guidance, structured JSON/CSV reporting, and a real detection-gap tuning cycle after the initial scan missed JSON-formatted secrets.
+
+**Skills:** DevSecOps | Application Security | Secrets Detection | Python | Regular Expressions | Secure Configuration Review | Credential Exposure Analysis | Secret Redaction | False-Positive Suppression | Rule Tuning | JSON | CSV
+
+[View the Secrets & Configuration Exposure Scanner](devsecops/secrets-exposure-scanner/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
