@@ -1,0 +1,8 @@
+Northstar development deployment notes.
+
+Production credentials must never be stored in source control.
+
+The application should retrieve secrets from an approved secrets-management platform.
+
+Example placeholder:
+API_KEY=YOUR_API_KEY_HERE
