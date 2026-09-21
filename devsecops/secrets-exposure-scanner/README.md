@@ -1,38 +1,16 @@
 # Secrets & Configuration Exposure Scanner
 
-A hands-on DevSecOps and application-security project focused on identifying exposed credentials, secrets, and insecure configuration patterns in a fictional source-code repository.
+A Python-based DevSecOps and application-security project designed to identify exposed credentials, secrets, and insecure configuration patterns in a synthetic source-code repository.
 
-## Project Goals
-
-This project will demonstrate how a security analyst can:
-
-- Identify hard-coded credentials and secrets
-- Detect suspicious configuration values
-- Classify findings by type and severity
-- Distinguish likely secrets from benign strings
-- Review false positives
-- Generate remediation guidance
-- Export structured security findings
-- Apply secure development and DevSecOps principles
-
-## Planned Detections
-
-The initial version will look for:
-
-- Hard-coded passwords
-- API keys
-- Bearer tokens
-- Database connection strings
-- Private-key headers
-- Environment files
-- Debug-mode configuration
-- Cloud-style access credentials
+This project demonstrates how automated secret scanning can identify likely exposures, suppress obvious placeholders, redact sensitive values, assign severity, and generate developer-focused remediation guidance.
 
 ## Project Workflow
 
 Synthetic Application Files  
 ↓  
-Python Scanner  
+Detection Rules  
+↓  
+Recursive Repository Scan  
 ↓  
 Pattern Matching  
 ↓  
@@ -40,18 +18,22 @@ Secret Classification
 ↓  
 Severity Assignment  
 ↓  
-False-Positive Review  
+Placeholder Suppression  
 ↓  
-Structured Reports  
+Redacted Findings  
+↓  
+JSON / CSV Reporting  
 ↓  
 Developer Remediation
 
-## Safety
+## Detection Rules
 
-All files, credentials, tokens, API keys, passwords, domains, and configuration values used in this project are fictional or intentionally invalid training data.
+The current version includes six detection categories:
 
-No production credentials, live secrets, or private organizational data are included.
+### Hard-Coded Passwords
 
-## Project Status
+Detects likely password assignments such as:
 
-🚧 In Development
+```text
+password=<value>
+DB_PASSWORD=<value>
