@@ -1,0 +1,6 @@
+{
+    "environment": "development",
+    "debug": true,
+    "api_key": "FAKE-NORTHSTAR-API-KEY-7F92A1B4",
+    "logging_level": "debug"
+}
