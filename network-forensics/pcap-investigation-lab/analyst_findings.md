@@ -8,9 +8,9 @@
 **Handshake Completed:**  
 **Payload Observed:**  
 **Related DNS Activity:**  
-**Investigation Priority:** Low / Medium / High  
-**Confidence:** Low / Moderate / High  
-**Analyst Notes:**  
+**Investigation Priority:** Low 
+**Confidence:** Moderate 
+**Analyst Notes:** Connection made to the Northstar portal.
 
 ---
 
@@ -22,9 +22,9 @@
 **Handshake Completed:**  
 **Payload Observed:**  
 **Related DNS Activity:**  
-**Investigation Priority:** Low / Medium / High  
-**Confidence:** Low / Moderate / High  
-**Analyst Notes:**  
+**Investigation Priority:** Medium 
+**Confidence:** High
+**Analyst Notes:**  Confirmed SSH attempt, but a single SYN alone is not highly suspicious
 
 ---
 
@@ -36,9 +36,9 @@
 **Handshake Completed:**  
 **Payload Observed:**  
 **Related DNS Activity:**  
-**Investigation Priority:** Low / Medium / High  
-**Confidence:** Low / Moderate / High  
-**Analyst Notes:**  
+**Investigation Priority:** Medium
+**Confidence:** High 
+**Analyst Notes:**  Second attempt to connect to SSH resource through port 22. No handshake was completed. 
 
 ---
 
@@ -50,9 +50,9 @@
 **Handshake Completed:**  
 **Payload Observed:**  
 **Related DNS Activity:**  
-**Investigation Priority:** Low / Medium / High  
-**Confidence:** Low / Moderate / High  
-**Analyst Notes:**  
+**Investigation Priority:** Medium 
+**Confidence:** High 
+**Analyst Notes:**  Third attempt to connect to SSH resource through port 22. No handshake was completed.
 
 ---
 
@@ -64,9 +64,9 @@
 **Handshake Completed:**  
 **Payload Observed:**  
 **Related DNS Activity:**  
-**Investigation Priority:** Low / Medium / High  
-**Confidence:** Low / Moderate / High  
-**Analyst Notes:**  
+**Investigation Priority:** Medium-High 
+**Confidence:** High  
+**Analyst Notes:**   Fourth repeated SSH SYN attempt to 10.10.20.40:22. None of the four attempts completed a TCP handshake. The pattern may indicate probing or repeated connection attempts, but intent is not established.
 
 ---
 
@@ -78,9 +78,9 @@
 **Handshake Completed:**  
 **Payload Observed:**  
 **Related DNS Activity:**  
-**Investigation Priority:** Low / Medium / High  
-**Confidence:** Low / Moderate / High  
-**Analyst Notes:**  
+**Investigation Priority:** High
+**Confidence:** High 
+**Analyst Notes:**  10.10.20.17 established an external TCP/443 connection to 203.0.113.77 shortly after querying sync-update.example. This was the only TCP conversation in the capture containing application payload data. The evidence warrants additional investigation but does not independently prove malicious communication.
 
 ---
 
@@ -92,9 +92,9 @@
 **Handshake Completed:**  
 **Payload Observed:**  
 **Related DNS Activity:**  
-**Investigation Priority:** Low / Medium / High  
-**Confidence:** Low / Moderate / High  
-**Analyst Notes:**  
+**Investigation Priority:** Medium-High
+**Confidence:** Moderate
+**Analyst Notes:**   The workstation established an external TCP connection to 203.0.113.88:8443. Port 8443 is commonly used for alternate HTTPS or application services. The completed handshake and unusual external destination warrant investigation, although no application payload was captured.
 
 ---
 
@@ -106,6 +106,6 @@
 **Handshake Completed:**  
 **Payload Observed:**  
 **Related DNS Activity:**  
-**Investigation Priority:** Low / Medium / High  
-**Confidence:** Low / Moderate / High  
-**Analyst Notes:**  
+**Investigation Priority:** Low 
+**Confidence:** High 
+**Analyst Notes:**   Internal TCP/443 connection to 10.10.20.40 completed successfully. Based on the available evidence, this is consistent with expected internal application communication and provides a useful comparison against the unusual external connections.
