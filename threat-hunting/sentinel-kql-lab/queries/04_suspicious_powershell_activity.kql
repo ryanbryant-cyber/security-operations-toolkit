@@ -1,0 +1,25 @@
+ProcessEvents
+| where TimeGenerated between (
+    datetime(2026-09-23T12:00:00Z)
+    ..
+    datetime(2026-09-23T13:00:00Z)
+)
+| where ProcessName =~ "powershell.exe"
+| where CommandLine has_any (
+    "-EncodedCommand",
+    "-enc",
+    "-ExecutionPolicy Bypass",
+    "Invoke-WebRequest",
+    "DownloadString"
+)
+| project
+    TimeGenerated,
+    DeviceName,
+    AccountName,
+    ProcessName,
+    ParentProcessName,
+    CommandLine,
+    ProcessId,
+    Severity,
+    Description
+| order by TimeGenerated asc
