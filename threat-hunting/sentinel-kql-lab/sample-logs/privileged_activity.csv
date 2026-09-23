@@ -1,0 +1,10 @@
+TimeGenerated,InitiatedBy,TargetUser,OperationName,RoleName,ActivityStatus,IPAddress,Justification,TicketNumber,Description
+2026-09-23T12:08:22Z,it.admin@northstar.example,it.admin@northstar.example,Activate eligible role,Virtual Machine Contributor,Success,10.10.10.25,Approved maintenance window,CHG-2041,Approved PIM role activation
+2026-09-23T12:09:11Z,it.admin@northstar.example,it.admin@northstar.example,Role activation completed,Virtual Machine Contributor,Success,10.10.10.25,Approved maintenance window,CHG-2041,Temporary privileged access activated
+2026-09-23T12:27:43Z,cloud.admin@northstar.example,backup.service@northstar.example,Add member to role,Backup Contributor,Success,10.10.10.26,Backup configuration update,CHG-2044,Approved service identity role assignment
+2026-09-23T12:33:04Z,dormant.contractor@northstar.example,dormant.contractor@northstar.example,Add member to role,Contributor,Success,203.0.113.55,,NONE,Dormant contractor identity received Contributor role
+2026-09-23T12:35:21Z,dormant.contractor@northstar.example,dormant.contractor@northstar.example,Role assignment modified,Contributor,Success,203.0.113.55,,NONE,Contributor assignment modified shortly after creation
+2026-09-23T12:41:17Z,it.admin@northstar.example,it.admin@northstar.example,Activate eligible role,Security Reader,Success,10.10.10.25,Investigate suspicious sign-in,INC-1067,Approved incident-response role activation
+2026-09-23T12:43:02Z,it.admin@northstar.example,finance.user@northstar.example,Revoke user sessions,None,Success,10.10.10.25,Contain suspected account compromise,INC-1067,Finance user sessions revoked during investigation
+2026-09-23T12:46:29Z,it.admin@northstar.example,dormant.contractor@northstar.example,Remove member from role,Contributor,Success,10.10.10.25,Contain unauthorized privilege assignment,INC-1067,Dormant contractor Contributor access removed
+2026-09-23T12:47:11Z,it.admin@northstar.example,dormant.contractor@northstar.example,Disable account,None,Success,10.10.10.25,Contain suspicious account activity,INC-1067,Dormant contractor account disabled
