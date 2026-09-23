@@ -1,0 +1,13 @@
+TimeGenerated,UserPrincipalName,IPAddress,ResultType,ResultDescription,AppDisplayName,Location,ConditionalAccessStatus,DeviceCompliant,AccountStatus
+2026-09-23T12:00:14Z,alex@northstar.example,10.10.20.21,0,Success,Microsoft 365,Marquette MI,success,true,active
+2026-09-23T12:03:28Z,finance.user@northstar.example,10.10.20.17,0,Success,Finance Portal,Marquette MI,success,true,active
+2026-09-23T12:17:41Z,finance.user@northstar.example,198.51.100.24,50126,Invalid username or password,Microsoft 365,Unknown,notApplied,false,active
+2026-09-23T12:17:55Z,finance.user@northstar.example,198.51.100.24,50126,Invalid username or password,Microsoft 365,Unknown,notApplied,false,active
+2026-09-23T12:18:13Z,finance.user@northstar.example,198.51.100.24,50126,Invalid username or password,Microsoft 365,Unknown,notApplied,false,active
+2026-09-23T12:18:44Z,finance.user@northstar.example,198.51.100.24,0,Success,Microsoft 365,Unknown,failure,false,active
+2026-09-23T12:24:10Z,it.admin@northstar.example,10.10.10.25,0,Success,Azure Portal,Marquette MI,success,true,active
+2026-09-23T12:31:07Z,dormant.contractor@northstar.example,203.0.113.55,0,Success,Microsoft 365,Unknown,notApplied,false,dormant
+2026-09-23T12:34:52Z,hr.user@northstar.example,10.10.20.33,0,Success,Microsoft 365,Marquette MI,success,true,active
+2026-09-23T12:39:18Z,it.admin@northstar.example,203.0.113.88,50074,Strong authentication required,Azure Portal,Unknown,failure,false,active
+2026-09-23T12:39:42Z,it.admin@northstar.example,203.0.113.88,50074,Strong authentication required,Azure Portal,Unknown,failure,false,active
+2026-09-23T12:45:03Z,alex@northstar.example,10.10.20.21,0,Success,Microsoft 365,Marquette MI,success,true,active
