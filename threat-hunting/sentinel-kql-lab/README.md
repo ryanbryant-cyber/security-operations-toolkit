@@ -2,66 +2,33 @@
 
 A hands-on cloud SIEM and threat-hunting project focused on using Kusto Query Language (KQL) to investigate synthetic Microsoft Sentinel-style security telemetry.
 
-## Project Goals
-
-This project will demonstrate how a security analyst can:
-
-- Understand basic KQL syntax
-- Search and filter security telemetry
-- Analyze authentication activity
-- Identify repeated failed sign-ins
-- Investigate suspicious PowerShell execution
-- Review privileged role changes
-- Detect unusual account activity
-- Correlate related security events
-- Summarize findings for analyst review
-- Develop reusable threat-hunting queries
-
-## Planned Hunts
-
-The initial version will include hunts for:
-
-- Repeated failed authentication attempts
-- Successful sign-in following multiple failures
-- Dormant-account activity
-- Suspicious PowerShell execution
-- Privileged role assignment changes
-- Unusual outbound network activity
+This project demonstrates how analysts can move from isolated security events to multi-source behavioral correlations involving identity, endpoint, privilege, and network activity.
 
 ## Project Workflow
 
 Synthetic Sentinel-Style Logs  
 ↓  
-KQL Query  
+KQL Threat Hunt  
 ↓  
 Filtering and Summarization  
 ↓  
-Event Correlation  
+Cross-Source Correlation  
 ↓  
-Threat-Hunting Result  
+Behavioral Timeline  
 ↓  
-Analyst Review  
+Threat-Hunting Finding  
 ↓  
-Investigation Recommendation
+Analyst Investigation
 
-## Planned Data Sources
+## Data Sources
 
-The synthetic dataset will model telemetry similar to:
+The lab uses four synthetic telemetry sources:
 
-- Sign-in logs
-- Windows security events
-- Process creation events
-- Azure activity logs
-- Network security telemetry
-- Identity and privileged-access events
+```text
+sample-logs/
+├── signin_logs.csv
+├── process_events.csv
+├── privileged_activity.csv
+└── network_events.csv
 
-## Safety
-
-All users, IP addresses, systems, commands, identities, and events used in this project are fictional or reserved for documentation and testing.
-
-No production Microsoft Sentinel workspace, real credentials, or private organizational data are included.
-
-## Project Status
-
-🚧 In Development
 
