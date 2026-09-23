@@ -1,0 +1,193 @@
+{
+  "lab": "Microsoft Sentinel KQL Threat Hunting Lab",
+  "validation_note": "Expected results are derived from the synthetic source datasets and are used as ground truth for educational validation. KQL queries are not executed locally.",
+
+  "hunts": [
+    {
+      "hunt_id": "01",
+      "query_file": "01_repeated_failed_signins.kql",
+      "title": "Repeated Failed Sign-ins",
+      "expected_rows": 1,
+      "expected_findings": [
+        {
+          "identity": "finance.user@northstar.example",
+          "source_ip": "198.51.100.24",
+          "failed_attempts": 3,
+          "first_failure": "2026-09-23T12:17:41Z",
+          "last_failure": "2026-09-23T12:18:13Z"
+        }
+      ]
+    },
+
+    {
+      "hunt_id": "02",
+      "query_file": "02_success_after_failed_signins.kql",
+      "title": "Successful Sign-in After Repeated Failures",
+      "expected_rows": 1,
+      "expected_findings": [
+        {
+          "identity": "finance.user@northstar.example",
+          "source_ip": "198.51.100.24",
+          "failed_attempts": 3,
+          "last_failure": "2026-09-23T12:18:13Z",
+          "success_time": "2026-09-23T12:18:44Z",
+          "seconds_after_last_failure": 31
+        }
+      ]
+    },
+
+    {
+      "hunt_id": "03",
+      "query_file": "03_dormant_account_activity.kql",
+      "title": "Dormant Account Activity",
+      "expected_rows": 1,
+      "expected_findings": [
+        {
+          "identity": "dormant.contractor@northstar.example",
+          "source_ip": "203.0.113.55",
+          "success_time": "2026-09-23T12:31:07Z",
+          "account_status": "dormant",
+          "device_compliant": false,
+          "conditional_access": "notApplied"
+        }
+      ]
+    },
+
+    {
+      "hunt_id": "04",
+      "query_file": "04_suspicious_powershell_activity.kql",
+      "title": "Suspicious PowerShell Activity",
+      "expected_rows": 2,
+      "expected_findings": [
+        {
+          "identity": "finance.user",
+          "device": "NFG-FIN-WS07",
+          "time": "2026-09-23T12:19:27Z"
+        },
+        {
+          "identity": "dormant.contractor",
+          "device": "NFG-CONTRACTOR-03",
+          "time": "2026-09-23T12:32:18Z"
+        }
+      ]
+    },
+
+    {
+      "hunt_id": "05",
+      "query_file": "05_dormant_signin_to_powershell.kql",
+      "title": "Dormant Sign-in to Suspicious PowerShell",
+      "expected_rows": 1,
+      "expected_findings": [
+        {
+          "identity": "dormant.contractor@northstar.example",
+          "signin_time": "2026-09-23T12:31:07Z",
+          "process_time": "2026-09-23T12:32:18Z",
+          "seconds_between": 71
+        }
+      ]
+    },
+
+    {
+      "hunt_id": "06",
+      "query_file": "06_suspicious_privileged_role_assignment.kql",
+      "title": "Ungoverned Privileged Role Assignment",
+      "expected_rows": 2,
+      "expected_findings": [
+        {
+          "identity": "dormant.contractor@northstar.example",
+          "operation": "Add member to role",
+          "role": "Contributor",
+          "time": "2026-09-23T12:33:04Z"
+        },
+        {
+          "identity": "dormant.contractor@northstar.example",
+          "operation": "Role assignment modified",
+          "role": "Contributor",
+          "time": "2026-09-23T12:35:21Z"
+        }
+      ]
+    },
+
+    {
+      "hunt_id": "07",
+      "query_file": "07_dormant_account_attack_chain.kql",
+      "title": "Dormant Account Multi-Stage Attack Chain",
+      "expected_rows": 2,
+      "expected_findings": [
+        {
+          "identity": "dormant.contractor",
+          "signin_to_process_seconds": 71,
+          "process_to_role_seconds": 46,
+          "role_operation": "Add member to role"
+        },
+        {
+          "identity": "dormant.contractor",
+          "signin_to_process_seconds": 71,
+          "process_to_role_seconds": 183,
+          "role_operation": "Role assignment modified"
+        }
+      ]
+    },
+
+    {
+      "hunt_id": "08",
+      "query_file": "08_dormant_account_network_correlation.kql",
+      "title": "Dormant Account Network Correlation",
+      "expected_rows": 3,
+      "expected_findings": [
+        {
+          "role_time": "2026-09-23T12:33:04Z",
+          "network_time": "2026-09-23T12:33:29Z",
+          "destination_ip": "10.10.10.60",
+          "destination_port": 443
+        },
+        {
+          "role_time": "2026-09-23T12:33:04Z",
+          "network_time": "2026-09-23T12:36:12Z",
+          "destination_ip": "203.0.113.91",
+          "destination_port": 8443
+        },
+        {
+          "role_time": "2026-09-23T12:35:21Z",
+          "network_time": "2026-09-23T12:36:12Z",
+          "destination_ip": "203.0.113.91",
+          "destination_port": 8443
+        }
+      ]
+    },
+
+    {
+      "hunt_id": "09",
+      "query_file": "09_finance_account_correlation.kql",
+      "title": "Finance Account Multi-Source Correlation",
+      "expected_rows": 11,
+      "validation_note": "Multiple process and network records meet the five-minute correlation windows, producing intentional join expansion.",
+      "expected_core_sequence": {
+        "identity": "finance.user@northstar.example",
+        "failed_attempts": 3,
+        "last_failure": "2026-09-23T12:18:13Z",
+        "success_time": "2026-09-23T12:18:44Z",
+        "seconds_failure_to_success": 31,
+        "first_follow_on_process": "2026-09-23T12:19:11Z",
+        "suspicious_powershell": "2026-09-23T12:19:27Z",
+        "blocked_smb": "2026-09-23T12:20:14Z",
+        "unusual_8443_connection": "2026-09-23T12:21:49Z"
+      }
+    },
+
+    {
+      "hunt_id": "10",
+      "query_file": "10_high_priority_hunting_summary.kql",
+      "title": "High-Priority Threat Hunting Summary",
+      "expected_rows": 12,
+      "validation_note": "Summary intentionally includes both multi-stage findings and underlying component events, so some behavioral overlap is expected.",
+      "expected_categories": {
+        "finance_authentication_finding": 1,
+        "dormant_multi_stage_findings": 2,
+        "suspicious_powershell_findings": 2,
+        "privileged_role_findings": 2,
+        "high_interest_network_findings": 5
+      }
+    }
+  ]
+}
