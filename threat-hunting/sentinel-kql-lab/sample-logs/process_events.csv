@@ -1,0 +1,11 @@
+TimeGenerated,DeviceName,AccountName,ProcessName,ParentProcessName,CommandLine,ProcessId,Severity,Description
+2026-09-23T12:05:42Z,NFG-WS-021,alex,powershell.exe,explorer.exe,powershell.exe Get-Service,4820,Informational,Routine administrative PowerShell command
+2026-09-23T12:19:11Z,NFG-FIN-WS07,finance.user,cmd.exe,explorer.exe,cmd.exe /c whoami,5112,Medium,User identity discovery command
+2026-09-23T12:19:27Z,NFG-FIN-WS07,finance.user,powershell.exe,cmd.exe,powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQA,5164,High,PowerShell launched with encoded command and execution policy bypass
+2026-09-23T12:19:49Z,NFG-FIN-WS07,finance.user,cmd.exe,powershell.exe,cmd.exe /c net user,5228,Medium,Local account enumeration
+2026-09-23T12:20:08Z,NFG-FIN-WS07,finance.user,cmd.exe,powershell.exe,cmd.exe /c net localgroup administrators,5296,Medium,Local administrators group enumeration
+2026-09-23T12:21:33Z,NFG-FIN-WS07,finance.user,powershell.exe,powershell.exe,powershell.exe Get-NetTCPConnection,5342,Medium,Network connection enumeration
+2026-09-23T12:26:14Z,NFG-IT-ADMIN01,it.admin,powershell.exe,explorer.exe,powershell.exe Get-AzVM,6104,Informational,Approved Azure administration activity
+2026-09-23T12:32:18Z,NFG-CONTRACTOR-03,dormant.contractor,powershell.exe,explorer.exe,powershell.exe -NoProfile -EncodedCommand RwBlAHQALQBQAHIAbwBjAGUAcwBzAA==,6441,High,Encoded PowerShell executed under dormant contractor identity
+2026-09-23T12:40:31Z,NFG-IT-ADMIN01,it.admin,cmd.exe,explorer.exe,cmd.exe /c hostname,6280,Informational,Routine troubleshooting command
+2026-09-23T12:48:50Z,NFG-HR-WS04,hr.user,chrome.exe,explorer.exe,chrome.exe https://portal.office.com,7102,Informational,Normal user browser activity
