@@ -60,6 +60,20 @@ The project includes false-positive suppression, secret redaction, severity clas
 
 [View the Secrets & Configuration Exposure Scanner](devsecops/secrets-exposure-scanner/)
 
+### Threat Hunting
+
+#### Microsoft Sentinel KQL Threat Hunting Lab
+
+Hands-on cloud SIEM threat-hunting project using Kusto Query Language (KQL) across synthetic Microsoft Sentinel-style telemetry.
+
+The lab includes 10 hunts covering repeated failed sign-ins, successful authentication after failures, dormant-account activity, suspicious PowerShell execution, ungoverned privileged-role changes, multi-stage account correlation, and high-interest network activity.
+
+The project correlates identity, endpoint, privilege, and network telemetry and includes an independent Python validation harness that confirmed all 10 expected hunt behaviors against the synthetic ground truth.
+
+**Skills:** Microsoft Sentinel | KQL | Threat Hunting | SIEM Analysis | Microsoft Entra ID | PowerShell Detection | Privileged Access Monitoring | Behavioral Correlation | Multi-Source Log Analysis | Python Validation
+
+[View the Microsoft Sentinel KQL Threat Hunting Lab](threat-hunting/sentinel-kql-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
