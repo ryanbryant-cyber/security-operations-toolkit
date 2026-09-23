@@ -1,0 +1,68 @@
+let DormantSignins =
+    SigninLogs
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where AccountStatus =~ "dormant"
+    | where tostring(ResultType) == "0"
+    | project
+        SigninTime = TimeGenerated,
+        UserPrincipalName,
+        IPAddress,
+        AppDisplayName,
+        Location,
+        ConditionalAccessStatus,
+        DeviceCompliant;
+
+let SuspiciousPowerShell =
+    ProcessEvents
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where ProcessName =~ "powershell.exe"
+    | where CommandLine has_any (
+        "-EncodedCommand",
+        "-enc",
+        "-ExecutionPolicy Bypass"
+    )
+    | project
+        ProcessTime = TimeGenerated,
+        AccountName,
+        DeviceName,
+        CommandLine,
+        Severity,
+        Description;
+
+DormantSignins
+| extend AccountName = tostring(
+    split(UserPrincipalName, "@")[0]
+)
+| join kind=inner SuspiciousPowerShell
+    on AccountName
+| extend SecondsBetween =
+    datetime_diff(
+        "second",
+        ProcessTime,
+        SigninTime
+    )
+| where SecondsBetween between (0 .. 300)
+| project
+    UserPrincipalName,
+    AccountName,
+    SigninTime,
+    ProcessTime,
+    SecondsBetween,
+    IPAddress,
+    DeviceName,
+    AppDisplayName,
+    Location,
+    ConditionalAccessStatus,
+    DeviceCompliant,
+    CommandLine,
+    Severity,
+    Description
+| order by ProcessTime asc
