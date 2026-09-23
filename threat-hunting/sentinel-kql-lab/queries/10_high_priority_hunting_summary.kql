@@ -1,0 +1,224 @@
+let RepeatedFailures =
+    SigninLogs
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where tostring(ResultType) != "0"
+    | summarize
+        FailedAttempts = count(),
+        FirstFailure = min(TimeGenerated),
+        LastFailure = max(TimeGenerated)
+        by UserPrincipalName, IPAddress
+    | where FailedAttempts >= 3;
+
+let SuccessfulSignins =
+    SigninLogs
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where tostring(ResultType) == "0"
+    | extend AccountName =
+        tostring(split(UserPrincipalName, "@")[0])
+    | project
+        AccountName,
+        UserPrincipalName,
+        SuccessTime = TimeGenerated,
+        IPAddress,
+        AccountStatus,
+        ConditionalAccessStatus,
+        DeviceCompliant;
+
+let SuspiciousPowerShell =
+    ProcessEvents
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where ProcessName =~ "powershell.exe"
+    | where CommandLine has_any (
+        "-EncodedCommand",
+        "-enc",
+        "-ExecutionPolicy Bypass"
+    )
+    | project
+        AccountName,
+        ProcessTime = TimeGenerated,
+        DeviceName,
+        CommandLine;
+
+let SuspiciousRoleChanges =
+    PrivilegedActivity
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where ActivityStatus =~ "Success"
+    | where RoleName =~ "Contributor"
+    | extend AccountName =
+        tostring(split(TargetUser, "@")[0])
+    | where isempty(Justification)
+        or TicketNumber =~ "NONE"
+    | project
+        AccountName,
+        RoleTime = TimeGenerated,
+        TargetUser,
+        RoleName,
+        OperationName,
+        IPAddress,
+        Justification,
+        TicketNumber;
+
+let HighInterestNetwork =
+    NetworkEvents
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where DestinationPort in (445, 8443)
+        or DestinationIP in (
+            "203.0.113.77",
+            "203.0.113.88",
+            "203.0.113.90",
+            "203.0.113.91"
+        )
+    | project
+        AccountName,
+        NetworkTime = TimeGenerated,
+        DeviceName,
+        DestinationIP,
+        DestinationPort,
+        Action,
+        Description;
+
+let FinanceFinding =
+    RepeatedFailures
+    | where UserPrincipalName =~
+        "finance.user@northstar.example"
+    | join kind=inner SuccessfulSignins
+        on UserPrincipalName, IPAddress
+    | extend SecondsToSuccess =
+        datetime_diff(
+            "second",
+            SuccessTime,
+            LastFailure
+        )
+    | where SecondsToSuccess between (0 .. 300)
+    | project
+        FindingTime = SuccessTime,
+        Priority = "HIGH",
+        FindingType =
+            "Repeated failures followed by success",
+        Identity = UserPrincipalName,
+        Device = "",
+        Evidence = strcat(
+            FailedAttempts,
+            " failures from ",
+            IPAddress,
+            " followed by success after ",
+            SecondsToSuccess,
+            " seconds"
+        );
+
+let DormantIdentityFinding =
+    SuccessfulSignins
+    | where AccountStatus =~ "dormant"
+    | join kind=inner SuspiciousPowerShell
+        on AccountName
+    | extend SecondsSigninToProcess =
+        datetime_diff(
+            "second",
+            ProcessTime,
+            SuccessTime
+        )
+    | where SecondsSigninToProcess between (0 .. 300)
+    | join kind=inner SuspiciousRoleChanges
+        on AccountName
+    | extend SecondsProcessToRole =
+        datetime_diff(
+            "second",
+            RoleTime,
+            ProcessTime
+        )
+    | where SecondsProcessToRole between (0 .. 300)
+    | project
+        FindingTime = SuccessTime,
+        Priority = "CRITICAL",
+        FindingType =
+            "Dormant identity multi-stage activity",
+        Identity = UserPrincipalName,
+        Device = DeviceName,
+        Evidence = strcat(
+            "Dormant sign-in -> encoded PowerShell in ",
+            SecondsSigninToProcess,
+            " sec -> ",
+            RoleName,
+            " role in ",
+            SecondsProcessToRole,
+            " sec"
+        );
+
+let PowerShellFindings =
+    SuspiciousPowerShell
+    | project
+        FindingTime = ProcessTime,
+        Priority = "HIGH",
+        FindingType =
+            "Suspicious PowerShell execution",
+        Identity = AccountName,
+        Device = DeviceName,
+        Evidence = CommandLine;
+
+let PrivilegeFindings =
+    SuspiciousRoleChanges
+    | project
+        FindingTime = RoleTime,
+        Priority = "HIGH",
+        FindingType =
+            "Ungoverned privileged role change",
+        Identity = TargetUser,
+        Device = "",
+        Evidence = strcat(
+            OperationName,
+            " | Role: ",
+            RoleName,
+            " | Ticket: ",
+            TicketNumber
+        );
+
+let NetworkFindings =
+    HighInterestNetwork
+    | project
+        FindingTime = NetworkTime,
+        Priority = iff(
+            DestinationPort == 8443,
+            "HIGH",
+            "MEDIUM"
+        ),
+        FindingType =
+            "High-interest network activity",
+        Identity = AccountName,
+        Device = DeviceName,
+        Evidence = strcat(
+            DestinationIP,
+            ":",
+            DestinationPort,
+            " | ",
+            Action,
+            " | ",
+            Description
+        );
+
+union
+    FinanceFinding,
+    DormantIdentityFinding,
+    PowerShellFindings,
+    PrivilegeFindings,
+    NetworkFindings
+| order by FindingTime asc
