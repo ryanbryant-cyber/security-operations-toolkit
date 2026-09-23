@@ -64,6 +64,4 @@ No production Microsoft Sentinel workspace, real credentials, or private organiz
 ## Project Status
 
 🚧 In Development
-## Project Status
 
-🚧 In Development
