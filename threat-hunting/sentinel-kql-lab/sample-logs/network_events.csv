@@ -1,0 +1,11 @@
+TimeGenerated,DeviceName,AccountName,SourceIP,SourcePort,DestinationIP,DestinationPort,Protocol,Action,Direction,Description
+2026-09-23T12:06:21Z,NFG-WS-021,alex,10.10.20.21,51420,203.0.113.10,443,TCP,Allow,Outbound,Normal HTTPS connection to approved cloud service
+2026-09-23T12:19:36Z,NFG-FIN-WS07,finance.user,10.10.20.17,52361,203.0.113.77,443,TCP,Allow,Outbound,PowerShell-related outbound HTTPS connection
+2026-09-23T12:20:14Z,NFG-FIN-WS07,finance.user,10.10.20.17,52403,10.10.20.40,445,TCP,Deny,Outbound,Blocked SMB connection toward Finance application server
+2026-09-23T12:21:49Z,NFG-FIN-WS07,finance.user,10.10.20.17,52488,203.0.113.88,8443,TCP,Allow,Outbound,Unusual outbound connection to alternate HTTPS application port
+2026-09-23T12:26:51Z,NFG-IT-ADMIN01,it.admin,10.10.10.25,53011,10.10.10.50,443,TCP,Allow,Outbound,Approved connection to internal management service
+2026-09-23T12:32:41Z,NFG-CONTRACTOR-03,dormant.contractor,10.10.30.44,53102,203.0.113.90,443,TCP,Allow,Outbound,External connection shortly after dormant contractor sign-in
+2026-09-23T12:33:29Z,NFG-CONTRACTOR-03,dormant.contractor,10.10.30.44,53148,10.10.10.60,443,TCP,Allow,Outbound,Connection from contractor workstation to internal Azure management gateway
+2026-09-23T12:36:12Z,NFG-CONTRACTOR-03,dormant.contractor,10.10.30.44,53211,203.0.113.91,8443,TCP,Allow,Outbound,Unusual outbound alternate-port connection
+2026-09-23T12:40:51Z,NFG-IT-ADMIN01,it.admin,10.10.10.25,53320,10.10.10.50,443,TCP,Allow,Outbound,Approved security investigation traffic
+2026-09-23T12:48:22Z,NFG-HR-WS04,hr.user,10.10.20.33,54104,203.0.113.10,443,TCP,Allow,Outbound,Normal HTTPS connection to approved cloud service
