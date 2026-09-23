@@ -1,0 +1,34 @@
+PrivilegedActivity
+| where TimeGenerated between (
+    datetime(2026-09-23T12:00:00Z)
+    ..
+    datetime(2026-09-23T13:00:00Z)
+)
+| where ActivityStatus =~ "Success"
+| where OperationName in~ (
+    "Add member to role",
+    "Role assignment modified"
+)
+| where RoleName !~ "None"
+| extend
+    MissingJustification = isempty(
+        trim(" ", tostring(Justification))
+    ),
+    MissingTicket = (
+        isempty(TicketNumber)
+        or TicketNumber =~ "NONE"
+    )
+| where MissingJustification or MissingTicket
+| project
+    TimeGenerated,
+    InitiatedBy,
+    TargetUser,
+    OperationName,
+    RoleName,
+    IPAddress,
+    Justification,
+    TicketNumber,
+    MissingJustification,
+    MissingTicket,
+    Description
+| order by TimeGenerated asc
