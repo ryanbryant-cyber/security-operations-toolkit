@@ -1,0 +1,131 @@
+let DormantChain =
+    SigninLogs
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where AccountStatus =~ "dormant"
+    | where tostring(ResultType) == "0"
+    | extend AccountName = tostring(
+        split(UserPrincipalName, "@")[0]
+    )
+    | project
+        AccountName,
+        UserPrincipalName,
+        SigninTime = TimeGenerated,
+        SigninIP = IPAddress,
+        AppDisplayName,
+        ConditionalAccessStatus,
+        DeviceCompliant;
+
+let SuspiciousPowerShell =
+    ProcessEvents
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where ProcessName =~ "powershell.exe"
+    | where CommandLine has_any (
+        "-EncodedCommand",
+        "-enc",
+        "-ExecutionPolicy Bypass"
+    )
+    | project
+        AccountName,
+        ProcessTime = TimeGenerated,
+        DeviceName,
+        CommandLine;
+
+let PrivilegedRoleChanges =
+    PrivilegedActivity
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where ActivityStatus =~ "Success"
+    | where RoleName =~ "Contributor"
+    | extend AccountName = tostring(
+        split(TargetUser, "@")[0]
+    )
+    | project
+        AccountName,
+        RoleTime = TimeGenerated,
+        RoleName,
+        OperationName,
+        RoleIPAddress = IPAddress,
+        Justification,
+        TicketNumber;
+
+let NetworkActivity =
+    NetworkEvents
+    | where TimeGenerated between (
+        datetime(2026-09-23T12:00:00Z)
+        ..
+        datetime(2026-09-23T13:00:00Z)
+    )
+    | where Action =~ "Allow"
+    | where DestinationPort in (443, 8443)
+    | project
+        AccountName,
+        NetworkTime = TimeGenerated,
+        DeviceName,
+        SourceIP,
+        DestinationIP,
+        DestinationPort,
+        Protocol,
+        Direction,
+        Description;
+
+DormantChain
+| join kind=inner SuspiciousPowerShell
+    on AccountName
+| extend SecondsSigninToProcess =
+    datetime_diff(
+        "second",
+        ProcessTime,
+        SigninTime
+    )
+| where SecondsSigninToProcess between (0 .. 300)
+| join kind=inner PrivilegedRoleChanges
+    on AccountName
+| extend SecondsProcessToRole =
+    datetime_diff(
+        "second",
+        RoleTime,
+        ProcessTime
+    )
+| where SecondsProcessToRole between (0 .. 300)
+| join kind=inner NetworkActivity
+    on AccountName
+| extend SecondsRoleToNetwork =
+    datetime_diff(
+        "second",
+        NetworkTime,
+        RoleTime
+    )
+| where SecondsRoleToNetwork between (0 .. 300)
+| project
+    UserPrincipalName,
+    AccountName,
+    SigninTime,
+    SigninIP,
+    ProcessTime,
+    CommandLine,
+    RoleTime,
+    RoleName,
+    OperationName,
+    NetworkTime,
+    DeviceName,
+    DestinationIP,
+    DestinationPort,
+    SecondsSigninToProcess,
+    SecondsProcessToRole,
+    SecondsRoleToNetwork,
+    ConditionalAccessStatus,
+    DeviceCompliant,
+    Justification,
+    TicketNumber
+| order by SigninTime asc
