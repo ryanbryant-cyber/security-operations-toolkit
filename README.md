@@ -74,6 +74,30 @@ The project correlates identity, endpoint, privilege, and network telemetry and 
 
 [View the Microsoft Sentinel KQL Threat Hunting Lab](threat-hunting/sentinel-kql-lab/)
 
+### Vulnerability Management
+
+#### Vulnerability Prioritization Engine
+
+Risk-based vulnerability-management project that demonstrates why remediation priority should not be determined by CVSS alone.
+
+The project uses a transparent Python scoring engine to evaluate 10 synthetic vulnerability findings using technical severity, asset criticality, internet exposure, known exploitation, public exploit availability, patch availability, vulnerability age, and compensating controls.
+
+The engine generates ranked remediation priorities, analyst-readable rationale, and structured JSON/CSV reports.
+
+Key project outcomes:
+
+- Prioritized 10 synthetic vulnerability findings
+- Produced CRITICAL, HIGH, MODERATE, and LOW remediation classifications
+- Demonstrated that a CVSS 7.5 internet-facing, known-exploited VPN vulnerability can outrank a CVSS 9.8 vulnerability on an isolated lab system
+- Demonstrated that a CVSS 5.9 known-exploited, unpatched legacy vulnerability can become a HIGH-priority remediation item
+- Generated structured CSV and JSON remediation reports
+- Implemented an independent validation harness
+- Passed 14 of 14 validation checks
+
+**Skills:** Vulnerability Management | Risk-Based Prioritization | CVSS | Asset Criticality | Known Exploitation Analysis | Compensating Controls | Remediation Planning | Risk Scoring | Python | Security Automation | Validation Testing
+
+[View the Vulnerability Prioritization Engine](vulnerability-management/vulnerability-prioritization-engine/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
