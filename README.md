@@ -98,6 +98,36 @@ Key project outcomes:
 
 [View the Vulnerability Prioritization Engine](vulnerability-management/vulnerability-prioritization-engine/)
 
+### Security Hardening
+
+#### Secure Baseline Audit Tool
+
+Windows security-configuration assessment project focused on comparing observed workstation settings against a defined security baseline.
+
+The project evaluates 15 synthetic Windows security controls across authentication, account security, network security, remote access, logging, patch management, endpoint protection, and privilege management.
+
+The Python audit engine supports multiple comparison types, including exact matches, minimum and maximum thresholds, approved ranges, analyst-review conditions, and conditional requirements.
+
+Key project outcomes:
+
+- Evaluated 15 Windows security controls
+- Produced 9 PASS results
+- Identified 5 configuration failures
+- Generated 1 analyst-review finding
+- Identified weak password-length requirements
+- Identified an ineffective account-lockout threshold
+- Detected Remote Desktop enabled without Network Level Authentication
+- Detected disabled PowerShell Script Block Logging
+- Identified excessive local administrator membership
+- Confirmed secure Windows Firewall, SMBv1, endpoint protection, and audit settings
+- Generated structured CSV and JSON audit reports
+- Implemented an independent validation harness
+- Passed 20 of 20 validation checks
+
+**Skills:** Security Configuration Auditing | Windows Security Hardening | Secure Baselines | Configuration Drift Analysis | Authentication Security | Windows Firewall | Remote Access Security | PowerShell Logging | Privilege Management | Remediation Planning | Python | Security Automation | Validation Testing
+
+[View the Secure Baseline Audit Tool](security-hardening/secure-baseline-audit-tool/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
