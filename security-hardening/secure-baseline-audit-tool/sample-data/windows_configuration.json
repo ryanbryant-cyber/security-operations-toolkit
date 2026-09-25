@@ -1,0 +1,36 @@
+{
+  "system": {
+    "hostname": "NFG-FIN-WS07",
+    "operating_system": "Windows 11 Enterprise",
+    "business_function": "Finance Workstation",
+    "environment": "Production",
+    "asset_criticality": "High"
+  },
+
+  "security_configuration": {
+    "password_minimum_length": 8,
+    "password_complexity_enabled": true,
+    "account_lockout_threshold": 0,
+
+    "guest_account_enabled": false,
+
+    "firewall_domain_enabled": true,
+    "firewall_private_enabled": true,
+    "firewall_public_enabled": true,
+
+    "remote_desktop_enabled": true,
+    "remote_desktop_nla_enabled": false,
+
+    "smbv1_enabled": false,
+
+    "powershell_script_block_logging_enabled": false,
+
+    "audit_process_creation_enabled": true,
+
+    "automatic_security_updates_enabled": true,
+
+    "endpoint_protection_enabled": true,
+
+    "local_administrator_count": 4
+  }
+}
