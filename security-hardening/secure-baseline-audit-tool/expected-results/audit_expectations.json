@@ -1,0 +1,87 @@
+{
+  "expected_summary": {
+    "total_controls": 15,
+    "pass": 9,
+    "fail": 5,
+    "review": 1,
+    "not_applicable": 0
+  },
+
+  "expected_controls": [
+    {
+      "control_id": "BASE-001",
+      "expected_status": "FAIL",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-002",
+      "expected_status": "PASS",
+      "expected_severity": "MODERATE"
+    },
+    {
+      "control_id": "BASE-003",
+      "expected_status": "FAIL",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-004",
+      "expected_status": "PASS",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-005",
+      "expected_status": "PASS",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-006",
+      "expected_status": "PASS",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-007",
+      "expected_status": "PASS",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-008",
+      "expected_status": "REVIEW",
+      "expected_severity": "MODERATE"
+    },
+    {
+      "control_id": "BASE-009",
+      "expected_status": "FAIL",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-010",
+      "expected_status": "PASS",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-011",
+      "expected_status": "FAIL",
+      "expected_severity": "MODERATE"
+    },
+    {
+      "control_id": "BASE-012",
+      "expected_status": "PASS",
+      "expected_severity": "MODERATE"
+    },
+    {
+      "control_id": "BASE-013",
+      "expected_status": "PASS",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-014",
+      "expected_status": "PASS",
+      "expected_severity": "HIGH"
+    },
+    {
+      "control_id": "BASE-015",
+      "expected_status": "FAIL",
+      "expected_severity": "MODERATE"
+    }
+  ]
+}
