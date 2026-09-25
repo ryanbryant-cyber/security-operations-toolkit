@@ -1,0 +1,179 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 20,
+  "checks_passed": 20,
+  "checks_failed": 0,
+  "summary_check": {
+    "check": "Audit summary",
+    "expected": {
+      "total_controls": 15,
+      "pass": 9,
+      "fail": 5,
+      "review": 1,
+      "not_applicable": 0
+    },
+    "actual": {
+      "total_controls": 15,
+      "pass": 9,
+      "fail": 5,
+      "review": 1,
+      "not_applicable": 0
+    },
+    "passed": true
+  },
+  "control_checks": [
+    {
+      "control_id": "BASE-001",
+      "name": "Minimum Password Length",
+      "expected_status": "FAIL",
+      "actual_status": "FAIL",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-002",
+      "name": "Password Complexity",
+      "expected_status": "PASS",
+      "actual_status": "PASS",
+      "expected_severity": "MODERATE",
+      "actual_severity": "MODERATE",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-003",
+      "name": "Account Lockout Threshold",
+      "expected_status": "FAIL",
+      "actual_status": "FAIL",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-004",
+      "name": "Guest Account Disabled",
+      "expected_status": "PASS",
+      "actual_status": "PASS",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-005",
+      "name": "Domain Firewall Enabled",
+      "expected_status": "PASS",
+      "actual_status": "PASS",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-006",
+      "name": "Private Firewall Enabled",
+      "expected_status": "PASS",
+      "actual_status": "PASS",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-007",
+      "name": "Public Firewall Enabled",
+      "expected_status": "PASS",
+      "actual_status": "PASS",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-008",
+      "name": "Remote Desktop Exposure Review",
+      "expected_status": "REVIEW",
+      "actual_status": "REVIEW",
+      "expected_severity": "MODERATE",
+      "actual_severity": "MODERATE",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-009",
+      "name": "Remote Desktop Network Level Authentication",
+      "expected_status": "FAIL",
+      "actual_status": "FAIL",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-010",
+      "name": "SMBv1 Disabled",
+      "expected_status": "PASS",
+      "actual_status": "PASS",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-011",
+      "name": "PowerShell Script Block Logging",
+      "expected_status": "FAIL",
+      "actual_status": "FAIL",
+      "expected_severity": "MODERATE",
+      "actual_severity": "MODERATE",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-012",
+      "name": "Process Creation Auditing",
+      "expected_status": "PASS",
+      "actual_status": "PASS",
+      "expected_severity": "MODERATE",
+      "actual_severity": "MODERATE",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-013",
+      "name": "Automatic Security Updates",
+      "expected_status": "PASS",
+      "actual_status": "PASS",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-014",
+      "name": "Endpoint Protection Enabled",
+      "expected_status": "PASS",
+      "actual_status": "PASS",
+      "expected_severity": "HIGH",
+      "actual_severity": "HIGH",
+      "passed": true
+    },
+    {
+      "control_id": "BASE-015",
+      "name": "Local Administrator Count",
+      "expected_status": "FAIL",
+      "actual_status": "FAIL",
+      "expected_severity": "MODERATE",
+      "actual_severity": "MODERATE",
+      "passed": true
+    }
+  ],
+  "behavioral_checks": [
+    {
+      "check": "Enabled Remote Desktop requires analyst review rather than automatic failure",
+      "passed": true
+    },
+    {
+      "check": "Remote Desktop without Network Level Authentication produces FAIL",
+      "passed": true
+    },
+    {
+      "check": "All Windows Firewall profiles pass baseline",
+      "passed": true
+    },
+    {
+      "check": "Disabled SMBv1 satisfies secure baseline",
+      "passed": true
+    }
+  ]
+}
