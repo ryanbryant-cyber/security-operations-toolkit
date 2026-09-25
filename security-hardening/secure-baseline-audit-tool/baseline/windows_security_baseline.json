@@ -1,0 +1,163 @@
+{
+  "baseline_name": "Windows Workstation Security Baseline",
+  "baseline_version": "1.0",
+  "description": "Educational security baseline used to evaluate synthetic Windows workstation configuration settings.",
+
+  "controls": [
+    {
+      "control_id": "BASE-001",
+      "name": "Minimum Password Length",
+      "category": "Authentication",
+      "field": "password_minimum_length",
+      "operator": "minimum",
+      "expected_value": 14,
+      "severity": "HIGH",
+      "remediation": "Configure the minimum password length to at least 14 characters."
+    },
+    {
+      "control_id": "BASE-002",
+      "name": "Password Complexity",
+      "category": "Authentication",
+      "field": "password_complexity_enabled",
+      "operator": "equals",
+      "expected_value": true,
+      "severity": "MODERATE",
+      "remediation": "Enable password complexity requirements through the applicable security policy."
+    },
+    {
+      "control_id": "BASE-003",
+      "name": "Account Lockout Threshold",
+      "category": "Authentication",
+      "field": "account_lockout_threshold",
+      "operator": "range",
+      "minimum_value": 1,
+      "maximum_value": 5,
+      "severity": "HIGH",
+      "remediation": "Configure account lockout to trigger after no more than five invalid authentication attempts while avoiding a value of zero."
+    },
+    {
+      "control_id": "BASE-004",
+      "name": "Guest Account Disabled",
+      "category": "Account Security",
+      "field": "guest_account_enabled",
+      "operator": "equals",
+      "expected_value": false,
+      "severity": "HIGH",
+      "remediation": "Disable the built-in Guest account unless a documented business requirement exists."
+    },
+    {
+      "control_id": "BASE-005",
+      "name": "Domain Firewall Enabled",
+      "category": "Network Security",
+      "field": "firewall_domain_enabled",
+      "operator": "equals",
+      "expected_value": true,
+      "severity": "HIGH",
+      "remediation": "Enable the Windows Defender Firewall for the Domain profile."
+    },
+    {
+      "control_id": "BASE-006",
+      "name": "Private Firewall Enabled",
+      "category": "Network Security",
+      "field": "firewall_private_enabled",
+      "operator": "equals",
+      "expected_value": true,
+      "severity": "HIGH",
+      "remediation": "Enable the Windows Defender Firewall for the Private profile."
+    },
+    {
+      "control_id": "BASE-007",
+      "name": "Public Firewall Enabled",
+      "category": "Network Security",
+      "field": "firewall_public_enabled",
+      "operator": "equals",
+      "expected_value": true,
+      "severity": "HIGH",
+      "remediation": "Enable the Windows Defender Firewall for the Public profile."
+    },
+    {
+      "control_id": "BASE-008",
+      "name": "Remote Desktop Exposure Review",
+      "category": "Remote Access",
+      "field": "remote_desktop_enabled",
+      "operator": "review_if_true",
+      "expected_value": false,
+      "severity": "MODERATE",
+      "remediation": "Confirm that Remote Desktop is required. If it is not needed, disable it. If required, restrict access and apply strong authentication controls."
+    },
+    {
+      "control_id": "BASE-009",
+      "name": "Remote Desktop Network Level Authentication",
+      "category": "Remote Access",
+      "field": "remote_desktop_nla_enabled",
+      "operator": "conditional_equals",
+      "expected_value": true,
+      "condition": {
+        "field": "remote_desktop_enabled",
+        "equals": true
+      },
+      "severity": "HIGH",
+      "remediation": "Enable Network Level Authentication whenever Remote Desktop is enabled."
+    },
+    {
+      "control_id": "BASE-010",
+      "name": "SMBv1 Disabled",
+      "category": "Network Security",
+      "field": "smbv1_enabled",
+      "operator": "equals",
+      "expected_value": false,
+      "severity": "HIGH",
+      "remediation": "Disable SMBv1 and use supported SMB protocol versions."
+    },
+    {
+      "control_id": "BASE-011",
+      "name": "PowerShell Script Block Logging",
+      "category": "Logging and Monitoring",
+      "field": "powershell_script_block_logging_enabled",
+      "operator": "equals",
+      "expected_value": true,
+      "severity": "MODERATE",
+      "remediation": "Enable PowerShell Script Block Logging to improve visibility into PowerShell activity."
+    },
+    {
+      "control_id": "BASE-012",
+      "name": "Process Creation Auditing",
+      "category": "Logging and Monitoring",
+      "field": "audit_process_creation_enabled",
+      "operator": "equals",
+      "expected_value": true,
+      "severity": "MODERATE",
+      "remediation": "Enable process creation auditing to improve endpoint investigation and detection capabilities."
+    },
+    {
+      "control_id": "BASE-013",
+      "name": "Automatic Security Updates",
+      "category": "Patch Management",
+      "field": "automatic_security_updates_enabled",
+      "operator": "equals",
+      "expected_value": true,
+      "severity": "HIGH",
+      "remediation": "Enable automatic security updates or manage the system through an approved centralized patch-management process."
+    },
+    {
+      "control_id": "BASE-014",
+      "name": "Endpoint Protection Enabled",
+      "category": "Endpoint Security",
+      "field": "endpoint_protection_enabled",
+      "operator": "equals",
+      "expected_value": true,
+      "severity": "HIGH",
+      "remediation": "Enable approved endpoint protection and ensure protection services remain active."
+    },
+    {
+      "control_id": "BASE-015",
+      "name": "Local Administrator Count",
+      "category": "Privilege Management",
+      "field": "local_administrator_count",
+      "operator": "maximum",
+      "expected_value": 2,
+      "severity": "MODERATE",
+      "remediation": "Review local administrator membership and reduce privileged accounts to the minimum required for business operations."
+    }
+  ]
+}
