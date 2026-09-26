@@ -158,6 +158,36 @@ Key project outcomes:
 
 [View the Phishing Email Investigation Lab](email-security/phishing-investigation-lab/)
 
+### Incident Detection & Containment
+
+#### Session Hijacking & DDoS Detection and Containment Lab
+
+Defensive security-operations project focused on detecting suspected session hijacking and distributed denial-of-service behavior using synthetic session and web-traffic telemetry.
+
+The project correlates authentication context, session reuse, source changes, sensitive activity, request-volume baselines, distributed traffic, HTTP errors, and service degradation before assigning severity and containment guidance.
+
+Key project outcomes:
+
+- Detected 1 suspected session-hijacking scenario
+- Correlated 6 session behavioral indicators
+- Identified source-IP and user-agent changes
+- Detected missing MFA verification on the anomalous origin
+- Identified sensitive actions from the anomalous session
+- Detected concurrent reuse of the same session identifier
+- Established a normal HTTP baseline of 86.67 requests/minute
+- Detected 2 DDoS traffic surges
+- Measured traffic at 23.54x and 26.08x normal baseline
+- Identified distributed source activity and endpoint concentration
+- Detected HTTP 429 and 503 service degradation
+- Generated containment recommendations for both incident types
+- Produced structured CSV and JSON investigation reports
+- Implemented an independent validation harness
+- Passed 10 of 10 validation checks
+
+**Skills:** Session Security | Session Hijacking Detection | DDoS Detection | Web Log Analysis | Authentication Analysis | Behavioral Correlation | Traffic Baselining | HTTP Traffic Analysis | Incident Triage | Incident Containment | Risk Scoring | Python | Security Automation | Validation Testing
+
+[View the Session Hijacking & DDoS Detection and Containment Lab](incident-detection/session-ddos-detection-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
