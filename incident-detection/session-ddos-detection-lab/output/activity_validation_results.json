@@ -1,0 +1,72 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 10,
+  "checks_passed": 10,
+  "checks_failed": 0,
+  "summary_check": {
+    "check": "Finding summary",
+    "expected": {
+      "session_findings": 1,
+      "ddos_findings": 2,
+      "total_findings": 3
+    },
+    "actual": {
+      "session_findings": 1,
+      "ddos_findings": 2,
+      "total_findings": 3
+    },
+    "passed": true
+  },
+  "session_check": {
+    "check": "Session hijacking finding",
+    "finding_id": "HIJACK-FIN-8842",
+    "risk_score": 100,
+    "severity": "CRITICAL",
+    "indicator_count": 6,
+    "passed": true
+  },
+  "ddos_checks": [
+    {
+      "check": "DDOS-2026-09-26T1323",
+      "requests_per_minute": 2040,
+      "baseline_multiplier": 23.54,
+      "risk_score": 100,
+      "severity": "CRITICAL",
+      "passed": true
+    },
+    {
+      "check": "DDOS-2026-09-26T1324",
+      "requests_per_minute": 2260,
+      "baseline_multiplier": 26.08,
+      "risk_score": 100,
+      "severity": "CRITICAL",
+      "passed": true
+    }
+  ],
+  "behavioral_checks": [
+    {
+      "check": "Session finding contains all six behavioral indicators",
+      "passed": true
+    },
+    {
+      "check": "Finance session is the only session-hijacking finding",
+      "passed": true
+    },
+    {
+      "check": "DDoS baseline matches expected normal traffic",
+      "passed": true
+    },
+    {
+      "check": "Both DDoS findings contain all six behavioral indicators",
+      "passed": true
+    },
+    {
+      "check": "Both DDoS findings exceed 20x normal traffic baseline",
+      "passed": true
+    },
+    {
+      "check": "Containment recommendations are present for both incident types",
+      "passed": true
+    }
+  ]
+}
