@@ -296,7 +296,7 @@ def analyze_sessions(events, rules):
         if severity == "LOW":
             continue
 
-        anomalous_ips = sorted({
+                anomalous_ips = sorted({
             event["source_ip"]
             for event in anomalous_events
         })
@@ -306,13 +306,35 @@ def analyze_sessions(events, rules):
             for event in anomalous_events
         })
 
-       findings.append({
-    "finding_id": (
-        f"HIJACK-{session_id.replace('SESSION-', '', 1)}"
-    ),
-    "finding_type": (
-        "Suspected Session Hijacking"
-    ),
+        findings.append({
+            "finding_id": (
+                f"HIJACK-{session_id.replace('SESSION-', '', 1)}"
+            ),
+            "finding_type": (
+                "Suspected Session Hijacking"
+            ),
+            "user": login_event["user"],
+            "session_id": session_id,
+            "baseline_source_ip": baseline_ip,
+            "baseline_user_agent": baseline_agent,
+            "anomalous_source_ips": anomalous_ips,
+            "anomalous_user_agents": anomalous_agents,
+            "risk_score": final_score,
+            "severity": severity,
+            "indicators": indicators,
+            "containment_recommendations": rules[
+                "containment_recommendations"
+            ],
+            "analyst_assessment": (
+                "The session shows multiple behavioral "
+                "anomalies consistent with suspected "
+                "session hijacking, including origin "
+                "changes and continued use of the same "
+                "session identifier. The telemetry does "
+                "not establish how the session token was "
+                "obtained."
+            )
+        })
             "user": login_event["user"],
             "session_id": session_id,
             "baseline_source_ip": baseline_ip,
