@@ -1,0 +1,190 @@
+{
+  "dataset_name": "Synthetic SOC Email Triage Cases",
+  "dataset_version": "1.0",
+  "description": "Synthetic email evidence used to practice phishing investigation, authentication review, IOC extraction, and analyst disposition.",
+
+  "emails": [
+    {
+      "case_id": "EMAIL-001",
+      "received_time": "2026-09-26T09:14:22Z",
+      "recipient": "finance.user@northstar.example",
+
+      "headers": {
+        "from_display_name": "Northstar Ridge IT Support",
+        "from_address": "security-alert@northstar-support.example",
+        "reply_to": "helpdesk-verification@account-review.example",
+        "return_path": "bounce@mailer.account-review.example",
+        "sending_ip": "198.51.100.24",
+        "message_id": "<9845127.account-review@example>",
+        "subject": "ACTION REQUIRED: Microsoft 365 password expires today"
+      },
+
+      "authentication": {
+        "spf": "fail",
+        "dkim": "fail",
+        "dmarc": "fail"
+      },
+
+      "sender_context": {
+        "external_sender": true,
+        "known_sender": false,
+        "display_name_impersonation": true,
+        "from_reply_to_domain_match": false,
+        "from_return_path_domain_match": false
+      },
+
+      "body_indicators": {
+        "urgency_language": true,
+        "credential_request": true,
+        "financial_request": false,
+        "threatening_language": true,
+        "security_alert_theme": true
+      },
+
+      "urls": [
+        {
+          "url": "https://login.northstar-security.example/verify-account",
+          "domain": "login.northstar-security.example",
+          "uses_https": true,
+          "domain_matches_sender": false,
+          "display_text": "Verify Microsoft 365 Account"
+        }
+      ],
+
+      "attachments": [
+        {
+          "filename": "Account_Notice.html",
+          "file_type": "HTML",
+          "mime_type": "text/html",
+          "size_bytes": 18432,
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "macro_enabled": false,
+          "executable": false,
+          "contains_external_form": true
+        }
+      ]
+    },
+
+    {
+      "case_id": "EMAIL-002",
+      "received_time": "2026-09-26T10:02:41Z",
+      "recipient": "accounts.payable@northstar.example",
+
+      "headers": {
+        "from_display_name": "Partner Services Billing",
+        "from_address": "billing@partner-services.example",
+        "reply_to": "billing@partner-services.example",
+        "return_path": "billing@partner-services.example",
+        "sending_ip": "203.0.113.55",
+        "message_id": "<INV-2048@partner-services.example>",
+        "subject": "Invoice INV-2048 requires review"
+      },
+
+      "authentication": {
+        "spf": "pass",
+        "dkim": "pass",
+        "dmarc": "none"
+      },
+
+      "sender_context": {
+        "external_sender": true,
+        "known_sender": false,
+        "display_name_impersonation": false,
+        "from_reply_to_domain_match": true,
+        "from_return_path_domain_match": true
+      },
+
+      "body_indicators": {
+        "urgency_language": true,
+        "credential_request": false,
+        "financial_request": true,
+        "threatening_language": false,
+        "security_alert_theme": false
+      },
+
+      "urls": [
+        {
+          "url": "https://files.partner-services.example/invoices/INV-2048",
+          "domain": "files.partner-services.example",
+          "uses_https": true,
+          "domain_matches_sender": true,
+          "display_text": "Review Invoice"
+        }
+      ],
+
+      "attachments": [
+        {
+          "filename": "INV-2048.pdf",
+          "file_type": "PDF",
+          "mime_type": "application/pdf",
+          "size_bytes": 86452,
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "macro_enabled": false,
+          "executable": false,
+          "contains_external_form": false
+        }
+      ]
+    },
+
+    {
+      "case_id": "EMAIL-003",
+      "received_time": "2026-09-26T10:48:19Z",
+      "recipient": "alex.employee@northstar.example",
+
+      "headers": {
+        "from_display_name": "Northstar Ridge Human Resources",
+        "from_address": "hr@northstar.example",
+        "reply_to": "hr@northstar.example",
+        "return_path": "hr@northstar.example",
+        "sending_ip": "192.0.2.15",
+        "message_id": "<HR-2026-0926@northstar.example>",
+        "subject": "2027 Benefits Enrollment Information"
+      },
+
+      "authentication": {
+        "spf": "pass",
+        "dkim": "pass",
+        "dmarc": "pass"
+      },
+
+      "sender_context": {
+        "external_sender": false,
+        "known_sender": true,
+        "display_name_impersonation": false,
+        "from_reply_to_domain_match": true,
+        "from_return_path_domain_match": true
+      },
+
+      "body_indicators": {
+        "urgency_language": false,
+        "credential_request": false,
+        "financial_request": false,
+        "threatening_language": false,
+        "security_alert_theme": false
+      },
+
+      "urls": [
+        {
+          "url": "https://benefits.northstar.example/open-enrollment",
+          "domain": "benefits.northstar.example",
+          "uses_https": true,
+          "domain_matches_sender": true,
+          "display_text": "Benefits Enrollment Portal"
+        }
+      ],
+
+      "attachments": [
+        {
+          "filename": "2027_Benefits_Guide.pdf",
+          "file_type": "PDF",
+          "mime_type": "application/pdf",
+          "size_bytes": 124880,
+          "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "macro_enabled": false,
+          "executable": false,
+          "contains_external_form": false
+        }
+      ]
+    }
+  ]
+}
