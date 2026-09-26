@@ -128,6 +128,36 @@ Key project outcomes:
 
 [View the Secure Baseline Audit Tool](security-hardening/secure-baseline-audit-tool/)
 
+### Email Security
+
+#### Phishing Email Investigation Lab
+
+SOC-focused email-security project centered on phishing triage, authentication analysis, IOC extraction, and evidence-based disposition.
+
+The project evaluates three synthetic email cases representing malicious phishing, a suspicious invoice scenario, and a benign internal message.
+
+The Python analysis engine reviews sender context, SPF, DKIM, DMARC, domain alignment, social-engineering indicators, URLs, attachments, and extracted investigation artifacts before assigning a BENIGN, SUSPICIOUS, or MALICIOUS disposition.
+
+Key project outcomes:
+
+- Analyzed 3 synthetic email investigations
+- Produced 1 MALICIOUS, 1 SUSPICIOUS, and 1 BENIGN disposition
+- Detected SPF, DKIM, and DMARC failures
+- Identified display-name impersonation
+- Detected Reply-To and Return-Path mismatches
+- Identified credential-phishing indicators
+- Detected suspicious HTML attachment behavior
+- Extracted email addresses, domains, IP addresses, URLs, and SHA-256 hashes
+- Separated extracted investigation artifacts from confirmed malicious indicators
+- Generated analyst-readable assessments
+- Produced structured CSV and JSON investigation reports
+- Implemented an independent validation harness
+- Passed 10 of 10 validation checks
+
+**Skills:** Phishing Analysis | Email Security | SOC Triage | Email Header Analysis | SPF | DKIM | DMARC | Sender Impersonation Detection | Domain Alignment Analysis | Social Engineering Detection | IOC Extraction | URL Analysis | Attachment Analysis | Python | Security Automation | Validation Testing
+
+[View the Phishing Email Investigation Lab](email-security/phishing-investigation-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
