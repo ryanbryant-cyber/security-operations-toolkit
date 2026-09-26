@@ -1,0 +1,268 @@
+{
+  "dataset_name": "Synthetic SOC Email Triage Cases",
+  "risk_model": "Synthetic Phishing Email Risk Model",
+  "summary": {
+    "total_cases": 3,
+    "malicious": 1,
+    "suspicious": 1,
+    "benign": 1
+  },
+  "results": [
+    {
+      "case_id": "EMAIL-001",
+      "received_time": "2026-09-26T09:14:22Z",
+      "recipient": "finance.user@northstar.example",
+      "subject": "ACTION REQUIRED: Microsoft 365 password expires today",
+      "from_display_name": "Northstar Ridge IT Support",
+      "from_address": "security-alert@northstar-support.example",
+      "sending_ip": "198.51.100.24",
+      "spf": "fail",
+      "dkim": "fail",
+      "dmarc": "fail",
+      "risk_score": 100,
+      "disposition": "MALICIOUS",
+      "risk_indicators": [
+        {
+          "indicator": "SPF failure",
+          "points": 10,
+          "evidence": "SPF authentication result was fail."
+        },
+        {
+          "indicator": "DKIM failure",
+          "points": 8,
+          "evidence": "DKIM authentication result was fail."
+        },
+        {
+          "indicator": "DMARC failure",
+          "points": 15,
+          "evidence": "DMARC authentication result was fail."
+        },
+        {
+          "indicator": "External unknown sender",
+          "points": 5,
+          "evidence": "Message originated from an external sender not marked as known."
+        },
+        {
+          "indicator": "Display-name impersonation",
+          "points": 15,
+          "evidence": "Sender display name appears to impersonate a trusted organization or role."
+        },
+        {
+          "indicator": "Reply-To domain mismatch",
+          "points": 10,
+          "evidence": "From and Reply-To domains do not align."
+        },
+        {
+          "indicator": "Return-Path domain mismatch",
+          "points": 8,
+          "evidence": "From and Return-Path domains do not align."
+        },
+        {
+          "indicator": "Urgency language",
+          "points": 5,
+          "evidence": "Urgency language was present in the message context."
+        },
+        {
+          "indicator": "Credential request",
+          "points": 15,
+          "evidence": "Credential request was present in the message context."
+        },
+        {
+          "indicator": "Threatening language",
+          "points": 5,
+          "evidence": "Threatening language was present in the message context."
+        },
+        {
+          "indicator": "Security-alert theme",
+          "points": 4,
+          "evidence": "Security-alert theme was present in the message context."
+        },
+        {
+          "indicator": "URL domain mismatch",
+          "points": 10,
+          "evidence": "URL domain login.northstar-security.example does not match the sender domain."
+        },
+        {
+          "indicator": "HTML attachment",
+          "points": 8,
+          "evidence": "HTML attachment observed: Account_Notice.html"
+        },
+        {
+          "indicator": "Attachment contains external form",
+          "points": 12,
+          "evidence": "Account_Notice.html contains an external form."
+        }
+      ],
+      "extracted_iocs": [
+        {
+          "type": "email",
+          "value": "security-alert@northstar-support.example",
+          "source": "Sender Email"
+        },
+        {
+          "type": "domain",
+          "value": "northstar-support.example",
+          "source": "Sender Email"
+        },
+        {
+          "type": "email",
+          "value": "helpdesk-verification@account-review.example",
+          "source": "Reply-To Email"
+        },
+        {
+          "type": "domain",
+          "value": "account-review.example",
+          "source": "Reply-To Email"
+        },
+        {
+          "type": "email",
+          "value": "bounce@mailer.account-review.example",
+          "source": "Return-Path Email"
+        },
+        {
+          "type": "domain",
+          "value": "mailer.account-review.example",
+          "source": "Return-Path Email"
+        },
+        {
+          "type": "ip",
+          "value": "198.51.100.24",
+          "source": "Sending IP"
+        },
+        {
+          "type": "url",
+          "value": "https://login.northstar-security.example/verify-account",
+          "source": "Message URL"
+        },
+        {
+          "type": "domain",
+          "value": "login.northstar-security.example",
+          "source": "Message URL"
+        },
+        {
+          "type": "sha256",
+          "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "source": "Account_Notice.html"
+        }
+      ],
+      "analyst_assessment": "EMAIL-001 contains multiple high-risk phishing indicators and received a risk score of 100. The combined authentication failures, sender anomalies, message content, URL characteristics, or attachment behavior support a MALICIOUS disposition."
+    },
+    {
+      "case_id": "EMAIL-002",
+      "received_time": "2026-09-26T10:02:41Z",
+      "recipient": "accounts.payable@northstar.example",
+      "subject": "Invoice INV-2048 requires review",
+      "from_display_name": "Partner Services Billing",
+      "from_address": "billing@partner-services.example",
+      "sending_ip": "203.0.113.55",
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "none",
+      "risk_score": 18,
+      "disposition": "SUSPICIOUS",
+      "risk_indicators": [
+        {
+          "indicator": "No DMARC enforcement result",
+          "points": 2,
+          "evidence": "DMARC result was none."
+        },
+        {
+          "indicator": "External unknown sender",
+          "points": 5,
+          "evidence": "Message originated from an external sender not marked as known."
+        },
+        {
+          "indicator": "Urgency language",
+          "points": 5,
+          "evidence": "Urgency language was present in the message context."
+        },
+        {
+          "indicator": "Financial request",
+          "points": 6,
+          "evidence": "Financial request was present in the message context."
+        }
+      ],
+      "extracted_iocs": [
+        {
+          "type": "email",
+          "value": "billing@partner-services.example",
+          "source": "Sender Email"
+        },
+        {
+          "type": "domain",
+          "value": "partner-services.example",
+          "source": "Sender Email"
+        },
+        {
+          "type": "ip",
+          "value": "203.0.113.55",
+          "source": "Sending IP"
+        },
+        {
+          "type": "url",
+          "value": "https://files.partner-services.example/invoices/INV-2048",
+          "source": "Message URL"
+        },
+        {
+          "type": "domain",
+          "value": "files.partner-services.example",
+          "source": "Message URL"
+        },
+        {
+          "type": "sha256",
+          "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "source": "INV-2048.pdf"
+        }
+      ],
+      "analyst_assessment": "EMAIL-002 contains indicators that warrant additional analyst investigation and received a risk score of 18. Available evidence is concerning but does not independently establish confirmed malicious activity."
+    },
+    {
+      "case_id": "EMAIL-003",
+      "received_time": "2026-09-26T10:48:19Z",
+      "recipient": "alex.employee@northstar.example",
+      "subject": "2027 Benefits Enrollment Information",
+      "from_display_name": "Northstar Ridge Human Resources",
+      "from_address": "hr@northstar.example",
+      "sending_ip": "192.0.2.15",
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass",
+      "risk_score": 0,
+      "disposition": "BENIGN",
+      "risk_indicators": [],
+      "extracted_iocs": [
+        {
+          "type": "email",
+          "value": "hr@northstar.example",
+          "source": "Sender Email"
+        },
+        {
+          "type": "domain",
+          "value": "northstar.example",
+          "source": "Sender Email"
+        },
+        {
+          "type": "ip",
+          "value": "192.0.2.15",
+          "source": "Sending IP"
+        },
+        {
+          "type": "url",
+          "value": "https://benefits.northstar.example/open-enrollment",
+          "source": "Message URL"
+        },
+        {
+          "type": "domain",
+          "value": "benefits.northstar.example",
+          "source": "Message URL"
+        },
+        {
+          "type": "sha256",
+          "value": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "source": "2027_Benefits_Guide.pdf"
+        }
+      ],
+      "analyst_assessment": "EMAIL-003 received a risk score of 0. The available synthetic evidence does not contain enough risk indicators to support a suspicious or malicious disposition."
+    }
+  ]
+}
