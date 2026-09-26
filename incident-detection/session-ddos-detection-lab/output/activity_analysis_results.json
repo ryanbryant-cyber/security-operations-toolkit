@@ -1,0 +1,195 @@
+{
+  "summary": {
+    "session_findings": 1,
+    "ddos_findings": 2,
+    "total_findings": 3
+  },
+  "session_hijacking_analysis": {
+    "findings": [
+      {
+        "finding_id": "HIJACK-FIN-8842",
+        "finding_type": "Suspected Session Hijacking",
+        "user": "finance.user",
+        "session_id": "SESSION-FIN-8842",
+        "baseline_source_ip": "10.10.20.17",
+        "baseline_user_agent": "Chrome-Windows",
+        "anomalous_source_ips": [
+          "198.51.100.88"
+        ],
+        "anomalous_user_agents": [
+          "Firefox-Linux"
+        ],
+        "risk_score": 100,
+        "severity": "CRITICAL",
+        "indicators": [
+          {
+            "indicator": "Source IP change",
+            "points": 20,
+            "evidence": "Session changed from 10.10.20.17 to another source IP."
+          },
+          {
+            "indicator": "User-agent change",
+            "points": 15,
+            "evidence": "Session changed from Chrome-Windows to a different user agent."
+          },
+          {
+            "indicator": "MFA not verified on anomalous origin",
+            "points": 10,
+            "evidence": "One or more events from the anomalous origin did not show MFA verification."
+          },
+          {
+            "indicator": "Rapid origin change",
+            "points": 15,
+            "evidence": "Anomalous origin appeared 79 seconds after login."
+          },
+          {
+            "indicator": "Sensitive action from anomalous origin",
+            "points": 25,
+            "evidence": "Sensitive resources accessed: /account/security, /finance/export-payments, /finance/vendor-bank-details"
+          },
+          {
+            "indicator": "Concurrent origin reuse",
+            "points": 20,
+            "evidence": "The original source resumed activity while the anomalous origin was also using the same session identifier."
+          }
+        ],
+        "containment_recommendations": [
+          "Revoke the affected session identifier.",
+          "Require the user to reauthenticate with MFA.",
+          "Invalidate active authentication tokens where supported.",
+          "Review sensitive actions performed during the anomalous session window.",
+          "Review recent authentication activity for additional suspicious access.",
+          "Temporarily restrict the account if additional compromise indicators are identified."
+        ],
+        "analyst_assessment": "The session shows multiple behavioral anomalies consistent with suspected session hijacking, including origin changes and continued use of the same session identifier. The telemetry does not establish how the session token was obtained."
+      }
+    ]
+  },
+  "ddos_analysis": {
+    "baseline_minutes": [
+      "2026-09-26T13:20",
+      "2026-09-26T13:21",
+      "2026-09-26T13:22"
+    ],
+    "baseline_totals": [
+      91,
+      82,
+      87
+    ],
+    "baseline_average": 86.67,
+    "findings": [
+      {
+        "finding_id": "DDOS-2026-09-26T1323",
+        "finding_type": "Suspected Distributed Denial-of-Service Activity",
+        "minute": "2026-09-26T13:23",
+        "baseline_requests_per_minute": 86.67,
+        "observed_requests_per_minute": 2040,
+        "baseline_multiplier": 23.54,
+        "distinct_sources": 5,
+        "target_endpoint": "/login",
+        "endpoint_concentration": 1.0,
+        "error_ratio": 1.0,
+        "weighted_response_ms": 1056.45,
+        "risk_score": 100,
+        "severity": "CRITICAL",
+        "indicators": [
+          {
+            "indicator": "Traffic volume spike",
+            "points": 30,
+            "evidence": "Traffic reached 23.54x the established baseline."
+          },
+          {
+            "indicator": "Critical traffic volume spike",
+            "points": 15,
+            "evidence": "Traffic exceeded the 20.0x critical-volume threshold."
+          },
+          {
+            "indicator": "Distributed source activity",
+            "points": 15,
+            "evidence": "5 distinct sources contributed traffic during the minute."
+          },
+          {
+            "indicator": "Endpoint concentration",
+            "points": 15,
+            "evidence": "100% of requests targeted /login."
+          },
+          {
+            "indicator": "Error response increase",
+            "points": 15,
+            "evidence": "100% of requests received monitored error responses."
+          },
+          {
+            "indicator": "Response-time degradation",
+            "points": 10,
+            "evidence": "Weighted average response time reached 1056.45 ms."
+          }
+        ],
+        "containment_recommendations": [
+          "Apply or tighten rate limiting for the affected service or endpoint.",
+          "Use web application firewall or reverse-proxy controls to challenge or restrict abusive traffic.",
+          "Coordinate with network or hosting providers for upstream filtering if service impact continues.",
+          "Preserve relevant network, web, and application logs for investigation.",
+          "Monitor service health and response latency during containment.",
+          "Avoid broad blocking decisions until legitimate traffic impact has been evaluated."
+        ],
+        "analyst_assessment": "Traffic volume, source distribution, endpoint concentration, error responses, and latency degradation support a suspected distributed denial-of-service finding. The telemetry alone does not establish the intent or ownership of every participating source."
+      },
+      {
+        "finding_id": "DDOS-2026-09-26T1324",
+        "finding_type": "Suspected Distributed Denial-of-Service Activity",
+        "minute": "2026-09-26T13:24",
+        "baseline_requests_per_minute": 86.67,
+        "observed_requests_per_minute": 2260,
+        "baseline_multiplier": 26.08,
+        "distinct_sources": 5,
+        "target_endpoint": "/login",
+        "endpoint_concentration": 1.0,
+        "error_ratio": 1.0,
+        "weighted_response_ms": 1221.89,
+        "risk_score": 100,
+        "severity": "CRITICAL",
+        "indicators": [
+          {
+            "indicator": "Traffic volume spike",
+            "points": 30,
+            "evidence": "Traffic reached 26.08x the established baseline."
+          },
+          {
+            "indicator": "Critical traffic volume spike",
+            "points": 15,
+            "evidence": "Traffic exceeded the 20.0x critical-volume threshold."
+          },
+          {
+            "indicator": "Distributed source activity",
+            "points": 15,
+            "evidence": "5 distinct sources contributed traffic during the minute."
+          },
+          {
+            "indicator": "Endpoint concentration",
+            "points": 15,
+            "evidence": "100% of requests targeted /login."
+          },
+          {
+            "indicator": "Error response increase",
+            "points": 15,
+            "evidence": "100% of requests received monitored error responses."
+          },
+          {
+            "indicator": "Response-time degradation",
+            "points": 10,
+            "evidence": "Weighted average response time reached 1221.89 ms."
+          }
+        ],
+        "containment_recommendations": [
+          "Apply or tighten rate limiting for the affected service or endpoint.",
+          "Use web application firewall or reverse-proxy controls to challenge or restrict abusive traffic.",
+          "Coordinate with network or hosting providers for upstream filtering if service impact continues.",
+          "Preserve relevant network, web, and application logs for investigation.",
+          "Monitor service health and response latency during containment.",
+          "Avoid broad blocking decisions until legitimate traffic impact has been evaluated."
+        ],
+        "analyst_assessment": "Traffic volume, source distribution, endpoint concentration, error responses, and latency degradation support a suspected distributed denial-of-service finding. The telemetry alone does not establish the intent or ownership of every participating source."
+      }
+    ]
+  }
+}
