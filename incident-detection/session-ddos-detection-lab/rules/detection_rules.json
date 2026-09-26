@@ -1,0 +1,74 @@
+{
+  "model_name": "Session and DDoS Behavioral Detection Rules",
+  "model_version": "1.0",
+
+  "session_hijacking": {
+    "rapid_transition_seconds": 120,
+    "concurrent_session_window_seconds": 300,
+
+    "risk_weights": {
+      "source_ip_change": 20,
+      "user_agent_change": 15,
+      "mfa_not_verified": 10,
+      "rapid_origin_change": 15,
+      "sensitive_action_from_anomalous_origin": 25,
+      "concurrent_origin_reuse": 20
+    },
+
+    "severity_thresholds": {
+      "CRITICAL": 80,
+      "HIGH": 60,
+      "MODERATE": 30,
+      "LOW": 0
+    },
+
+    "containment_recommendations": [
+      "Revoke the affected session identifier.",
+      "Require the user to reauthenticate with MFA.",
+      "Invalidate active authentication tokens where supported.",
+      "Review sensitive actions performed during the anomalous session window.",
+      "Review recent authentication activity for additional suspicious access.",
+      "Temporarily restrict the account if additional compromise indicators are identified."
+    ]
+  },
+
+  "ddos_detection": {
+    "baseline_minutes": 3,
+    "volume_multiplier_threshold": 10.0,
+    "critical_volume_multiplier": 20.0,
+    "minimum_distributed_sources": 5,
+    "endpoint_concentration_threshold": 0.8,
+    "degraded_response_ms": 750,
+    "high_error_ratio": 0.5,
+
+    "error_status_codes": [
+      429,
+      503
+    ],
+
+    "risk_weights": {
+      "traffic_volume_spike": 30,
+      "critical_volume_spike": 15,
+      "distributed_source_activity": 15,
+      "endpoint_concentration": 15,
+      "error_response_increase": 15,
+      "response_time_degradation": 10
+    },
+
+    "severity_thresholds": {
+      "CRITICAL": 80,
+      "HIGH": 60,
+      "MODERATE": 30,
+      "LOW": 0
+    },
+
+    "containment_recommendations": [
+      "Apply or tighten rate limiting for the affected service or endpoint.",
+      "Use web application firewall or reverse-proxy controls to challenge or restrict abusive traffic.",
+      "Coordinate with network or hosting providers for upstream filtering if service impact continues.",
+      "Preserve relevant network, web, and application logs for investigation.",
+      "Monitor service health and response latency during containment.",
+      "Avoid broad blocking decisions until legitimate traffic impact has been evaluated."
+    ]
+  }
+}
