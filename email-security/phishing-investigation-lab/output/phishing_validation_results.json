@@ -1,0 +1,86 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 10,
+  "checks_passed": 10,
+  "checks_failed": 0,
+  "summary_check": {
+    "check": "Case summary",
+    "expected": {
+      "total_cases": 3,
+      "malicious": 1,
+      "suspicious": 1,
+      "benign": 1
+    },
+    "actual": {
+      "total_cases": 3,
+      "malicious": 1,
+      "suspicious": 1,
+      "benign": 1
+    },
+    "passed": true
+  },
+  "case_checks": [
+    {
+      "case_id": "EMAIL-001",
+      "expected_score": 100,
+      "actual_score": 100,
+      "expected_disposition": "MALICIOUS",
+      "actual_disposition": "MALICIOUS",
+      "expected_indicator_count": 14,
+      "actual_indicator_count": 14,
+      "expected_ioc_count": 10,
+      "actual_ioc_count": 10,
+      "passed": true
+    },
+    {
+      "case_id": "EMAIL-002",
+      "expected_score": 18,
+      "actual_score": 18,
+      "expected_disposition": "SUSPICIOUS",
+      "actual_disposition": "SUSPICIOUS",
+      "expected_indicator_count": 4,
+      "actual_indicator_count": 4,
+      "expected_ioc_count": 6,
+      "actual_ioc_count": 6,
+      "passed": true
+    },
+    {
+      "case_id": "EMAIL-003",
+      "expected_score": 0,
+      "actual_score": 0,
+      "expected_disposition": "BENIGN",
+      "actual_disposition": "BENIGN",
+      "expected_indicator_count": 0,
+      "actual_indicator_count": 0,
+      "expected_ioc_count": 6,
+      "actual_ioc_count": 6,
+      "passed": true
+    }
+  ],
+  "behavioral_checks": [
+    {
+      "check": "Authentication failures and impersonation produce MALICIOUS disposition",
+      "passed": true
+    },
+    {
+      "check": "Credential request is detected in malicious phishing case",
+      "passed": true
+    },
+    {
+      "check": "External HTML form is detected in malicious phishing case",
+      "passed": true
+    },
+    {
+      "check": "Authenticated but contextually risky invoice remains SUSPICIOUS",
+      "passed": true
+    },
+    {
+      "check": "Clean internal email receives BENIGN disposition",
+      "passed": true
+    },
+    {
+      "check": "Benign email can contain extracted investigation artifacts without risk indicators",
+      "passed": true
+    }
+  ]
+}
