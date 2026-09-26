@@ -1,0 +1,45 @@
+{
+  "model_name": "Synthetic Phishing Email Risk Model",
+  "model_version": "1.0",
+  "maximum_score": 100,
+
+  "authentication": {
+    "spf_fail": 10,
+    "dkim_fail": 8,
+    "dmarc_fail": 15,
+    "dmarc_none": 2
+  },
+
+  "sender_context": {
+    "external_unknown_sender": 5,
+    "display_name_impersonation": 15,
+    "reply_to_domain_mismatch": 10,
+    "return_path_domain_mismatch": 8
+  },
+
+  "body_indicators": {
+    "urgency_language": 5,
+    "credential_request": 15,
+    "financial_request": 6,
+    "threatening_language": 5,
+    "security_alert_theme": 4
+  },
+
+  "url_indicators": {
+    "sender_domain_mismatch": 10,
+    "non_https_url": 8
+  },
+
+  "attachment_indicators": {
+    "html_attachment": 8,
+    "external_form": 12,
+    "macro_enabled": 15,
+    "executable_attachment": 20
+  },
+
+  "disposition_thresholds": {
+    "MALICIOUS": 40,
+    "SUSPICIOUS": 15,
+    "BENIGN": 0
+  }
+}
