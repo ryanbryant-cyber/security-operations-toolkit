@@ -306,13 +306,13 @@ def analyze_sessions(events, rules):
             for event in anomalous_events
         })
 
-        findings.append({
-            "finding_id": (
-                f"SESSION-{session_id}"
-            ),
-            "finding_type": (
-                "Suspected Session Hijacking"
-            ),
+       findings.append({
+    "finding_id": (
+        f"HIJACK-{session_id.replace('SESSION-', '', 1)}"
+    ),
+    "finding_type": (
+        "Suspected Session Hijacking"
+    ),
             "user": login_event["user"],
             "session_id": session_id,
             "baseline_source_ip": baseline_ip,
