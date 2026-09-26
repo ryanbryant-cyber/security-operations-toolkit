@@ -1,0 +1,32 @@
+{
+  "expected_summary": {
+    "total_cases": 3,
+    "malicious": 1,
+    "suspicious": 1,
+    "benign": 1
+  },
+
+  "expected_cases": [
+    {
+      "case_id": "EMAIL-001",
+      "risk_score": 100,
+      "disposition": "MALICIOUS",
+      "indicator_count": 14,
+      "ioc_count": 10
+    },
+    {
+      "case_id": "EMAIL-002",
+      "risk_score": 18,
+      "disposition": "SUSPICIOUS",
+      "indicator_count": 4,
+      "ioc_count": 6
+    },
+    {
+      "case_id": "EMAIL-003",
+      "risk_score": 0,
+      "disposition": "BENIGN",
+      "indicator_count": 0,
+      "ioc_count": 6
+    }
+  ]
+}
