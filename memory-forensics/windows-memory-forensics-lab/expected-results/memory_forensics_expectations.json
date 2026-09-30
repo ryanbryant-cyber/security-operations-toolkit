@@ -1,0 +1,34 @@
+{
+  "expected_summary": {
+    "findings": 1,
+    "high_priority_findings": 1
+  },
+
+  "expected_finding": {
+    "finding_id": "MEM-INV-001",
+    "host": "NFG-FIN-WS07",
+    "user": "finance.user",
+    "risk_score": 100,
+    "investigation_priority": "HIGH",
+    "indicator_count": 16
+  },
+
+  "required_indicators": [
+    "Office process spawned PowerShell",
+    "PowerShell spawned rundll32",
+    "PowerShell spawned command shell",
+    "Encoded PowerShell command",
+    "PowerShell execution policy bypass",
+    "PowerShell launched without profile",
+    "Multiple discovery commands",
+    "Unsigned module loaded",
+    "Module loaded from user-writable path",
+    "Unsigned DLL loaded from Temp",
+    "External connection from rundll32",
+    "External connection from PowerShell",
+    "Higher-interest destination port",
+    "Attempted internal SMB communication",
+    "Private RWX memory",
+    "Private executable memory without backing file"
+  ]
+}
