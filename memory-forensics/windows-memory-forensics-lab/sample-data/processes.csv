@@ -1,0 +1,24 @@
+timestamp,pid,ppid,process_name,user,integrity_level,session_id,path,signed,start_reason,notes
+2026-09-30T13:00:02Z,4,0,System,SYSTEM,System,0,C:\Windows\System32\ntoskrnl.exe,Yes,System Startup,Windows kernel process
+2026-09-30T13:00:04Z,692,4,smss.exe,SYSTEM,System,0,C:\Windows\System32\smss.exe,Yes,System Startup,Session Manager
+2026-09-30T13:00:06Z,824,692,csrss.exe,SYSTEM,System,0,C:\Windows\System32\csrss.exe,Yes,System Startup,Client Server Runtime Process
+2026-09-30T13:00:07Z,912,692,wininit.exe,SYSTEM,System,0,C:\Windows\System32\wininit.exe,Yes,System Startup,Windows initialization
+2026-09-30T13:00:08Z,1048,912,services.exe,SYSTEM,System,0,C:\Windows\System32\services.exe,Yes,Service Control Manager,Windows services manager
+2026-09-30T13:00:09Z,1112,912,lsass.exe,SYSTEM,System,0,C:\Windows\System32\lsass.exe,Yes,System Startup,Local Security Authority
+2026-09-30T13:00:11Z,1260,1048,svchost.exe,SYSTEM,System,0,C:\Windows\System32\svchost.exe,Yes,Windows Service,Normal service host
+2026-09-30T13:00:14Z,1388,1048,svchost.exe,LOCAL SERVICE,System,0,C:\Windows\System32\svchost.exe,Yes,Windows Service,Normal service host
+2026-09-30T13:00:17Z,1516,1048,MsMpEng.exe,SYSTEM,System,0,C:\Program Files\Windows Defender\MsMpEng.exe,Yes,Security Service,Microsoft Defender process
+2026-09-30T13:02:41Z,2980,1048,winlogon.exe,SYSTEM,System,1,C:\Windows\System32\winlogon.exe,Yes,Interactive Logon,User logon manager
+2026-09-30T13:02:46Z,3448,2980,userinit.exe,finance.user,Medium,1,C:\Windows\System32\userinit.exe,Yes,Interactive Logon,User initialization
+2026-09-30T13:02:49Z,4120,3448,explorer.exe,finance.user,Medium,1,C:\Windows\explorer.exe,Yes,User Session,Windows desktop shell
+2026-09-30T13:05:13Z,4364,4120,msedge.exe,finance.user,Medium,1,C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe,Yes,User Launch,Normal browser activity
+2026-09-30T13:07:22Z,4728,4120,outlook.exe,finance.user,Medium,1,C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE,Yes,User Launch,Normal email client
+2026-09-30T13:11:48Z,5096,4728,winword.exe,finance.user,Medium,1,C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE,Yes,Attachment Opened,Word document opened from email
+2026-09-30T13:12:19Z,6124,5096,powershell.exe,finance.user,Medium,1,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,Yes,Child Process,PowerShell launched by Microsoft Word
+2026-09-30T13:12:36Z,6240,6124,rundll32.exe,finance.user,Medium,1,C:\Windows\System32\rundll32.exe,Yes,Child Process,rundll32 launched by PowerShell
+2026-09-30T13:13:04Z,6392,6124,cmd.exe,finance.user,Medium,1,C:\Windows\System32\cmd.exe,Yes,Child Process,Command shell launched by PowerShell
+2026-09-30T13:13:31Z,6488,6392,whoami.exe,finance.user,Medium,1,C:\Windows\System32\whoami.exe,Yes,Child Process,Identity discovery command
+2026-09-30T13:14:12Z,6576,6392,ipconfig.exe,finance.user,Medium,1,C:\Windows\System32\ipconfig.exe,Yes,Child Process,Network configuration discovery
+2026-09-30T13:14:47Z,6720,6392,net.exe,finance.user,Medium,1,C:\Windows\System32\net.exe,Yes,Child Process,Local account or group discovery
+2026-09-30T13:15:28Z,6884,1048,spoolsv.exe,SYSTEM,System,0,C:\Windows\System32\spoolsv.exe,Yes,Windows Service,Normal print spooler
+2026-09-30T13:16:05Z,7012,4120,notepad.exe,finance.user,Medium,1,C:\Windows\System32\notepad.exe,Yes,User Launch,Normal user activity
