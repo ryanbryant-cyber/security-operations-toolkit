@@ -1,0 +1,9 @@
+timestamp,pid,process_name,user,local_ip,local_port,remote_ip,remote_port,protocol,state,direction,notes
+2026-09-30T13:05:18Z,4364,msedge.exe,finance.user,10.10.20.17,51014,203.0.113.10,443,TCP,ESTABLISHED,Outbound,Normal browser HTTPS connection
+2026-09-30T13:07:29Z,4728,outlook.exe,finance.user,10.10.20.17,51102,192.0.2.25,443,TCP,ESTABLISHED,Outbound,Normal mail service HTTPS connection
+2026-09-30T13:12:44Z,6240,rundll32.exe,finance.user,10.10.20.17,52184,203.0.113.88,8443,TCP,ESTABLISHED,Outbound,Suspicious outbound connection from rundll32
+2026-09-30T13:13:18Z,6124,powershell.exe,finance.user,10.10.20.17,52216,203.0.113.77,443,TCP,ESTABLISHED,Outbound,PowerShell HTTPS connection following encoded command execution
+2026-09-30T13:13:52Z,6392,cmd.exe,finance.user,10.10.20.17,52294,10.10.20.40,445,TCP,SYN_SENT,Outbound,Attempted SMB connection to internal Finance server
+2026-09-30T13:14:26Z,6576,ipconfig.exe,finance.user,10.10.20.17,0,0.0.0.0,0,N/A,N/A,Local,No network socket expected for local discovery command
+2026-09-30T13:15:41Z,1516,MsMpEng.exe,SYSTEM,10.10.20.17,52340,198.51.100.15,443,TCP,ESTABLISHED,Outbound,Normal endpoint protection cloud communication
+2026-09-30T13:16:12Z,4364,msedge.exe,finance.user,10.10.20.17,52408,203.0.113.10,443,TCP,ESTABLISHED,Outbound,Normal browser activity
