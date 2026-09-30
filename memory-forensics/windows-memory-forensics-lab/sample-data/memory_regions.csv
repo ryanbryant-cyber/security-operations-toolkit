@@ -1,0 +1,13 @@
+timestamp,pid,process_name,region_start,region_size_bytes,protection,backing_file,private_memory,executable,writable,notes
+2026-09-30T13:05:15Z,4364,msedge.exe,0x000001F410000000,65536,RX,C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe,false,true,false,Normal executable image region
+2026-09-30T13:07:24Z,4728,outlook.exe,0x000001C830000000,65536,RX,C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE,false,true,false,Normal Outlook executable region
+2026-09-30T13:11:50Z,5096,winword.exe,0x000001D940000000,131072,RX,C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE,false,true,false,Normal Word executable region
+2026-09-30T13:12:21Z,6124,powershell.exe,0x0000021450000000,131072,RX,C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe,false,true,false,Normal PowerShell executable region
+2026-09-30T13:12:22Z,6124,powershell.exe,0x0000021453000000,262144,RW,,true,false,true,Private writable PowerShell memory region
+2026-09-30T13:12:39Z,6240,rundll32.exe,0x0000021A70000000,98304,RX,C:\Users\finance.user\AppData\Local\Temp\financehelper.dll,false,true,false,Executable region backed by unsigned Temp DLL
+2026-09-30T13:12:40Z,6240,rundll32.exe,0x0000021A71000000,196608,RWX,,true,true,true,Private executable and writable region with no backing file
+2026-09-30T13:12:41Z,6240,rundll32.exe,0x0000021A72000000,65536,RX,,true,true,false,Private executable region with no backing file
+2026-09-30T13:13:06Z,6392,cmd.exe,0x000001FA50000000,65536,RX,C:\Windows\System32\cmd.exe,false,true,false,Normal command shell executable region
+2026-09-30T13:13:07Z,6392,cmd.exe,0x000001FA51000000,65536,RW,,true,false,true,Normal private writable command-shell memory
+2026-09-30T13:15:30Z,6884,spoolsv.exe,0x000001BC60000000,65536,RX,C:\Windows\System32\spoolsv.exe,false,true,false,Normal service executable region
+2026-09-30T13:16:07Z,7012,notepad.exe,0x000001AD40000000,65536,RX,C:\Windows\System32\notepad.exe,false,true,false,Normal Notepad executable region
