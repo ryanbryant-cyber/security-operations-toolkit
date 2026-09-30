@@ -1,0 +1,81 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 10,
+  "checks_passed": 10,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "Finding summary",
+      "expected": {
+        "findings": 1,
+        "high_priority_findings": 1
+      },
+      "actual": {
+        "findings": 1,
+        "high_priority_findings": 1
+      },
+      "passed": true
+    },
+    {
+      "check": "Primary memory-forensics finding",
+      "finding_id": "MEM-INV-001",
+      "host": "NFG-FIN-WS07",
+      "user": "finance.user",
+      "risk_score": 100,
+      "priority": "HIGH",
+      "indicator_count": 16,
+      "passed": true
+    },
+    {
+      "check": "All required forensic indicators are present",
+      "required_count": 16,
+      "actual_count": 16,
+      "missing_indicators": [],
+      "passed": true
+    },
+    {
+      "check": "Suspicious process chain is reconstructed correctly",
+      "expected": [
+        "winword.exe",
+        "powershell.exe",
+        "rundll32.exe",
+        "cmd.exe"
+      ],
+      "actual": [
+        "winword.exe",
+        "powershell.exe",
+        "rundll32.exe",
+        "cmd.exe"
+      ],
+      "passed": true
+    },
+    {
+      "check": "Timeline contains required correlated forensic evidence",
+      "required_count": 6,
+      "missing_evidence": [],
+      "passed": true
+    },
+    {
+      "check": "Unsigned Temp DLL evidence is preserved",
+      "passed": true
+    },
+    {
+      "check": "Private executable memory evidence is detected",
+      "passed": true
+    },
+    {
+      "check": "SMB activity remains classified as attempted communication",
+      "passed": true
+    },
+    {
+      "check": "Forensic analyst guardrails are present",
+      "required_count": 4,
+      "missing_guardrails": [],
+      "passed": true
+    },
+    {
+      "check": "Analyst assessment preserves evidentiary uncertainty",
+      "passed": true
+    }
+  ]
+}
