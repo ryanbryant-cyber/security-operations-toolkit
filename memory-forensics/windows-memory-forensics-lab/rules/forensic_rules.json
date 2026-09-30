@@ -1,0 +1,134 @@
+{
+  "model_name": "Windows Memory Forensics Behavioral Analysis Rules",
+  "model_version": "1.0",
+  "maximum_score": 100,
+
+  "process_relationships": {
+    "office_spawns_powershell": {
+      "points": 15,
+      "description": "Microsoft Office process launches PowerShell."
+    },
+    "powershell_spawns_rundll32": {
+      "points": 15,
+      "description": "PowerShell launches rundll32.exe."
+    },
+    "powershell_spawns_cmd": {
+      "points": 8,
+      "description": "PowerShell launches cmd.exe."
+    }
+  },
+
+  "command_line_indicators": {
+    "encoded_command": {
+      "points": 15,
+      "patterns": [
+        "-EncodedCommand",
+        "-enc"
+      ],
+      "description": "PowerShell command line contains encoded-command syntax."
+    },
+    "execution_policy_bypass": {
+      "points": 10,
+      "patterns": [
+        "-ExecutionPolicy Bypass"
+      ],
+      "description": "PowerShell execution policy is bypassed for the process."
+    },
+    "no_profile": {
+      "points": 3,
+      "patterns": [
+        "-NoProfile"
+      ],
+      "description": "PowerShell launches without loading the user profile."
+    },
+    "discovery_commands": {
+      "points": 10,
+      "patterns": [
+        "whoami",
+        "ipconfig",
+        "net localgroup administrators"
+      ],
+      "minimum_matches": 2,
+      "description": "Multiple identity, network, or privilege discovery commands were observed."
+    }
+  },
+
+  "module_indicators": {
+    "unsigned_module": {
+      "points": 10,
+      "description": "Unsigned module loaded into a process."
+    },
+    "user_writable_module_path": {
+      "points": 10,
+      "path_fragments": [
+        "\\Users\\",
+        "\\AppData\\Local\\Temp\\"
+      ],
+      "description": "Module was loaded from a user-writable directory."
+    },
+    "unsigned_temp_dll": {
+      "points": 15,
+      "description": "Unsigned DLL loaded from a user Temp directory."
+    }
+  },
+
+  "network_indicators": {
+    "external_connection_from_rundll32": {
+      "points": 15,
+      "description": "rundll32.exe established an outbound connection to an external address."
+    },
+    "external_connection_from_powershell": {
+      "points": 10,
+      "description": "PowerShell established an outbound connection to an external address."
+    },
+    "uncommon_destination_port": {
+      "points": 5,
+      "ports": [
+        8443
+      ],
+      "description": "Process communicated over a higher-interest destination port."
+    },
+    "attempted_internal_smb": {
+      "points": 5,
+      "port": 445,
+      "state": "SYN_SENT",
+      "description": "Process attempted an internal SMB connection without evidence of a completed session."
+    }
+  },
+
+  "memory_indicators": {
+    "private_rwx_region": {
+      "points": 20,
+      "protection": "RWX",
+      "private_memory": true,
+      "description": "Process contains private readable, writable, and executable memory."
+    },
+    "private_executable_unbacked_region": {
+      "points": 10,
+      "private_memory": true,
+      "executable": true,
+      "backing_file_required": false,
+      "description": "Process contains private executable memory with no backing file."
+    }
+  },
+
+  "priority_thresholds": {
+    "HIGH": 70,
+    "MODERATE": 40,
+    "LOW": 0
+  },
+
+  "confidence_language": {
+    "HIGH": "Multiple independent forensic artifacts converge on the same suspicious process chain and warrant high-priority investigation.",
+    "MODERATE": "Several suspicious artifacts are present, but additional forensic evidence is required before stronger conclusions can be supported.",
+    "LOW": "Observed artifacts provide limited evidence of suspicious behavior."
+  },
+
+  "analyst_guardrails": [
+    "Do not classify an unsigned DLL as malware without additional analysis.",
+    "Do not classify private executable memory as confirmed process injection without evidence establishing the injection mechanism.",
+    "Do not classify an outbound connection as command-and-control solely because the destination or port is unusual.",
+    "Do not classify a SYN_SENT SMB event as successful lateral movement.",
+    "Distinguish observed evidence from analyst hypotheses in all findings."
+  ]
+}
