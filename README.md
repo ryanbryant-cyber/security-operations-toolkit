@@ -188,6 +188,36 @@ Key project outcomes:
 
 [View the Session Hijacking & DDoS Detection and Containment Lab](incident-detection/session-ddos-detection-lab/)
 
+### Memory Forensics
+
+#### Windows Memory Forensics Investigation Lab
+
+DFIR-focused memory-forensics project centered on correlating synthetic Windows volatile-memory artifacts across processes, command lines, loaded modules, network connections, and executable memory regions.
+
+The project reconstructs a suspicious Finance workstation process chain and demonstrates how multiple independent artifacts can raise investigation priority without overstating what the evidence proves.
+
+Key project outcomes:
+
+- Analyzed 5 synthetic forensic evidence sources
+- Reconstructed a suspicious process chain involving Outlook, Word, PowerShell, rundll32, and cmd
+- Identified encoded PowerShell execution and ExecutionPolicy Bypass
+- Identified identity, network, and privileged-group discovery commands
+- Detected an unsigned DLL loaded from a user-writable Temp directory
+- Correlated outbound connections from PowerShell and rundll32
+- Identified attempted internal SMB communication while preserving the distinction between `SYN_SENT` and a completed session
+- Detected private RWX memory
+- Detected private executable memory without a backing file
+- Correlated 16 forensic indicators into a HIGH-priority investigation
+- Reconstructed an analyst-readable incident timeline
+- Preserved forensic uncertainty around malware, C2, process injection, and lateral movement
+- Generated structured CSV and JSON findings
+- Implemented an independent validation harness
+- Passed 10 of 10 validation checks
+
+**Skills:** Memory Forensics | DFIR | Windows Process Analysis | Process Tree Analysis | PowerShell Investigation | Command-Line Analysis | Loaded Module Analysis | Memory Region Analysis | Network Connection Analysis | Incident Reconstruction | Evidence Correlation | Python | Security Automation | Validation Testing
+
+[View the Windows Memory Forensics Investigation Lab](memory-forensics/windows-memory-forensics-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
