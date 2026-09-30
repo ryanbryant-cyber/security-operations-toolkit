@@ -1,0 +1,219 @@
+{
+  "summary": {
+    "findings": 1,
+    "high_priority_findings": 1
+  },
+  "finding": {
+    "finding_id": "MEM-INV-001",
+    "finding_type": "Correlated Suspicious Memory Activity",
+    "host": "NFG-FIN-WS07",
+    "user": "finance.user",
+    "risk_score": 100,
+    "investigation_priority": "HIGH",
+    "confidence_statement": "Multiple independent forensic artifacts converge on the same suspicious process chain and warrant high-priority investigation.",
+    "indicator_count": 16,
+    "indicators": [
+      {
+        "category": "Process Relationship",
+        "indicator": "Office process spawned PowerShell",
+        "points": 15,
+        "evidence": "winword.exe PID 5096 spawned powershell.exe PID 6124."
+      },
+      {
+        "category": "Process Relationship",
+        "indicator": "PowerShell spawned rundll32",
+        "points": 15,
+        "evidence": "powershell.exe PID 6124 spawned rundll32.exe PID 6240."
+      },
+      {
+        "category": "Process Relationship",
+        "indicator": "PowerShell spawned command shell",
+        "points": 8,
+        "evidence": "powershell.exe PID 6124 spawned cmd.exe PID 6392."
+      },
+      {
+        "category": "Command Line",
+        "indicator": "Encoded PowerShell command",
+        "points": 15,
+        "evidence": "powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand SYNTHETIC_ENCODED_TRAINING_PAYLOAD"
+      },
+      {
+        "category": "Command Line",
+        "indicator": "PowerShell execution policy bypass",
+        "points": 10,
+        "evidence": "powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand SYNTHETIC_ENCODED_TRAINING_PAYLOAD"
+      },
+      {
+        "category": "Command Line",
+        "indicator": "PowerShell launched without profile",
+        "points": 3,
+        "evidence": "powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand SYNTHETIC_ENCODED_TRAINING_PAYLOAD"
+      },
+      {
+        "category": "Command Line",
+        "indicator": "Multiple discovery commands",
+        "points": 10,
+        "evidence": "Matched discovery patterns: whoami, ipconfig, net localgroup administrators"
+      },
+      {
+        "category": "Loaded Module",
+        "indicator": "Unsigned module loaded",
+        "points": 10,
+        "evidence": "financehelper.dll in rundll32.exe"
+      },
+      {
+        "category": "Loaded Module",
+        "indicator": "Module loaded from user-writable path",
+        "points": 10,
+        "evidence": "C:\\Users\\finance.user\\AppData\\Local\\Temp\\financehelper.dll"
+      },
+      {
+        "category": "Loaded Module",
+        "indicator": "Unsigned DLL loaded from Temp",
+        "points": 15,
+        "evidence": "C:\\Users\\finance.user\\AppData\\Local\\Temp\\financehelper.dll"
+      },
+      {
+        "category": "Network",
+        "indicator": "External connection from rundll32",
+        "points": 15,
+        "evidence": "203.0.113.88:8443"
+      },
+      {
+        "category": "Network",
+        "indicator": "External connection from PowerShell",
+        "points": 10,
+        "evidence": "203.0.113.77:443"
+      },
+      {
+        "category": "Network",
+        "indicator": "Higher-interest destination port",
+        "points": 5,
+        "evidence": "rundll32.exe \u2192 203.0.113.88:8443"
+      },
+      {
+        "category": "Network",
+        "indicator": "Attempted internal SMB communication",
+        "points": 5,
+        "evidence": "cmd.exe \u2192 10.10.20.40:445 (SYN_SENT)"
+      },
+      {
+        "category": "Memory Region",
+        "indicator": "Private RWX memory",
+        "points": 20,
+        "evidence": "rundll32.exe PID 6240 at 0x0000021A71000000"
+      },
+      {
+        "category": "Memory Region",
+        "indicator": "Private executable memory without backing file",
+        "points": 10,
+        "evidence": "rundll32.exe PID 6240 at 0x0000021A72000000 (RX)"
+      }
+    ],
+    "process_chain": [
+      {
+        "pid": "5096",
+        "ppid": "4728",
+        "process_name": "winword.exe",
+        "user": "finance.user",
+        "timestamp": "2026-09-30T13:11:48Z"
+      },
+      {
+        "pid": "6124",
+        "ppid": "5096",
+        "process_name": "powershell.exe",
+        "user": "finance.user",
+        "timestamp": "2026-09-30T13:12:19Z"
+      },
+      {
+        "pid": "6240",
+        "ppid": "6124",
+        "process_name": "rundll32.exe",
+        "user": "finance.user",
+        "timestamp": "2026-09-30T13:12:36Z"
+      },
+      {
+        "pid": "6392",
+        "ppid": "6124",
+        "process_name": "cmd.exe",
+        "user": "finance.user",
+        "timestamp": "2026-09-30T13:13:04Z"
+      }
+    ],
+    "timeline": [
+      {
+        "timestamp": "2026-09-30T13:11:48Z",
+        "source": "Process",
+        "event": "winword.exe started as PID 5096"
+      },
+      {
+        "timestamp": "2026-09-30T13:12:19Z",
+        "source": "Process",
+        "event": "powershell.exe started as PID 6124"
+      },
+      {
+        "timestamp": "2026-09-30T13:12:36Z",
+        "source": "Process",
+        "event": "rundll32.exe started as PID 6240"
+      },
+      {
+        "timestamp": "2026-09-30T13:12:38Z",
+        "source": "Module",
+        "event": "financehelper.dll loaded by rundll32.exe"
+      },
+      {
+        "timestamp": "2026-09-30T13:12:40Z",
+        "source": "Memory",
+        "event": "rundll32.exe contained RWX private executable memory at 0x0000021A71000000"
+      },
+      {
+        "timestamp": "2026-09-30T13:12:41Z",
+        "source": "Memory",
+        "event": "rundll32.exe contained RX private executable memory at 0x0000021A72000000"
+      },
+      {
+        "timestamp": "2026-09-30T13:12:44Z",
+        "source": "Network",
+        "event": "rundll32.exe \u2192 203.0.113.88:8443 (ESTABLISHED)"
+      },
+      {
+        "timestamp": "2026-09-30T13:13:04Z",
+        "source": "Process",
+        "event": "cmd.exe started as PID 6392"
+      },
+      {
+        "timestamp": "2026-09-30T13:13:18Z",
+        "source": "Network",
+        "event": "powershell.exe \u2192 203.0.113.77:443 (ESTABLISHED)"
+      },
+      {
+        "timestamp": "2026-09-30T13:13:31Z",
+        "source": "Process",
+        "event": "whoami.exe started as PID 6488"
+      },
+      {
+        "timestamp": "2026-09-30T13:13:52Z",
+        "source": "Network",
+        "event": "cmd.exe \u2192 10.10.20.40:445 (SYN_SENT)"
+      },
+      {
+        "timestamp": "2026-09-30T13:14:12Z",
+        "source": "Process",
+        "event": "ipconfig.exe started as PID 6576"
+      },
+      {
+        "timestamp": "2026-09-30T13:14:47Z",
+        "source": "Process",
+        "event": "net.exe started as PID 6720"
+      }
+    ],
+    "analyst_assessment": "Multiple independent forensic artifacts converge on a suspicious process chain involving Microsoft Word, PowerShell, rundll32.exe, discovery commands, outbound network communication, an unsigned DLL loaded from a user-writable Temp directory, and private executable memory. The evidence supports high-priority investigation but does not independently prove malware, command-and-control, process injection, or successful lateral movement.",
+    "guardrails": [
+      "Do not classify an unsigned DLL as malware without additional analysis.",
+      "Do not classify private executable memory as confirmed process injection without evidence establishing the injection mechanism.",
+      "Do not classify an outbound connection as command-and-control solely because the destination or port is unusual.",
+      "Do not classify a SYN_SENT SMB event as successful lateral movement.",
+      "Distinguish observed evidence from analyst hypotheses in all findings."
+    ]
+  }
+}
