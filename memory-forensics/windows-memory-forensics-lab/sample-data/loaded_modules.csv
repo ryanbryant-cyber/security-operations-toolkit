@@ -1,0 +1,15 @@
+timestamp,pid,process_name,module_name,module_path,signed,signature_status,load_address,notes
+2026-09-30T13:05:14Z,4364,msedge.exe,ntdll.dll,C:\Windows\System32\ntdll.dll,Yes,Valid,0x00007FFB12000000,Normal Windows module
+2026-09-30T13:05:14Z,4364,msedge.exe,kernel32.dll,C:\Windows\System32\kernel32.dll,Yes,Valid,0x00007FFB11800000,Normal Windows module
+2026-09-30T13:07:23Z,4728,outlook.exe,ntdll.dll,C:\Windows\System32\ntdll.dll,Yes,Valid,0x00007FFB12000000,Normal Windows module
+2026-09-30T13:07:23Z,4728,outlook.exe,olmapi32.dll,C:\Program Files\Microsoft Office\root\Office16\olmapi32.dll,Yes,Valid,0x00007FFA94200000,Normal Outlook module
+2026-09-30T13:11:49Z,5096,winword.exe,wwlib.dll,C:\Program Files\Microsoft Office\root\Office16\wwlib.dll,Yes,Valid,0x00007FFA85100000,Normal Word module
+2026-09-30T13:12:20Z,6124,powershell.exe,System.Management.Automation.dll,C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Management.Automation\System.Management.Automation.dll,Yes,Valid,0x00007FFA73400000,Expected PowerShell automation module
+2026-09-30T13:12:20Z,6124,powershell.exe,amsi.dll,C:\Windows\System32\amsi.dll,Yes,Valid,0x00007FFB04200000,Expected Windows Antimalware Scan Interface module
+2026-09-30T13:12:37Z,6240,rundll32.exe,ntdll.dll,C:\Windows\System32\ntdll.dll,Yes,Valid,0x00007FFB12000000,Normal Windows module
+2026-09-30T13:12:37Z,6240,rundll32.exe,kernel32.dll,C:\Windows\System32\kernel32.dll,Yes,Valid,0x00007FFB11800000,Normal Windows module
+2026-09-30T13:12:38Z,6240,rundll32.exe,financehelper.dll,C:\Users\finance.user\AppData\Local\Temp\financehelper.dll,No,Unsigned,0x0000021A70000000,Unsigned DLL loaded from user-writable Temp directory
+2026-09-30T13:13:05Z,6392,cmd.exe,ntdll.dll,C:\Windows\System32\ntdll.dll,Yes,Valid,0x00007FFB12000000,Normal Windows module
+2026-09-30T13:13:05Z,6392,cmd.exe,kernel32.dll,C:\Windows\System32\kernel32.dll,Yes,Valid,0x00007FFB11800000,Normal Windows module
+2026-09-30T13:15:29Z,6884,spoolsv.exe,spoolss.dll,C:\Windows\System32\spoolss.dll,Yes,Valid,0x00007FFB06400000,Normal print spooler module
+2026-09-30T13:16:06Z,7012,notepad.exe,comctl32.dll,C:\Windows\System32\comctl32.dll,Yes,Valid,0x00007FFB02A00000,Normal Windows user interface module
