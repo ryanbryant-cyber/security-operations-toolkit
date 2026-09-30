@@ -1,0 +1,11 @@
+timestamp,pid,process_name,user,command_line,parent_pid,parent_process,notes
+2026-09-30T13:05:13Z,4364,msedge.exe,finance.user,"msedge.exe --profile-directory=Default",4120,explorer.exe,Normal browser launch
+2026-09-30T13:07:22Z,4728,outlook.exe,finance.user,"OUTLOOK.EXE",4120,explorer.exe,Normal Outlook launch
+2026-09-30T13:11:48Z,5096,winword.exe,finance.user,"WINWORD.EXE C:\Users\finance.user\Downloads\Quarterly_Review.docx",4728,outlook.exe,Document opened from Outlook
+2026-09-30T13:12:19Z,6124,powershell.exe,finance.user,"powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand SYNTHETIC_ENCODED_TRAINING_PAYLOAD",5096,winword.exe,Suspicious PowerShell launched from Word
+2026-09-30T13:12:36Z,6240,rundll32.exe,finance.user,"rundll32.exe C:\Users\finance.user\AppData\Local\Temp\financehelper.dll,Start",6124,powershell.exe,Suspicious DLL execution from user Temp directory
+2026-09-30T13:13:04Z,6392,cmd.exe,finance.user,"cmd.exe /c whoami && ipconfig /all && net localgroup administrators",6124,powershell.exe,Discovery command chain
+2026-09-30T13:13:31Z,6488,whoami.exe,finance.user,"whoami.exe /all",6392,cmd.exe,Identity and token discovery
+2026-09-30T13:14:12Z,6576,ipconfig.exe,finance.user,"ipconfig.exe /all",6392,cmd.exe,Network configuration discovery
+2026-09-30T13:14:47Z,6720,net.exe,finance.user,"net.exe localgroup administrators",6392,cmd.exe,Local administrator group discovery
+2026-09-30T13:16:05Z,7012,notepad.exe,finance.user,"notepad.exe",4120,explorer.exe,Normal user activity
