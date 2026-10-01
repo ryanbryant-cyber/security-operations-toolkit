@@ -1,0 +1,53 @@
+{
+  "dataset_name": "Synthetic User Context",
+  "users": [
+    {
+      "username": "finance.user",
+      "display_name": "Finance User",
+      "department": "Finance",
+      "role": "Financial Analyst",
+      "privilege_level": "Standard",
+      "account_status": "Active",
+      "mfa_enrolled": true,
+      "business_impact": "High",
+      "high_value_identity": true,
+      "notes": "Finance identity with access to business-sensitive financial resources."
+    },
+    {
+      "username": "marketing.user",
+      "display_name": "Marketing User",
+      "department": "Marketing",
+      "role": "Marketing Specialist",
+      "privilege_level": "Standard",
+      "account_status": "Active",
+      "mfa_enrolled": true,
+      "business_impact": "Low",
+      "high_value_identity": false,
+      "notes": "Standard marketing user with no privileged access."
+    },
+    {
+      "username": "alex.employee",
+      "display_name": "Alex Employee",
+      "department": "Human Resources",
+      "role": "HR Coordinator",
+      "privilege_level": "Standard",
+      "account_status": "Active",
+      "mfa_enrolled": true,
+      "business_impact": "Moderate",
+      "high_value_identity": false,
+      "notes": "Standard HR user."
+    },
+    {
+      "username": "it.admin",
+      "display_name": "IT Administrator",
+      "department": "Information Technology",
+      "role": "Systems Administrator",
+      "privilege_level": "Privileged",
+      "account_status": "Active",
+      "mfa_enrolled": true,
+      "business_impact": "Critical",
+      "high_value_identity": true,
+      "notes": "Privileged administrative identity used for approved infrastructure management."
+    }
+  ]
+}
