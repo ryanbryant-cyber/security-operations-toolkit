@@ -1,0 +1,176 @@
+{
+  "model_name": "SOC Alert Enrichment and Response Rules",
+  "model_version": "1.0",
+
+  "correlation": {
+    "time_window_minutes": 10,
+    "require_shared_context": true,
+    "shared_fields": [
+      "user",
+      "asset",
+      "source_ip",
+      "indicator"
+    ],
+    "finance_incident_categories": [
+      "Authentication",
+      "Execution",
+      "Network",
+      "Threat Intelligence",
+      "Privilege",
+      "Email"
+    ]
+  },
+
+  "deduplication": {
+    "enabled": true,
+    "rules": [
+      {
+        "name": "PowerShell Execution Duplicate Collapse",
+        "event_types": [
+          "Suspicious PowerShell",
+          "PowerShell Encoded Command"
+        ],
+        "require_same_user": true,
+        "require_same_asset": true,
+        "maximum_time_difference_seconds": 120,
+        "retain_highest_severity": true,
+        "retained_event_label": "Suspicious Encoded PowerShell Execution"
+      }
+    ]
+  },
+
+  "priority_weights": {
+    "base_alert_severity": {
+      "High": 15,
+      "Medium": 8,
+      "Low": 3
+    },
+
+    "user_context": {
+      "high_value_identity": 10,
+      "high_business_impact": 8,
+      "privileged_identity": 15
+    },
+
+    "asset_context": {
+      "critical_asset": 15,
+      "high_asset": 10,
+      "moderate_asset": 5,
+      "high_data_sensitivity": 8
+    },
+
+    "threat_context": {
+      "known_malicious_ioc": 20,
+      "high_interest_ioc": 12,
+      "unknown_external_ioc": 4,
+      "trusted_ioc_reduction": -15
+    },
+
+    "correlation_context": {
+      "multiple_alert_categories": 10,
+      "multiple_security_products": 8,
+      "authentication_plus_execution": 12,
+      "execution_plus_network": 12,
+      "identity_plus_privilege": 10,
+      "related_alert_count_4_or_more": 10
+    }
+  },
+
+  "priority_thresholds": {
+    "CRITICAL": 80,
+    "HIGH": 55,
+    "MODERATE": 30,
+    "LOW": 0
+  },
+
+  "routing": {
+    "CRITICAL": "SOC Tier 2 / Incident Response",
+    "HIGH": "SOC Tier 2 Investigation",
+    "MODERATE": "SOC Tier 1 Review",
+    "LOW": "SOC Tier 1 Monitoring"
+  },
+
+  "response_actions": {
+    "automated_safe_actions": [
+      "Create incident record",
+      "Attach related alert evidence",
+      "Enrich user context",
+      "Enrich asset context",
+      "Enrich IOC context",
+      "Tag affected user and asset",
+      "Collect related authentication logs",
+      "Collect related endpoint alerts",
+      "Collect related network alerts",
+      "Notify assigned SOC queue"
+    ],
+
+    "analyst_approval_required": [
+      "Revoke active user sessions",
+      "Require MFA reauthentication",
+      "Disable user account",
+      "Isolate endpoint",
+      "Block source or destination IP",
+      "Quarantine suspicious email",
+      "Remove privileged access"
+    ],
+
+    "escalation_conditions": [
+      "High-value identity involved",
+      "Critical or high-value asset involved",
+      "Known malicious IOC correlated with endpoint activity",
+      "Authentication anomalies followed by suspicious execution",
+      "Suspicious execution followed by external network activity",
+      "Privilege-related activity follows suspected compromise"
+    ]
+  },
+
+  "recommended_playbooks": {
+    "Finance Compromise Sequence": {
+      "conditions": [
+        "Authentication",
+        "Execution",
+        "Network"
+      ],
+      "recommended_actions": [
+        "Revoke active sessions",
+        "Require MFA reauthentication",
+        "Preserve authentication and endpoint evidence",
+        "Review recent account activity",
+        "Review outbound network activity",
+        "Consider endpoint isolation if additional compromise evidence is confirmed",
+        "Escalate to SOC Tier 2"
+      ]
+    },
+
+    "Low-Risk Authentication Noise": {
+      "conditions": [
+        "Authentication"
+      ],
+      "recommended_actions": [
+        "Review authentication context",
+        "Confirm successful follow-on authentication",
+        "Close as benign if no additional suspicious activity exists"
+      ]
+    },
+
+    "Trusted Administrative Traffic": {
+      "conditions": [
+        "Network"
+      ],
+      "recommended_actions": [
+        "Confirm destination is allowlisted",
+        "Document trusted service context",
+        "Close or suppress if no contradictory evidence exists"
+      ]
+    }
+  },
+
+  "analyst_guardrails": [
+    "Do not merge alerts solely because they occur close together in time.",
+    "Require shared user, asset, source, indicator, or behavioral context before correlation.",
+    "Do not classify a trusted IOC as malicious without contradictory evidence.",
+    "Do not automatically isolate a host or disable an account without analyst approval.",
+    "Do not treat enrichment data as proof of compromise.",
+    "Distinguish observed alert evidence from analyst interpretation."
+  ]
+}
