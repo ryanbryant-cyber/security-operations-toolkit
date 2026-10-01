@@ -1,0 +1,45 @@
+{
+  "dataset_name": "Synthetic Threat Intelligence Context",
+  "indicators": [
+    {
+      "indicator": "203.0.113.88",
+      "indicator_type": "IPv4",
+      "reputation": "High Interest",
+      "confidence": 85,
+      "known_malicious": true,
+      "source": "Synthetic Threat Intelligence Feed",
+      "recommended_handling": "Escalate for analyst investigation and review related network activity.",
+      "notes": "Documentation-reserved IP used as a synthetic high-interest threat indicator."
+    },
+    {
+      "indicator": "198.51.100.24",
+      "indicator_type": "IPv4",
+      "reputation": "Unknown External",
+      "confidence": 50,
+      "known_malicious": false,
+      "source": "Synthetic Threat Intelligence Feed",
+      "recommended_handling": "Correlate with authentication and identity telemetry before assigning disposition.",
+      "notes": "External documentation-reserved address associated with repeated Finance authentication activity."
+    },
+    {
+      "indicator": "198.51.100.15",
+      "indicator_type": "IPv4",
+      "reputation": "Trusted",
+      "confidence": 95,
+      "known_malicious": false,
+      "source": "Synthetic Allowlist",
+      "recommended_handling": "No containment action unless additional contradictory evidence is identified.",
+      "notes": "Synthetic trusted external service used by approved administrative systems."
+    },
+    {
+      "indicator": "Quarterly_Review.docx",
+      "indicator_type": "Filename",
+      "reputation": "Suspicious Context",
+      "confidence": 60,
+      "known_malicious": false,
+      "source": "Synthetic Email Security Investigation",
+      "recommended_handling": "Preserve attachment metadata and correlate with endpoint activity.",
+      "notes": "Synthetic document associated with suspicious email context but not independently confirmed malicious."
+    }
+  ]
+}
