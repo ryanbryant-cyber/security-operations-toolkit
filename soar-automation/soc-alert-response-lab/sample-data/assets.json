@@ -1,0 +1,53 @@
+{
+  "dataset_name": "Synthetic Asset Context",
+  "assets": [
+    {
+      "hostname": "NFG-FIN-WS07",
+      "asset_type": "Windows Workstation",
+      "department": "Finance",
+      "business_function": "Financial Operations",
+      "criticality": "High",
+      "environment": "Production",
+      "internet_exposed": false,
+      "edr_managed": true,
+      "data_sensitivity": "High",
+      "notes": "Finance workstation used for financial operations and access to sensitive business data."
+    },
+    {
+      "hostname": "NFG-MKT-WS08",
+      "asset_type": "Windows Workstation",
+      "department": "Marketing",
+      "business_function": "Marketing Operations",
+      "criticality": "Low",
+      "environment": "Production",
+      "internet_exposed": false,
+      "edr_managed": true,
+      "data_sensitivity": "Low",
+      "notes": "Standard marketing workstation."
+    },
+    {
+      "hostname": "NFG-HR-WS03",
+      "asset_type": "Windows Workstation",
+      "department": "Human Resources",
+      "business_function": "Human Resources Operations",
+      "criticality": "Moderate",
+      "environment": "Production",
+      "internet_exposed": false,
+      "edr_managed": true,
+      "data_sensitivity": "High",
+      "notes": "HR workstation with access to employee-related information."
+    },
+    {
+      "hostname": "NFG-ADMIN-WS01",
+      "asset_type": "Administrative Workstation",
+      "department": "Information Technology",
+      "business_function": "Infrastructure Administration",
+      "criticality": "Critical",
+      "environment": "Production",
+      "internet_exposed": false,
+      "edr_managed": true,
+      "data_sensitivity": "High",
+      "notes": "Privileged administrative workstation used for approved IT management activities."
+    }
+  ]
+}
