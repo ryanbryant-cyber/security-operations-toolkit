@@ -1,0 +1,96 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 12,
+  "checks_passed": 12,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "Alert normalization and deduplication",
+      "passed": true,
+      "expected": {
+        "raw_alert_count": 11,
+        "normalized_alert_count": 11,
+        "post_deduplication_count": 10
+      },
+      "actual": {
+        "raw_alert_count": 11,
+        "normalized_alert_count": 11,
+        "post_deduplication_count": 10
+      }
+    },
+    {
+      "check": "Incident summary",
+      "passed": true,
+      "expected": {
+        "incident_count": 4,
+        "critical": 1,
+        "high": 0,
+        "moderate": 0,
+        "low": 3
+      },
+      "actual": {
+        "incident_count": 4,
+        "critical": 1,
+        "high": 0,
+        "moderate": 0,
+        "low": 3
+      }
+    },
+    {
+      "check": "INC-001",
+      "priority": "CRITICAL",
+      "priority_score": 100,
+      "routing": "SOC Tier 2 / Incident Response",
+      "playbook": "Finance Compromise Sequence",
+      "passed": true
+    },
+    {
+      "check": "INC-002",
+      "priority": "LOW",
+      "priority_score": 3,
+      "routing": "SOC Tier 1 Monitoring",
+      "playbook": "General Analyst Review",
+      "passed": true
+    },
+    {
+      "check": "INC-003",
+      "priority": "LOW",
+      "priority_score": 16,
+      "routing": "SOC Tier 1 Monitoring",
+      "playbook": "Low-Risk Authentication Noise",
+      "passed": true
+    },
+    {
+      "check": "INC-004",
+      "priority": "LOW",
+      "priority_score": 29,
+      "routing": "SOC Tier 1 Monitoring",
+      "playbook": "Trusted Administrative Traffic",
+      "passed": true
+    },
+    {
+      "check": "PowerShell duplicates collapse while preserving original evidence",
+      "passed": true
+    },
+    {
+      "check": "Finance case contains business and threat enrichment",
+      "passed": true
+    },
+    {
+      "check": "Finance incident correlates multiple security categories and products",
+      "passed": true
+    },
+    {
+      "check": "Safe automation and analyst-approved containment remain separated",
+      "passed": true
+    },
+    {
+      "check": "Trusted administrative traffic is deprioritized through enrichment",
+      "passed": true
+    },
+    {
+      "check": "Analyst guardrails preserve human review and evidentiary uncertainty",
+      "passed": true
+    }
+  ]
+}
