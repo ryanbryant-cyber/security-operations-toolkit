@@ -63,7 +63,7 @@
       "known_malicious_ioc": 20,
       "high_interest_ioc": 12,
       "unknown_external_ioc": 4,
-      "trusted_ioc_reduction": -15
+      "trusted_ioc_reduction": -30
     },
 
     "correlation_context": {
