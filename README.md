@@ -218,6 +218,38 @@ Key project outcomes:
 
 [View the Windows Memory Forensics Investigation Lab](memory-forensics/windows-memory-forensics-lab/)
 
+### SOAR Automation
+
+#### SOC Alert Enrichment & Response Automation Lab
+
+Security-operations automation project focused on transforming noisy multi-source alerts into enriched, prioritized, analyst-ready incident cases.
+
+The project processes synthetic alerts from identity, endpoint, network, threat-intelligence, privilege, and email-security sources, then applies business context, IOC enrichment, deduplication, correlation, priority scoring, response playbooks, and analyst approval boundaries.
+
+Key project outcomes:
+
+- Processed 11 synthetic raw security alerts
+- Normalized and enriched alerts with user, asset, and IOC context
+- Deduplicated overlapping PowerShell detections while preserving original alert IDs
+- Reduced 11 raw alerts to 10 enriched alert records
+- Correlated activity into 4 analyst-ready incident cases
+- Preserved 8 original Finance source alerts inside one CRITICAL incident
+- Routed the Finance case to SOC Tier 2 / Incident Response
+- Correlated authentication, execution, network, threat-intelligence, privilege, and email evidence
+- Added business context for high-value identities, asset criticality, and data sensitivity
+- Demonstrated how trusted IOC enrichment can reduce unnecessary analyst noise
+- Tuned trusted administrative traffic from MODERATE to LOW priority
+- Separated safe automated actions from analyst-approved containment
+- Generated response playbooks and escalation conditions
+- Produced structured JSON and CSV case reports
+- Preserved analyst guardrails and evidentiary uncertainty
+- Implemented an independent validation harness
+- Passed 12 of 12 validation checks
+
+**Skills:** SOAR | SOC Automation | Alert Normalization | Alert Enrichment | Alert Deduplication | Behavioral Correlation | Incident Prioritization | Case Management | Threat Intelligence Enrichment | Response Playbooks | Human-in-the-Loop Response | Python | Security Automation | Validation Testing
+
+[View the SOC Alert Enrichment & Response Automation Lab](soar-automation/soc-alert-response-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
