@@ -1,0 +1,73 @@
+{
+  "alert_processing": {
+    "raw_alert_count": 11,
+    "normalized_alert_count": 11,
+    "post_deduplication_count": 10
+  },
+
+  "incident_summary": {
+    "incident_count": 4,
+    "critical": 1,
+    "high": 0,
+    "moderate": 0,
+    "low": 3
+  },
+
+  "expected_cases": [
+    {
+      "incident_id": "INC-001",
+      "priority": "CRITICAL",
+      "priority_score": 100,
+      "affected_user": "finance.user",
+      "affected_asset": "NFG-FIN-WS07",
+      "source_alert_count": 8,
+      "correlated_alert_count": 7,
+      "routing": "SOC Tier 2 / Incident Response",
+      "playbook": "Finance Compromise Sequence"
+    },
+    {
+      "incident_id": "INC-002",
+      "priority": "LOW",
+      "priority_score": 3,
+      "affected_user": "marketing.user",
+      "affected_asset": "NFG-MKT-WS08",
+      "source_alert_count": 1,
+      "correlated_alert_count": 1,
+      "routing": "SOC Tier 1 Monitoring",
+      "playbook": "General Analyst Review"
+    },
+    {
+      "incident_id": "INC-003",
+      "priority": "LOW",
+      "priority_score": 16,
+      "affected_user": "alex.employee",
+      "affected_asset": "NFG-HR-WS03",
+      "source_alert_count": 1,
+      "correlated_alert_count": 1,
+      "routing": "SOC Tier 1 Monitoring",
+      "playbook": "Low-Risk Authentication Noise"
+    },
+    {
+      "incident_id": "INC-004",
+      "priority": "LOW",
+      "priority_score": 29,
+      "affected_user": "it.admin",
+      "affected_asset": "NFG-ADMIN-WS01",
+      "source_alert_count": 1,
+      "correlated_alert_count": 1,
+      "routing": "SOC Tier 1 Monitoring",
+      "playbook": "Trusted Administrative Traffic"
+    }
+  ],
+
+  "finance_source_alert_ids": [
+    "ALERT-001",
+    "ALERT-002",
+    "ALERT-003",
+    "ALERT-004",
+    "ALERT-005",
+    "ALERT-006",
+    "ALERT-007",
+    "ALERT-008"
+  ]
+}
