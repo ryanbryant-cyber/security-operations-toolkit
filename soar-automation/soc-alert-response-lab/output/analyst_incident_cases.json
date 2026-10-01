@@ -1,0 +1,650 @@
+{
+  "summary": {
+    "incident_count": 4,
+    "critical": 1,
+    "high": 0,
+    "moderate": 0,
+    "low": 3
+  },
+  "cases": [
+    {
+      "incident_id": "INC-001",
+      "priority": "CRITICAL",
+      "priority_score": 100,
+      "raw_priority_score": 133,
+      "routing": "SOC Tier 2 / Incident Response",
+      "first_alert_time": "2026-10-01T13:02:11Z",
+      "last_alert_time": "2026-10-01T13:08:02Z",
+      "affected_user": "finance.user",
+      "affected_asset": "NFG-FIN-WS07",
+      "business_context": {
+        "user": {
+          "username": "finance.user",
+          "display_name": "Finance User",
+          "department": "Finance",
+          "role": "Financial Analyst",
+          "privilege_level": "Standard",
+          "account_status": "Active",
+          "mfa_enrolled": true,
+          "business_impact": "High",
+          "high_value_identity": true,
+          "notes": "Finance identity with access to business-sensitive financial resources."
+        },
+        "asset": {
+          "hostname": "NFG-FIN-WS07",
+          "asset_type": "Windows Workstation",
+          "department": "Finance",
+          "business_function": "Financial Operations",
+          "criticality": "High",
+          "environment": "Production",
+          "internet_exposed": false,
+          "edr_managed": true,
+          "data_sensitivity": "High",
+          "notes": "Finance workstation used for financial operations and access to sensitive business data."
+        }
+      },
+      "ioc_context": [
+        {
+          "indicator": "198.51.100.24",
+          "indicator_type": "IPv4",
+          "reputation": "Unknown External",
+          "confidence": 50,
+          "known_malicious": false,
+          "source": "Synthetic Threat Intelligence Feed",
+          "recommended_handling": "Correlate with authentication and identity telemetry before assigning disposition.",
+          "notes": "External documentation-reserved address associated with repeated Finance authentication activity."
+        },
+        {
+          "indicator": "203.0.113.88",
+          "indicator_type": "IPv4",
+          "reputation": "High Interest",
+          "confidence": 85,
+          "known_malicious": true,
+          "source": "Synthetic Threat Intelligence Feed",
+          "recommended_handling": "Escalate for analyst investigation and review related network activity.",
+          "notes": "Documentation-reserved IP used as a synthetic high-interest threat indicator."
+        },
+        {
+          "indicator": "Quarterly_Review.docx",
+          "indicator_type": "Filename",
+          "reputation": "Suspicious Context",
+          "confidence": 60,
+          "known_malicious": false,
+          "source": "Synthetic Email Security Investigation",
+          "recommended_handling": "Preserve attachment metadata and correlate with endpoint activity.",
+          "notes": "Synthetic document associated with suspicious email context but not independently confirmed malicious."
+        }
+      ],
+      "categories": [
+        "Authentication",
+        "Email",
+        "Execution",
+        "Network",
+        "Privilege",
+        "Threat Intelligence"
+      ],
+      "security_products": [
+        "Email Security",
+        "Endpoint Detection",
+        "Identity Monitor",
+        "Network Monitor",
+        "Privilege Monitor",
+        "Threat Intelligence"
+      ],
+      "source_alert_count": 8,
+      "correlated_alert_count": 7,
+      "source_alert_ids": [
+        "ALERT-001",
+        "ALERT-002",
+        "ALERT-003",
+        "ALERT-004",
+        "ALERT-005",
+        "ALERT-006",
+        "ALERT-007",
+        "ALERT-008"
+      ],
+      "deduplication_applied": true,
+      "priority_factors": [
+        {
+          "factor": "Highest alert severity",
+          "value": "High",
+          "points": 15
+        },
+        {
+          "factor": "High-value identity",
+          "points": 10
+        },
+        {
+          "factor": "High business impact identity",
+          "points": 8
+        },
+        {
+          "factor": "High-criticality asset",
+          "points": 10
+        },
+        {
+          "factor": "High data sensitivity",
+          "points": 8
+        },
+        {
+          "factor": "Known malicious IOC",
+          "indicator": "203.0.113.88",
+          "points": 20
+        },
+        {
+          "factor": "Multiple alert categories",
+          "points": 10
+        },
+        {
+          "factor": "Multiple security products",
+          "points": 8
+        },
+        {
+          "factor": "Authentication plus execution",
+          "points": 12
+        },
+        {
+          "factor": "Execution plus network",
+          "points": 12
+        },
+        {
+          "factor": "Identity plus privilege",
+          "points": 10
+        },
+        {
+          "factor": "Four or more related source alerts",
+          "points": 10
+        }
+      ],
+      "evidence": [
+        {
+          "source_alert_ids": [
+            "ALERT-001"
+          ],
+          "timestamp": "2026-10-01T13:02:11Z",
+          "source_product": "Identity Monitor",
+          "category": "Authentication",
+          "event_type": "Repeated Failed Sign-ins",
+          "severity": "Medium",
+          "confidence": 70,
+          "description": "Five failed authentication attempts were observed for finance.user from the same external source within 75 seconds."
+        },
+        {
+          "source_alert_ids": [
+            "ALERT-002"
+          ],
+          "timestamp": "2026-10-01T13:03:07Z",
+          "source_product": "Identity Monitor",
+          "category": "Authentication",
+          "event_type": "Success After Repeated Failures",
+          "severity": "High",
+          "confidence": 85,
+          "description": "A successful authentication occurred from the same source shortly after repeated failures."
+        },
+        {
+          "source_alert_ids": [
+            "ALERT-003",
+            "ALERT-004"
+          ],
+          "timestamp": "2026-10-01T13:04:19Z",
+          "source_product": "Endpoint Detection",
+          "category": "Execution",
+          "event_type": "Suspicious Encoded PowerShell Execution",
+          "severity": "High",
+          "confidence": 90,
+          "description": "Deduplicated related alerts: PowerShell executed with -NoProfile, ExecutionPolicy Bypass, and encoded command syntax. | Encoded PowerShell activity was detected on the Finance workstation."
+        },
+        {
+          "source_alert_ids": [
+            "ALERT-005"
+          ],
+          "timestamp": "2026-10-01T13:05:31Z",
+          "source_product": "Network Monitor",
+          "category": "Network",
+          "event_type": "High-Interest Outbound Connection",
+          "severity": "Medium",
+          "confidence": 72,
+          "description": "The Finance workstation established an outbound TCP connection to 203.0.113.88 on destination port 8443."
+        },
+        {
+          "source_alert_ids": [
+            "ALERT-006"
+          ],
+          "timestamp": "2026-10-01T13:05:59Z",
+          "source_product": "Threat Intelligence",
+          "category": "Threat Intelligence",
+          "event_type": "Known IOC Match",
+          "severity": "High",
+          "confidence": 80,
+          "description": "The destination indicator 203.0.113.88 matched the synthetic threat-intelligence dataset."
+        },
+        {
+          "source_alert_ids": [
+            "ALERT-007"
+          ],
+          "timestamp": "2026-10-01T13:07:14Z",
+          "source_product": "Privilege Monitor",
+          "category": "Privilege",
+          "event_type": "Privileged Activity",
+          "severity": "High",
+          "confidence": 75,
+          "description": "A privileged-group enumeration event occurred shortly after suspicious endpoint activity."
+        },
+        {
+          "source_alert_ids": [
+            "ALERT-008"
+          ],
+          "timestamp": "2026-10-01T13:08:02Z",
+          "source_product": "Email Security",
+          "category": "Email",
+          "event_type": "Suspicious Attachment Opened",
+          "severity": "Low",
+          "confidence": 60,
+          "description": "The user opened a document attachment associated with a synthetic suspicious email investigation."
+        }
+      ],
+      "playbook": {
+        "name": "Finance Compromise Sequence",
+        "recommended_actions": [
+          "Revoke active sessions",
+          "Require MFA reauthentication",
+          "Preserve authentication and endpoint evidence",
+          "Review recent account activity",
+          "Review outbound network activity",
+          "Consider endpoint isolation if additional compromise evidence is confirmed",
+          "Escalate to SOC Tier 2"
+        ]
+      },
+      "automated_safe_actions": [
+        "Create incident record",
+        "Attach related alert evidence",
+        "Enrich user context",
+        "Enrich asset context",
+        "Enrich IOC context",
+        "Tag affected user and asset",
+        "Collect related authentication logs",
+        "Collect related endpoint alerts",
+        "Collect related network alerts",
+        "Notify assigned SOC queue"
+      ],
+      "analyst_approval_required": [
+        "Revoke active user sessions",
+        "Require MFA reauthentication",
+        "Disable user account",
+        "Isolate endpoint",
+        "Block source or destination IP",
+        "Quarantine suspicious email",
+        "Remove privileged access"
+      ],
+      "triggered_escalation_conditions": [
+        "High-value identity involved",
+        "Critical or high-value asset involved",
+        "Known malicious IOC correlated with endpoint activity",
+        "Authentication anomalies followed by suspicious execution",
+        "Suspicious execution followed by external network activity",
+        "Privilege-related activity follows suspected compromise"
+      ],
+      "analyst_assessment": "8 related source alerts were correlated across 6 security categories. Business and security enrichment increased the investigation priority. The combined evidence supports escalation but does not independently establish the complete compromise mechanism or prove that every related alert represents malicious activity.",
+      "analyst_guardrails": [
+        "Do not merge alerts solely because they occur close together in time.",
+        "Require shared user, asset, source, indicator, or behavioral context before correlation.",
+        "Do not classify a trusted IOC as malicious without contradictory evidence.",
+        "Do not automatically isolate a host or disable an account without analyst approval.",
+        "Do not treat enrichment data as proof of compromise.",
+        "Distinguish observed alert evidence from analyst interpretation."
+      ]
+    },
+    {
+      "incident_id": "INC-002",
+      "priority": "LOW",
+      "priority_score": 3,
+      "raw_priority_score": 3,
+      "routing": "SOC Tier 1 Monitoring",
+      "first_alert_time": "2026-10-01T13:15:44Z",
+      "last_alert_time": "2026-10-01T13:15:44Z",
+      "affected_user": "marketing.user",
+      "affected_asset": "NFG-MKT-WS08",
+      "business_context": {
+        "user": {
+          "username": "marketing.user",
+          "display_name": "Marketing User",
+          "department": "Marketing",
+          "role": "Marketing Specialist",
+          "privilege_level": "Standard",
+          "account_status": "Active",
+          "mfa_enrolled": true,
+          "business_impact": "Low",
+          "high_value_identity": false,
+          "notes": "Standard marketing user with no privileged access."
+        },
+        "asset": {
+          "hostname": "NFG-MKT-WS08",
+          "asset_type": "Windows Workstation",
+          "department": "Marketing",
+          "business_function": "Marketing Operations",
+          "criticality": "Low",
+          "environment": "Production",
+          "internet_exposed": false,
+          "edr_managed": true,
+          "data_sensitivity": "Low",
+          "notes": "Standard marketing workstation."
+        }
+      },
+      "ioc_context": [],
+      "categories": [
+        "Execution"
+      ],
+      "security_products": [
+        "Endpoint Detection"
+      ],
+      "source_alert_count": 1,
+      "correlated_alert_count": 1,
+      "source_alert_ids": [
+        "ALERT-009"
+      ],
+      "deduplication_applied": false,
+      "priority_factors": [
+        {
+          "factor": "Highest alert severity",
+          "value": "Low",
+          "points": 3
+        }
+      ],
+      "evidence": [
+        {
+          "source_alert_ids": [
+            "ALERT-009"
+          ],
+          "timestamp": "2026-10-01T13:15:44Z",
+          "source_product": "Endpoint Detection",
+          "category": "Execution",
+          "event_type": "PowerShell Activity",
+          "severity": "Low",
+          "confidence": 40,
+          "description": "A marketing user executed a signed administrative PowerShell script used for software inventory."
+        }
+      ],
+      "playbook": {
+        "name": "General Analyst Review",
+        "recommended_actions": [
+          "Review correlated evidence and enrichment context.",
+          "Determine whether additional investigation is required."
+        ]
+      },
+      "automated_safe_actions": [
+        "Create incident record",
+        "Attach related alert evidence",
+        "Enrich user context",
+        "Enrich asset context",
+        "Enrich IOC context",
+        "Tag affected user and asset",
+        "Collect related authentication logs",
+        "Collect related endpoint alerts",
+        "Collect related network alerts",
+        "Notify assigned SOC queue"
+      ],
+      "analyst_approval_required": [],
+      "triggered_escalation_conditions": [],
+      "analyst_assessment": "The available evidence has limited correlation or risk context. Review the enrichment and close, suppress, or continue monitoring if no contradictory evidence is identified.",
+      "analyst_guardrails": [
+        "Do not merge alerts solely because they occur close together in time.",
+        "Require shared user, asset, source, indicator, or behavioral context before correlation.",
+        "Do not classify a trusted IOC as malicious without contradictory evidence.",
+        "Do not automatically isolate a host or disable an account without analyst approval.",
+        "Do not treat enrichment data as proof of compromise.",
+        "Distinguish observed alert evidence from analyst interpretation."
+      ]
+    },
+    {
+      "incident_id": "INC-003",
+      "priority": "LOW",
+      "priority_score": 16,
+      "raw_priority_score": 16,
+      "routing": "SOC Tier 1 Monitoring",
+      "first_alert_time": "2026-10-01T13:18:22Z",
+      "last_alert_time": "2026-10-01T13:18:22Z",
+      "affected_user": "alex.employee",
+      "affected_asset": "NFG-HR-WS03",
+      "business_context": {
+        "user": {
+          "username": "alex.employee",
+          "display_name": "Alex Employee",
+          "department": "Human Resources",
+          "role": "HR Coordinator",
+          "privilege_level": "Standard",
+          "account_status": "Active",
+          "mfa_enrolled": true,
+          "business_impact": "Moderate",
+          "high_value_identity": false,
+          "notes": "Standard HR user."
+        },
+        "asset": {
+          "hostname": "NFG-HR-WS03",
+          "asset_type": "Windows Workstation",
+          "department": "Human Resources",
+          "business_function": "Human Resources Operations",
+          "criticality": "Moderate",
+          "environment": "Production",
+          "internet_exposed": false,
+          "edr_managed": true,
+          "data_sensitivity": "High",
+          "notes": "HR workstation with access to employee-related information."
+        }
+      },
+      "ioc_context": [],
+      "categories": [
+        "Authentication"
+      ],
+      "security_products": [
+        "Identity Monitor"
+      ],
+      "source_alert_count": 1,
+      "correlated_alert_count": 1,
+      "source_alert_ids": [
+        "ALERT-010"
+      ],
+      "deduplication_applied": false,
+      "priority_factors": [
+        {
+          "factor": "Highest alert severity",
+          "value": "Low",
+          "points": 3
+        },
+        {
+          "factor": "Moderate-criticality asset",
+          "points": 5
+        },
+        {
+          "factor": "High data sensitivity",
+          "points": 8
+        }
+      ],
+      "evidence": [
+        {
+          "source_alert_ids": [
+            "ALERT-010"
+          ],
+          "timestamp": "2026-10-01T13:18:22Z",
+          "source_product": "Identity Monitor",
+          "category": "Authentication",
+          "event_type": "Failed Sign-in",
+          "severity": "Low",
+          "confidence": 35,
+          "description": "A single failed sign-in was followed by a successful authentication from the same internal workstation."
+        }
+      ],
+      "playbook": {
+        "name": "Low-Risk Authentication Noise",
+        "recommended_actions": [
+          "Review authentication context",
+          "Confirm successful follow-on authentication",
+          "Close as benign if no additional suspicious activity exists"
+        ]
+      },
+      "automated_safe_actions": [
+        "Create incident record",
+        "Attach related alert evidence",
+        "Enrich user context",
+        "Enrich asset context",
+        "Enrich IOC context",
+        "Tag affected user and asset",
+        "Collect related authentication logs",
+        "Collect related endpoint alerts",
+        "Collect related network alerts",
+        "Notify assigned SOC queue"
+      ],
+      "analyst_approval_required": [],
+      "triggered_escalation_conditions": [],
+      "analyst_assessment": "The available evidence has limited correlation or risk context. Review the enrichment and close, suppress, or continue monitoring if no contradictory evidence is identified.",
+      "analyst_guardrails": [
+        "Do not merge alerts solely because they occur close together in time.",
+        "Require shared user, asset, source, indicator, or behavioral context before correlation.",
+        "Do not classify a trusted IOC as malicious without contradictory evidence.",
+        "Do not automatically isolate a host or disable an account without analyst approval.",
+        "Do not treat enrichment data as proof of compromise.",
+        "Distinguish observed alert evidence from analyst interpretation."
+      ]
+    },
+    {
+      "incident_id": "INC-004",
+      "priority": "LOW",
+      "priority_score": 29,
+      "raw_priority_score": 29,
+      "routing": "SOC Tier 1 Monitoring",
+      "first_alert_time": "2026-10-01T13:22:08Z",
+      "last_alert_time": "2026-10-01T13:22:08Z",
+      "affected_user": "it.admin",
+      "affected_asset": "NFG-ADMIN-WS01",
+      "business_context": {
+        "user": {
+          "username": "it.admin",
+          "display_name": "IT Administrator",
+          "department": "Information Technology",
+          "role": "Systems Administrator",
+          "privilege_level": "Privileged",
+          "account_status": "Active",
+          "mfa_enrolled": true,
+          "business_impact": "Critical",
+          "high_value_identity": true,
+          "notes": "Privileged administrative identity used for approved infrastructure management."
+        },
+        "asset": {
+          "hostname": "NFG-ADMIN-WS01",
+          "asset_type": "Administrative Workstation",
+          "department": "Information Technology",
+          "business_function": "Infrastructure Administration",
+          "criticality": "Critical",
+          "environment": "Production",
+          "internet_exposed": false,
+          "edr_managed": true,
+          "data_sensitivity": "High",
+          "notes": "Privileged administrative workstation used for approved IT management activities."
+        }
+      },
+      "ioc_context": [
+        {
+          "indicator": "198.51.100.15",
+          "indicator_type": "IPv4",
+          "reputation": "Trusted",
+          "confidence": 95,
+          "known_malicious": false,
+          "source": "Synthetic Allowlist",
+          "recommended_handling": "No containment action unless additional contradictory evidence is identified.",
+          "notes": "Synthetic trusted external service used by approved administrative systems."
+        }
+      ],
+      "categories": [
+        "Network"
+      ],
+      "security_products": [
+        "Network Monitor"
+      ],
+      "source_alert_count": 1,
+      "correlated_alert_count": 1,
+      "source_alert_ids": [
+        "ALERT-011"
+      ],
+      "deduplication_applied": false,
+      "priority_factors": [
+        {
+          "factor": "Highest alert severity",
+          "value": "Low",
+          "points": 3
+        },
+        {
+          "factor": "High-value identity",
+          "points": 10
+        },
+        {
+          "factor": "High business impact identity",
+          "points": 8
+        },
+        {
+          "factor": "Privileged identity",
+          "points": 15
+        },
+        {
+          "factor": "Critical asset",
+          "points": 15
+        },
+        {
+          "factor": "High data sensitivity",
+          "points": 8
+        },
+        {
+          "factor": "Trusted IOC reduction",
+          "indicator": "198.51.100.15",
+          "points": -30
+        }
+      ],
+      "evidence": [
+        {
+          "source_alert_ids": [
+            "ALERT-011"
+          ],
+          "timestamp": "2026-10-01T13:22:08Z",
+          "source_product": "Network Monitor",
+          "category": "Network",
+          "event_type": "Outbound HTTPS Connection",
+          "severity": "Low",
+          "confidence": 25,
+          "description": "Approved administrative workstation communicated with a trusted external service over HTTPS."
+        }
+      ],
+      "playbook": {
+        "name": "Trusted Administrative Traffic",
+        "recommended_actions": [
+          "Confirm destination is allowlisted",
+          "Document trusted service context",
+          "Close or suppress if no contradictory evidence exists"
+        ]
+      },
+      "automated_safe_actions": [
+        "Create incident record",
+        "Attach related alert evidence",
+        "Enrich user context",
+        "Enrich asset context",
+        "Enrich IOC context",
+        "Tag affected user and asset",
+        "Collect related authentication logs",
+        "Collect related endpoint alerts",
+        "Collect related network alerts",
+        "Notify assigned SOC queue"
+      ],
+      "analyst_approval_required": [],
+      "triggered_escalation_conditions": [
+        "High-value identity involved",
+        "Critical or high-value asset involved"
+      ],
+      "analyst_assessment": "The available evidence has limited correlation or risk context. Review the enrichment and close, suppress, or continue monitoring if no contradictory evidence is identified.",
+      "analyst_guardrails": [
+        "Do not merge alerts solely because they occur close together in time.",
+        "Require shared user, asset, source, indicator, or behavioral context before correlation.",
+        "Do not classify a trusted IOC as malicious without contradictory evidence.",
+        "Do not automatically isolate a host or disable an account without analyst approval.",
+        "Do not treat enrichment data as proof of compromise.",
+        "Distinguish observed alert evidence from analyst interpretation."
+      ]
+    }
+  ]
+}
