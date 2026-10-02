@@ -250,6 +250,38 @@ Key project outcomes:
 
 [View the SOC Alert Enrichment & Response Automation Lab](soar-automation/soc-alert-response-lab/)
 
+### Cloud Incident Response
+
+#### Microsoft Entra ID Cloud Compromise Investigation & Response Lab
+
+Cloud incident-response project focused on reconstructing suspicious identity activity across synthetic Microsoft Entra ID and Azure-style telemetry.
+
+The project correlates authentication failures, successful sign-ins, Conditional Access results, MFA context, privileged-access changes, Microsoft 365 activity, Azure resource access, storage activity, and containment actions into separate analyst-facing incident timelines.
+
+Key project outcomes:
+
+- Investigated 2 separate synthetic cloud incidents
+- Correlated repeated Finance sign-in failures with a successful external authentication
+- Preserved MFA-success context instead of incorrectly claiming MFA bypass
+- Identified unmanaged and noncompliant device activity
+- Interpreted report-only Conditional Access failures correctly
+- Detected undocumented cloud role additions and modifications
+- Reviewed Microsoft 365, Azure Resource Manager, and Azure Storage activity
+- Correlated 16 indicators into the Finance incident
+- Correlated 10 indicators into a separate dormant-contractor incident
+- Preserved Finance and contractor activity as separate incident scopes
+- Distinguished incident activity from later containment actions
+- Recorded session revocation, role removal, and account disablement as response activity
+- Generated analyst-readable timelines and containment recommendations
+- Produced structured JSON and CSV investigation reports
+- Preserved uncertainty around credential theft, MFA bypass, data exfiltration, VM compromise, and persistence
+- Implemented an independent validation harness
+- Passed 13 of 13 validation checks
+
+**Skills:** Microsoft Entra ID | Cloud Incident Response | Azure Security | Identity Security | Conditional Access Analysis | MFA Analysis | Privileged Access Monitoring | Microsoft 365 Investigation | Azure Resource Analysis | Azure Storage Analysis | Incident Reconstruction | Scope Assessment | Incident Containment | Python | Security Automation | Validation Testing
+
+[View the Microsoft Entra ID Cloud Compromise Investigation & Response Lab](cloud-incident-response/entra-cloud-incident-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
