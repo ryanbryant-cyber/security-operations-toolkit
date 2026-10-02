@@ -1,0 +1,77 @@
+{
+  "expected_summary": {
+    "incident_count": 2,
+    "critical": 2,
+    "high": 0,
+    "moderate": 0,
+    "low": 0
+  },
+
+  "expected_incidents": [
+    {
+      "incident_id": "CLOUD-INC-001",
+      "user": "finance.user@northstar.example",
+      "session_id": "SESSION-FIN-8842",
+      "source_ip": "198.51.100.24",
+      "risk_score": 100,
+      "priority": "CRITICAL",
+      "indicator_count": 16,
+      "privileged_activity_count": 2,
+      "resource_activity_count": 6,
+      "cloud_services": [
+        "Azure Resource Manager",
+        "Azure Storage",
+        "Microsoft 365"
+      ],
+      "containment_count": 1
+    },
+    {
+      "incident_id": "CLOUD-INC-002",
+      "user": "dormant.contractor@northstar.example",
+      "session_id": "SESSION-CONTRACT-4402",
+      "source_ip": "203.0.113.55",
+      "risk_score": 100,
+      "priority": "CRITICAL",
+      "indicator_count": 10,
+      "privileged_activity_count": 2,
+      "resource_activity_count": 3,
+      "cloud_services": [
+        "Azure Resource Manager",
+        "Microsoft 365"
+      ],
+      "containment_count": 2
+    }
+  ],
+
+  "required_finance_indicators": [
+    "Repeated failed sign-ins",
+    "Success after repeated failures",
+    "High sign-in risk",
+    "Unmanaged device",
+    "Noncompliant device",
+    "Unfamiliar external source",
+    "Report-only policy failure",
+    "MFA satisfied",
+    "Role added without justification",
+    "Role modified without ticket",
+    "Role activity in suspicious session",
+    "Sensitive content accessed",
+    "Cloud resource enumeration",
+    "VM login access requested",
+    "Multiple cloud services accessed",
+    "Single identity active across multiple services"
+  ],
+
+  "required_contractor_indicators": [
+    "High sign-in risk",
+    "Unmanaged device",
+    "Noncompliant device",
+    "Unfamiliar external source",
+    "Report-only policy failure",
+    "Role added without justification",
+    "Role modified without ticket",
+    "Role activity in suspicious session",
+    "Cloud resource enumeration",
+    "Single identity active across multiple services"
+  ]
+}
