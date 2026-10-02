@@ -1,0 +1,16 @@
+timestamp,user,session_id,service,resource,resource_type,operation,result,source_ip,details
+2026-10-02T12:03:12Z,finance.user@northstar.example,SESSION-FIN-2201,Microsoft 365,Finance SharePoint Site,SharePoint,Read Document,success,10.10.20.17,Normal Finance document access
+2026-10-02T12:10:26Z,it.admin@northstar.example,SESSION-ADMIN-5510,Azure Resource Manager,NFG-FIN-VM01,Virtual Machine,Read Configuration,success,10.10.20.10,Approved administrative review
+2026-10-02T12:19:31Z,finance.user@northstar.example,SESSION-FIN-8842,Microsoft 365,Finance SharePoint Site,SharePoint,List Documents,success,198.51.100.24,External session enumerated Finance document library
+2026-10-02T12:20:07Z,finance.user@northstar.example,SESSION-FIN-8842,Microsoft 365,Finance SharePoint Site,SharePoint,Download Document,success,198.51.100.24,Downloaded Finance_Q3_Forecast.xlsx
+2026-10-02T12:21:44Z,finance.user@northstar.example,SESSION-FIN-8842,Azure Resource Manager,NFG-FIN-VM01,Virtual Machine,Read Configuration,success,198.51.100.24,Finance user queried VM configuration shortly after role assignment
+2026-10-02T12:22:36Z,finance.user@northstar.example,SESSION-FIN-8842,Azure Resource Manager,NFG-FIN-VM01,Virtual Machine,Request Login Access,success,198.51.100.24,Finance user requested virtual machine login access during suspicious session
+2026-10-02T12:23:18Z,finance.user@northstar.example,SESSION-FIN-8842,Azure Storage,nfgfinstorage,Storage Account,List Containers,success,198.51.100.24,Finance identity enumerated storage containers
+2026-10-02T12:24:02Z,finance.user@northstar.example,SESSION-FIN-8842,Azure Storage,nfgfinstorage,Storage Account,Read Blob,success,198.51.100.24,Finance identity accessed finance-export-2026.csv
+2026-10-02T12:28:11Z,backup.service@northstar.example,SERVICE-BACKUP-01,Azure Backup,NFG-BACKUP-VAULT01,Recovery Services Vault,Run Backup,success,10.10.10.25,Scheduled backup operation
+2026-10-02T12:32:04Z,dormant.contractor@northstar.example,SESSION-CONTRACT-4402,Microsoft 365,Shared Project Site,SharePoint,List Documents,success,203.0.113.55,Dormant contractor account enumerated shared files
+2026-10-02T12:33:29Z,dormant.contractor@northstar.example,SESSION-CONTRACT-4402,Azure Resource Manager,NFG-SHARED-APP01,App Service,Read Configuration,success,203.0.113.55,Resource activity followed Contributor assignment
+2026-10-02T12:36:12Z,dormant.contractor@northstar.example,SESSION-CONTRACT-4402,Azure Resource Manager,NFG-SHARED-APP01,App Service,List Deployment Settings,success,203.0.113.55,Dormant contractor inspected application deployment configuration
+2026-10-02T12:42:18Z,it.admin@northstar.example,SESSION-ADMIN-5510,Microsoft Entra ID,finance.user@northstar.example,Identity,Review Sign-in Activity,success,10.10.20.10,Incident response investigation
+2026-10-02T12:43:37Z,it.admin@northstar.example,SESSION-ADMIN-5510,Microsoft Entra ID,finance.user@northstar.example,Identity,Revoke Sessions,success,10.10.20.10,Finance session containment
+2026-10-02T12:47:09Z,it.admin@northstar.example,SESSION-ADMIN-5510,Microsoft Entra ID,dormant.contractor@northstar.example,Identity,Disable Account,success,10.10.20.10,Dormant contractor containment
