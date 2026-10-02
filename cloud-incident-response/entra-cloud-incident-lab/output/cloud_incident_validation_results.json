@@ -1,0 +1,90 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 13,
+  "checks_passed": 13,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "Incident summary",
+      "expected": {
+        "incident_count": 2,
+        "critical": 2,
+        "high": 0,
+        "moderate": 0,
+        "low": 0
+      },
+      "actual": {
+        "incident_count": 2,
+        "critical": 2,
+        "high": 0,
+        "moderate": 0,
+        "low": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "CLOUD-INC-001",
+      "user": "finance.user@northstar.example",
+      "risk_score": 100,
+      "priority": "CRITICAL",
+      "indicator_count": 16,
+      "containment_count": 1,
+      "passed": true
+    },
+    {
+      "check": "CLOUD-INC-002",
+      "user": "dormant.contractor@northstar.example",
+      "risk_score": 100,
+      "priority": "CRITICAL",
+      "indicator_count": 10,
+      "containment_count": 2,
+      "passed": true
+    },
+    {
+      "check": "Finance incident contains all required indicators",
+      "required_count": 16,
+      "actual_count": 16,
+      "missing_indicators": [],
+      "passed": true
+    },
+    {
+      "check": "Dormant-contractor incident contains all required indicators",
+      "required_count": 10,
+      "actual_count": 10,
+      "missing_indicators": [],
+      "passed": true
+    },
+    {
+      "check": "Finance incident preserves authentication failure-to-success correlation",
+      "passed": true
+    },
+    {
+      "check": "Conditional Access and MFA evidence are interpreted precisely",
+      "passed": true
+    },
+    {
+      "check": "Finance incident preserves undocumented cloud role activity",
+      "passed": true
+    },
+    {
+      "check": "Finance incident spans multiple cloud services and resources",
+      "passed": true
+    },
+    {
+      "check": "Finance and dormant-contractor activity remain separate incidents",
+      "passed": true
+    },
+    {
+      "check": "Containment actions remain distinct from incident activity",
+      "passed": true
+    },
+    {
+      "check": "Analyst assessment preserves evidentiary uncertainty",
+      "passed": true
+    },
+    {
+      "check": "Cloud incident-response guardrails are present",
+      "passed": true
+    }
+  ]
+}
