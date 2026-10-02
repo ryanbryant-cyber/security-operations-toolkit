@@ -1,0 +1,10 @@
+timestamp,user,source_ip,application,result,authentication_requirement,mfa_result,device_compliant,device_managed,location,sign_in_risk,conditional_access_status,session_id,notes
+2026-10-02T12:02:18Z,finance.user@northstar.example,10.10.20.17,Microsoft 365,success,multiFactorAuthentication,satisfied,true,true,Corporate Network,low,success,SESSION-FIN-2201,Normal Finance user baseline sign-in
+2026-10-02T12:05:44Z,alex.employee@northstar.example,10.10.20.22,Microsoft 365,success,multiFactorAuthentication,satisfied,true,true,Corporate Network,low,success,SESSION-ALEX-1188,Normal employee sign-in
+2026-10-02T12:17:41Z,finance.user@northstar.example,198.51.100.24,Microsoft 365,failure,password,notSatisfied,false,false,Unknown,medium,failure,,First failed external authentication
+2026-10-02T12:17:55Z,finance.user@northstar.example,198.51.100.24,Microsoft 365,failure,password,notSatisfied,false,false,Unknown,medium,failure,,Second failed external authentication
+2026-10-02T12:18:13Z,finance.user@northstar.example,198.51.100.24,Microsoft 365,failure,password,notSatisfied,false,false,Unknown,medium,failure,,Third failed external authentication
+2026-10-02T12:18:44Z,finance.user@northstar.example,198.51.100.24,Microsoft 365,success,multiFactorAuthentication,satisfied,false,false,Unknown,high,reportOnlyFailure,SESSION-FIN-8842,Successful external sign-in after repeated failures; unmanaged noncompliant device
+2026-10-02T12:31:07Z,dormant.contractor@northstar.example,203.0.113.55,Microsoft 365,success,password,singleFactorAuthentication,false,false,Unknown,high,notApplied,SESSION-CONTRACT-4402,Dormant contractor account generated successful authentication
+2026-10-02T12:39:12Z,it.admin@northstar.example,203.0.113.88,Azure Portal,failure,multiFactorAuthentication,notSatisfied,false,false,Unknown,medium,failure,,Failed administrative sign-in requiring strong authentication
+2026-10-02T12:39:37Z,it.admin@northstar.example,10.10.20.10,Azure Portal,success,multiFactorAuthentication,satisfied,true,true,Administrative Network,low,success,SESSION-ADMIN-5510,Approved administrative sign-in from managed workstation
