@@ -1,0 +1,425 @@
+{
+  "summary": {
+    "incident_count": 2,
+    "critical": 2,
+    "high": 0,
+    "moderate": 0,
+    "low": 0
+  },
+  "incidents": [
+    {
+      "incident_id": "CLOUD-INC-001",
+      "finding_type": "Suspected Cloud Identity Compromise",
+      "user": "finance.user@northstar.example",
+      "session_id": "SESSION-FIN-8842",
+      "source_ip": "198.51.100.24",
+      "risk_score": 100,
+      "priority": "CRITICAL",
+      "indicator_count": 16,
+      "indicators": [
+        {
+          "category": "Authentication",
+          "indicator": "Repeated failed sign-ins",
+          "points": 15,
+          "evidence": "3 failed sign-ins from 198.51.100.24 preceded the successful authentication."
+        },
+        {
+          "category": "Authentication",
+          "indicator": "Success after repeated failures",
+          "points": 20,
+          "evidence": "Successful authentication occurred 31 seconds after the last failed sign-in from the same source."
+        },
+        {
+          "category": "Authentication",
+          "indicator": "High sign-in risk",
+          "points": 10,
+          "evidence": "The successful sign-in was marked high risk."
+        },
+        {
+          "category": "Authentication",
+          "indicator": "Unmanaged device",
+          "points": 8,
+          "evidence": "The successful session originated from an unmanaged device."
+        },
+        {
+          "category": "Authentication",
+          "indicator": "Noncompliant device",
+          "points": 8,
+          "evidence": "The successful session originated from a noncompliant device."
+        },
+        {
+          "category": "Authentication",
+          "indicator": "Unfamiliar external source",
+          "points": 10,
+          "evidence": "Successful authentication originated from 198.51.100.24 rather than the established internal baseline."
+        },
+        {
+          "category": "Conditional Access",
+          "indicator": "Report-only policy failure",
+          "points": 8,
+          "evidence": "Report-only policy concern: Require Compliant Device"
+        },
+        {
+          "category": "Conditional Access",
+          "indicator": "MFA satisfied",
+          "points": -5,
+          "evidence": "Telemetry shows MFA was satisfied. This reduces support for an MFA-bypass hypothesis."
+        },
+        {
+          "category": "Privileged Access",
+          "indicator": "Role added without justification",
+          "points": 20,
+          "evidence": "Virtual Machine User Login on NFG-FIN-VM01"
+        },
+        {
+          "category": "Privileged Access",
+          "indicator": "Role modified without ticket",
+          "points": 15,
+          "evidence": "Virtual Machine User Login on NFG-FIN-VM01"
+        },
+        {
+          "category": "Privileged Access",
+          "indicator": "Role activity in suspicious session",
+          "points": 10,
+          "evidence": "2 privilege-related events occurred within the session."
+        },
+        {
+          "category": "Cloud Resource",
+          "indicator": "Sensitive content accessed",
+          "points": 10,
+          "evidence": "Download Document on Finance SharePoint Site; Read Blob on nfgfinstorage"
+        },
+        {
+          "category": "Cloud Resource",
+          "indicator": "Cloud resource enumeration",
+          "points": 8,
+          "evidence": "List Documents on Finance SharePoint Site; Read Configuration on NFG-FIN-VM01; List Containers on nfgfinstorage"
+        },
+        {
+          "category": "Cloud Resource",
+          "indicator": "VM login access requested",
+          "points": 15,
+          "evidence": "NFG-FIN-VM01"
+        },
+        {
+          "category": "Cloud Resource",
+          "indicator": "Multiple cloud services accessed",
+          "points": 10,
+          "evidence": "Azure Resource Manager, Azure Storage, Microsoft 365"
+        },
+        {
+          "category": "Scope",
+          "indicator": "Single identity active across multiple services",
+          "points": 8,
+          "evidence": "Azure Resource Manager, Azure Storage, Microsoft 365"
+        }
+      ],
+      "cloud_services": [
+        "Azure Resource Manager",
+        "Azure Storage",
+        "Microsoft 365"
+      ],
+      "resources_accessed": [
+        "Finance SharePoint Site",
+        "NFG-FIN-VM01",
+        "nfgfinstorage"
+      ],
+      "privileged_activity_count": 2,
+      "resource_activity_count": 6,
+      "containment_observed": [
+        {
+          "timestamp": "2026-10-02T12:43:12Z",
+          "action": "Revoke Sessions",
+          "target": "finance.user@northstar.example",
+          "notes": "Finance user sessions revoked during incident response"
+        }
+      ],
+      "containment_recommendations": [
+        "Revoke active sessions for the affected Finance identity.",
+        "Require MFA reauthentication.",
+        "Review and remove unauthorized cloud role assignments.",
+        "Review Microsoft 365 and Azure resource activity associated with the suspicious session.",
+        "Review access to Finance documents and storage objects.",
+        "Review VM access attempts and role changes.",
+        "Preserve Entra ID sign-in, Conditional Access, PIM, and Azure activity logs.",
+        "Reset credentials if additional compromise evidence supports that action."
+      ],
+      "timeline": [
+        {
+          "timestamp": "2026-10-02T12:17:41Z",
+          "source": "Authentication",
+          "event": "Failed sign-in from 198.51.100.24",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:17:55Z",
+          "source": "Authentication",
+          "event": "Failed sign-in from 198.51.100.24",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:18:13Z",
+          "source": "Authentication",
+          "event": "Failed sign-in from 198.51.100.24",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:18:44Z",
+          "source": "Authentication",
+          "event": "Successful sign-in from 198.51.100.24 using session SESSION-FIN-8842",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:18:44Z",
+          "source": "Conditional Access",
+          "event": "Require MFA for Microsoft 365 \u2192 success",
+          "phase": "Security Control Evidence"
+        },
+        {
+          "timestamp": "2026-10-02T12:18:44Z",
+          "source": "Conditional Access",
+          "event": "Require Compliant Device \u2192 reportOnlyFailure",
+          "phase": "Security Control Evidence"
+        },
+        {
+          "timestamp": "2026-10-02T12:19:31Z",
+          "source": "Cloud Resource",
+          "event": "List Documents | Microsoft 365 | Finance SharePoint Site",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:20:07Z",
+          "source": "Cloud Resource",
+          "event": "Download Document | Microsoft 365 | Finance SharePoint Site",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:21:18Z",
+          "source": "Privileged Access",
+          "event": "Add Member | Virtual Machine User Login | NFG-FIN-VM01",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:21:44Z",
+          "source": "Cloud Resource",
+          "event": "Read Configuration | Azure Resource Manager | NFG-FIN-VM01",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:22:03Z",
+          "source": "Privileged Access",
+          "event": "Role Assignment Modified | Virtual Machine User Login | NFG-FIN-VM01",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:22:36Z",
+          "source": "Cloud Resource",
+          "event": "Request Login Access | Azure Resource Manager | NFG-FIN-VM01",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:23:18Z",
+          "source": "Cloud Resource",
+          "event": "List Containers | Azure Storage | nfgfinstorage",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:24:02Z",
+          "source": "Cloud Resource",
+          "event": "Read Blob | Azure Storage | nfgfinstorage",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:43:12Z",
+          "source": "Containment",
+          "event": "Revoke Sessions | finance.user@northstar.example",
+          "phase": "Response / Containment"
+        }
+      ],
+      "analyst_assessment": "Multiple cloud identity, Conditional Access, privileged-access, and resource artifacts converge on the same authenticated session. The evidence supports a suspected cloud identity compromise investigation and containment response. The available telemetry does not independently prove credential theft, MFA bypass, data exfiltration, successful VM compromise, or persistence.",
+      "analyst_guardrails": [
+        "Do not classify repeated failed sign-ins followed by success as confirmed credential theft without additional evidence.",
+        "Do not classify MFA as bypassed when telemetry shows MFA was satisfied.",
+        "Do not treat a report-only Conditional Access failure as an actively blocked sign-in.",
+        "Do not classify cloud role assignment as confirmed privilege escalation unless the mechanism and authorization context are established.",
+        "Do not classify document or blob access as confirmed data exfiltration without evidence that data left the controlled environment.",
+        "Do not classify a VM login access request as successful VM compromise.",
+        "Separate incident activity from later containment and response actions.",
+        "Distinguish confirmed observations from analyst hypotheses."
+      ]
+    },
+    {
+      "incident_id": "CLOUD-INC-002",
+      "finding_type": "Suspected Cloud Identity Compromise",
+      "user": "dormant.contractor@northstar.example",
+      "session_id": "SESSION-CONTRACT-4402",
+      "source_ip": "203.0.113.55",
+      "risk_score": 100,
+      "priority": "CRITICAL",
+      "indicator_count": 10,
+      "indicators": [
+        {
+          "category": "Authentication",
+          "indicator": "High sign-in risk",
+          "points": 10,
+          "evidence": "The successful sign-in was marked high risk."
+        },
+        {
+          "category": "Authentication",
+          "indicator": "Unmanaged device",
+          "points": 8,
+          "evidence": "The successful session originated from an unmanaged device."
+        },
+        {
+          "category": "Authentication",
+          "indicator": "Noncompliant device",
+          "points": 8,
+          "evidence": "The successful session originated from a noncompliant device."
+        },
+        {
+          "category": "Authentication",
+          "indicator": "Unfamiliar external source",
+          "points": 10,
+          "evidence": "Successful authentication originated from 203.0.113.55 rather than the established internal baseline."
+        },
+        {
+          "category": "Conditional Access",
+          "indicator": "Report-only policy failure",
+          "points": 8,
+          "evidence": "Report-only policy concern: Require MFA for External Users"
+        },
+        {
+          "category": "Privileged Access",
+          "indicator": "Role added without justification",
+          "points": 20,
+          "evidence": "Contributor on NFG-SHARED-APP01"
+        },
+        {
+          "category": "Privileged Access",
+          "indicator": "Role modified without ticket",
+          "points": 15,
+          "evidence": "Contributor on NFG-SHARED-APP01"
+        },
+        {
+          "category": "Privileged Access",
+          "indicator": "Role activity in suspicious session",
+          "points": 10,
+          "evidence": "2 privilege-related events occurred within the session."
+        },
+        {
+          "category": "Cloud Resource",
+          "indicator": "Cloud resource enumeration",
+          "points": 8,
+          "evidence": "List Documents on Shared Project Site; Read Configuration on NFG-SHARED-APP01; List Deployment Settings on NFG-SHARED-APP01"
+        },
+        {
+          "category": "Scope",
+          "indicator": "Single identity active across multiple services",
+          "points": 8,
+          "evidence": "Azure Resource Manager, Microsoft 365"
+        }
+      ],
+      "cloud_services": [
+        "Azure Resource Manager",
+        "Microsoft 365"
+      ],
+      "resources_accessed": [
+        "NFG-SHARED-APP01",
+        "Shared Project Site"
+      ],
+      "privileged_activity_count": 2,
+      "resource_activity_count": 3,
+      "containment_observed": [
+        {
+          "timestamp": "2026-10-02T12:46:33Z",
+          "action": "Remove Member",
+          "target": "dormant.contractor@northstar.example",
+          "notes": "Dormant contractor Contributor role removed"
+        },
+        {
+          "timestamp": "2026-10-02T12:47:02Z",
+          "action": "Disable Account",
+          "target": "dormant.contractor@northstar.example",
+          "notes": "Dormant contractor account disabled"
+        }
+      ],
+      "containment_recommendations": [
+        "Disable the dormant identity.",
+        "Remove newly assigned cloud roles.",
+        "Revoke all active sessions.",
+        "Review resources accessed during the dormant-account session.",
+        "Investigate how the dormant identity became active.",
+        "Preserve related Entra ID and Azure audit evidence."
+      ],
+      "timeline": [
+        {
+          "timestamp": "2026-10-02T12:31:07Z",
+          "source": "Authentication",
+          "event": "Successful sign-in from 203.0.113.55 using session SESSION-CONTRACT-4402",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:31:07Z",
+          "source": "Conditional Access",
+          "event": "Require MFA for External Users \u2192 reportOnlyFailure",
+          "phase": "Security Control Evidence"
+        },
+        {
+          "timestamp": "2026-10-02T12:32:04Z",
+          "source": "Cloud Resource",
+          "event": "List Documents | Microsoft 365 | Shared Project Site",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:33:04Z",
+          "source": "Privileged Access",
+          "event": "Add Member | Contributor | NFG-SHARED-APP01",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:33:29Z",
+          "source": "Cloud Resource",
+          "event": "Read Configuration | Azure Resource Manager | NFG-SHARED-APP01",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:35:21Z",
+          "source": "Privileged Access",
+          "event": "Role Assignment Modified | Contributor | NFG-SHARED-APP01",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:36:12Z",
+          "source": "Cloud Resource",
+          "event": "List Deployment Settings | Azure Resource Manager | NFG-SHARED-APP01",
+          "phase": "Incident Activity"
+        },
+        {
+          "timestamp": "2026-10-02T12:46:33Z",
+          "source": "Containment",
+          "event": "Remove Member | dormant.contractor@northstar.example",
+          "phase": "Response / Containment"
+        },
+        {
+          "timestamp": "2026-10-02T12:47:02Z",
+          "source": "Containment",
+          "event": "Disable Account | dormant.contractor@northstar.example",
+          "phase": "Response / Containment"
+        }
+      ],
+      "analyst_assessment": "Multiple cloud identity, Conditional Access, privileged-access, and resource artifacts converge on the same authenticated session. The evidence supports a suspected cloud identity compromise investigation and containment response. The available telemetry does not independently prove credential theft, MFA bypass, data exfiltration, successful VM compromise, or persistence.",
+      "analyst_guardrails": [
+        "Do not classify repeated failed sign-ins followed by success as confirmed credential theft without additional evidence.",
+        "Do not classify MFA as bypassed when telemetry shows MFA was satisfied.",
+        "Do not treat a report-only Conditional Access failure as an actively blocked sign-in.",
+        "Do not classify cloud role assignment as confirmed privilege escalation unless the mechanism and authorization context are established.",
+        "Do not classify document or blob access as confirmed data exfiltration without evidence that data left the controlled environment.",
+        "Do not classify a VM login access request as successful VM compromise.",
+        "Separate incident activity from later containment and response actions.",
+        "Distinguish confirmed observations from analyst hypotheses."
+      ],
+      "raw_scope_adjustment": 10,
+      "scope_note": "A separate dormant identity generated authentication, privilege, and resource activity and is treated as a distinct incident."
+    }
+  ]
+}
