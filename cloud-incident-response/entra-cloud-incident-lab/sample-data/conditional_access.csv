@@ -1,0 +1,8 @@
+timestamp,user,session_id,policy_name,policy_mode,policy_result,control,device_compliant,mfa_satisfied,application,notes
+2026-10-02T12:02:18Z,finance.user@northstar.example,SESSION-FIN-2201,Require MFA for Microsoft 365,Enabled,success,Require MFA,true,true,Microsoft 365,Normal baseline policy evaluation
+2026-10-02T12:02:18Z,finance.user@northstar.example,SESSION-FIN-2201,Require Compliant Device,Report-only,success,Require compliant device,true,true,Microsoft 365,Managed compliant workstation satisfies policy
+2026-10-02T12:18:44Z,finance.user@northstar.example,SESSION-FIN-8842,Require MFA for Microsoft 365,Enabled,success,Require MFA,false,true,Microsoft 365,MFA requirement satisfied
+2026-10-02T12:18:44Z,finance.user@northstar.example,SESSION-FIN-8842,Require Compliant Device,Report-only,reportOnlyFailure,Require compliant device,false,true,Microsoft 365,External device is not compliant; report-only policy did not block sign-in
+2026-10-02T12:31:07Z,dormant.contractor@northstar.example,SESSION-CONTRACT-4402,Require MFA for External Users,Report-only,reportOnlyFailure,Require MFA,false,false,Microsoft 365,Dormant external identity authenticated without satisfying the report-only MFA requirement
+2026-10-02T12:39:12Z,it.admin@northstar.example,,Require Strong Authentication for Administrators,Enabled,failure,Require MFA,false,false,Azure Portal,Administrative sign-in blocked because required authentication control was not satisfied
+2026-10-02T12:39:37Z,it.admin@northstar.example,SESSION-ADMIN-5510,Require Strong Authentication for Administrators,Enabled,success,Require MFA,true,true,Azure Portal,Approved administrative session satisfies policy
