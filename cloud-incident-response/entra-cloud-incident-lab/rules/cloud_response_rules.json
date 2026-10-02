@@ -1,0 +1,188 @@
+{
+  "model_name": "Microsoft Entra ID Cloud Incident Response Rules",
+  "model_version": "1.0",
+  "maximum_score": 100,
+
+  "authentication_indicators": {
+    "repeated_failed_signins": {
+      "points": 15,
+      "minimum_failures": 3,
+      "window_seconds": 300,
+      "description": "Three or more failed sign-ins from the same source occur within five minutes."
+    },
+
+    "success_after_failures": {
+      "points": 20,
+      "maximum_seconds_after_failure": 300,
+      "description": "Successful authentication occurs from the same source shortly after repeated failures."
+    },
+
+    "high_signin_risk": {
+      "points": 10,
+      "description": "The successful sign-in is marked as high risk."
+    },
+
+    "unmanaged_device": {
+      "points": 8,
+      "description": "The successful session originates from an unmanaged device."
+    },
+
+    "noncompliant_device": {
+      "points": 8,
+      "description": "The successful session originates from a noncompliant device."
+    },
+
+    "unfamiliar_external_source": {
+      "points": 10,
+      "description": "Authentication originates from an unfamiliar external source rather than the established internal baseline."
+    }
+  },
+
+  "conditional_access_indicators": {
+    "report_only_policy_failure": {
+      "points": 8,
+      "description": "A report-only Conditional Access policy would have failed for the observed session."
+    },
+
+    "mfa_satisfied_reduction": {
+      "points": -5,
+      "description": "MFA was successfully satisfied, reducing confidence in an MFA-bypass hypothesis."
+    },
+
+    "enabled_policy_blocked": {
+      "points": 0,
+      "description": "An enabled Conditional Access policy blocked the sign-in; preserve as defensive-control evidence rather than compromise evidence."
+    }
+  },
+
+  "privileged_activity_indicators": {
+    "role_added_without_justification": {
+      "points": 20,
+      "description": "Cloud role access was added without documented business justification."
+    },
+
+    "role_modified_without_ticket": {
+      "points": 15,
+      "description": "Cloud role assignment was modified without an associated change or incident ticket."
+    },
+
+    "suspicious_session_role_activity": {
+      "points": 10,
+      "description": "Privilege activity occurred within the suspicious authenticated session."
+    },
+
+    "approved_pim_activity_reduction": {
+      "points": -10,
+      "description": "Privileged activity used an approved PIM-style workflow with documented justification and ticketing."
+    }
+  },
+
+  "resource_activity_indicators": {
+    "sensitive_document_access": {
+      "points": 10,
+      "operations": [
+        "Download Document",
+        "Read Blob"
+      ],
+      "description": "The suspicious session accessed sensitive Finance content."
+    },
+
+    "cloud_resource_enumeration": {
+      "points": 8,
+      "operations": [
+        "List Documents",
+        "Read Configuration",
+        "List Containers",
+        "List Deployment Settings"
+      ],
+      "description": "The session enumerated cloud data or resource configuration."
+    },
+
+    "vm_login_access_requested": {
+      "points": 15,
+      "operation": "Request Login Access",
+      "description": "The suspicious session requested access to log in to a Finance virtual machine."
+    },
+
+    "multiple_cloud_services": {
+      "points": 10,
+      "minimum_services": 3,
+      "description": "The same suspicious session accessed multiple cloud services."
+    }
+  },
+
+  "scope_indicators": {
+    "single_identity_multiple_services": {
+      "points": 8,
+      "description": "One identity performed suspicious activity across multiple cloud services."
+    },
+
+    "separate_dormant_identity_activity": {
+      "points": 10,
+      "description": "A separate dormant identity generated suspicious authentication, privilege, and resource activity."
+    }
+  },
+
+  "containment_indicators": {
+    "session_revoked": {
+      "points": 0,
+      "description": "Active sessions were revoked as a containment action."
+    },
+
+    "role_removed": {
+      "points": 0,
+      "description": "Suspicious privileged access was removed during containment."
+    },
+
+    "account_disabled": {
+      "points": 0,
+      "description": "The affected identity was disabled during containment."
+    }
+  },
+
+  "priority_thresholds": {
+    "CRITICAL": 80,
+    "HIGH": 55,
+    "MODERATE": 30,
+    "LOW": 0
+  },
+
+  "incident_classification": {
+    "confirmed_compromise": false,
+    "default_finding": "Suspected Cloud Identity Compromise",
+    "description": "The model prioritizes suspicious cloud activity for investigation without automatically declaring credential theft or account compromise as confirmed."
+  },
+
+  "containment_recommendations": {
+    "finance_identity": [
+      "Revoke active sessions for the affected Finance identity.",
+      "Require MFA reauthentication.",
+      "Review and remove unauthorized cloud role assignments.",
+      "Review Microsoft 365 and Azure resource activity associated with the suspicious session.",
+      "Review access to Finance documents and storage objects.",
+      "Review VM access attempts and role changes.",
+      "Preserve Entra ID sign-in, Conditional Access, PIM, and Azure activity logs.",
+      "Reset credentials if additional compromise evidence supports that action."
+    ],
+
+    "dormant_identity": [
+      "Disable the dormant identity.",
+      "Remove newly assigned cloud roles.",
+      "Revoke all active sessions.",
+      "Review resources accessed during the dormant-account session.",
+      "Investigate how the dormant identity became active.",
+      "Preserve related Entra ID and Azure audit evidence."
+    ]
+  },
+
+  "analyst_guardrails": [
+    "Do not classify repeated failed sign-ins followed by success as confirmed credential theft without additional evidence.",
+    "Do not classify MFA as bypassed when telemetry shows MFA was satisfied.",
+    "Do not treat a report-only Conditional Access failure as an actively blocked sign-in.",
+    "Do not classify cloud role assignment as confirmed privilege escalation unless the mechanism and authorization context are established.",
+    "Do not classify document or blob access as confirmed data exfiltration without evidence that data left the controlled environment.",
+    "Do not classify a VM login access request as successful VM compromise.",
+    "Separate incident activity from later containment and response actions.",
+    "Distinguish confirmed observations from analyst hypotheses."
+  ]
+}
