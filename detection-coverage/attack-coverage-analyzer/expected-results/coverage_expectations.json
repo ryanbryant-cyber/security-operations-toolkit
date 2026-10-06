@@ -1,0 +1,89 @@
+{
+  "expected_summary": {
+    "catalog_detection_count": 25,
+    "priority_technique_count": 25,
+    "strong_techniques": 3,
+    "moderate_techniques": 15,
+    "low_techniques": 1,
+    "coverage_gaps": 6,
+    "validated_detections": 24,
+    "detections_needing_review": 1,
+    "experimental_detections": 1,
+    "tactics_analyzed": 12,
+    "engineering_priorities": 7,
+    "redundancy_reviews": 2
+  },
+
+  "strong_techniques": [
+    {
+      "technique_id": "T1059.001",
+      "technique": "PowerShell",
+      "coverage_score": 99.17,
+      "detection_count": 3
+    },
+    {
+      "technique_id": "T1110",
+      "technique": "Brute Force",
+      "coverage_score": 93.83,
+      "detection_count": 3
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique": "Web Protocols",
+      "coverage_score": 87.75,
+      "detection_count": 2
+    }
+  ],
+
+  "coverage_gaps": [
+    {
+      "technique_id": "T1003",
+      "engineering_priority": "CRITICAL"
+    },
+    {
+      "technique_id": "T1562.001",
+      "engineering_priority": "CRITICAL"
+    },
+    {
+      "technique_id": "T1021.001",
+      "engineering_priority": "HIGH"
+    },
+    {
+      "technique_id": "T1053.005",
+      "engineering_priority": "HIGH"
+    },
+    {
+      "technique_id": "T1567.002",
+      "engineering_priority": "HIGH"
+    },
+    {
+      "technique_id": "T1119",
+      "engineering_priority": "MODERATE"
+    }
+  ],
+
+  "low_coverage_review": {
+    "technique_id": "T1078.004",
+    "technique": "Cloud Accounts",
+    "coverage_score": 43.25,
+    "coverage_rating": "LOW",
+    "engineering_priority": "REVIEW",
+    "detection_count": 2,
+    "validated_detection_count": 1,
+    "needs_review_count": 1,
+    "experimental_count": 1
+  },
+
+  "redundancy_reviews": [
+    {
+      "technique_id": "T1059.001",
+      "detection_count": 3,
+      "classification": "Layered Coverage - Review Alert Overlap"
+    },
+    {
+      "technique_id": "T1110",
+      "detection_count": 3,
+      "classification": "Layered Coverage - Review Alert Overlap"
+    }
+  ]
+}
