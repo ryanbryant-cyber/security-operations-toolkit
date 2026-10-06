@@ -282,6 +282,39 @@ Key project outcomes:
 
 [View the Microsoft Entra ID Cloud Compromise Investigation & Response Lab](cloud-incident-response/entra-cloud-incident-lab/)
 
+### Detection Coverage
+
+#### MITRE ATT&CK Detection Coverage & Gap Analysis Tool
+
+Detection-engineering project focused on evaluating the strength, maturity, redundancy, and gaps of a synthetic security detection program using the MITRE ATT&CK framework.
+
+The project analyzes 25 synthetic detections across Sigma, KQL, Python analytics, YARA, memory forensics, email security, network monitoring, cloud identity, and DevSecOps sources, then measures how effectively those detections cover 25 priority ATT&CK techniques.
+
+Key project outcomes:
+
+- Analyzed 25 synthetic detections
+- Evaluated 25 priority MITRE ATT&CK techniques
+- Calculated technique-level and tactic-level coverage
+- Identified 3 STRONG coverage areas
+- Identified 15 MODERATE coverage areas
+- Identified 1 LOW coverage area
+- Identified 6 complete detection gaps
+- Prioritized Critical, High, Moderate, and Review engineering work
+- Identified OS Credential Dumping and Impair Defenses as CRITICAL coverage gaps
+- Identified Remote Desktop Protocol, Scheduled Task, and Exfiltration to Cloud Storage as HIGH-priority gaps
+- Demonstrated that detection count alone does not equal mature coverage
+- Identified Cloud Accounts as LOW coverage because one mapped detection remains experimental and needs review
+- Identified layered PowerShell and Brute Force coverage for redundancy / alert-overlap review
+- Correctly handled multi-tactic ATT&CK mappings
+- Generated structured technique, tactic, engineering-priority, and JSON reports
+- Preserved detection-engineering guardrails around validation, telemetry independence, and false-positive impact
+- Implemented an independent validation harness
+- Passed 12 of 12 validation checks
+
+**Skills:** MITRE ATT&CK | Detection Engineering | Detection Coverage Analysis | Detection Gap Analysis | SOC Engineering | Security Analytics | Detection Validation | Detection Tuning | Detection Redundancy Analysis | ATT&CK Mapping | Engineering Prioritization | Python | Security Automation | Validation Testing
+
+[View the MITRE ATT&CK Detection Coverage & Gap Analysis Tool](detection-coverage/attack-coverage-analyzer/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
