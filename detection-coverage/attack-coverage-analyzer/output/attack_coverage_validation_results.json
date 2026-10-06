@@ -1,0 +1,84 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 12,
+  "checks_passed": 12,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "Coverage analysis summary",
+      "passed": true,
+      "expected": {
+        "catalog_detection_count": 25,
+        "priority_technique_count": 25,
+        "strong_techniques": 3,
+        "moderate_techniques": 15,
+        "low_techniques": 1,
+        "coverage_gaps": 6,
+        "validated_detections": 24,
+        "detections_needing_review": 1,
+        "experimental_detections": 1,
+        "tactics_analyzed": 12,
+        "engineering_priorities": 7,
+        "redundancy_reviews": 2
+      },
+      "actual": {
+        "catalog_detection_count": 25,
+        "priority_technique_count": 25,
+        "strong_techniques": 3,
+        "moderate_techniques": 15,
+        "low_techniques": 1,
+        "coverage_gaps": 6,
+        "validated_detections": 24,
+        "detections_needing_review": 1,
+        "experimental_detections": 1,
+        "tactics_analyzed": 12,
+        "engineering_priorities": 7,
+        "redundancy_reviews": 2
+      }
+    },
+    {
+      "check": "T1059.001 PowerShell STRONG coverage",
+      "passed": true
+    },
+    {
+      "check": "T1110 Brute Force STRONG coverage",
+      "passed": true
+    },
+    {
+      "check": "T1071.001 Web Protocols STRONG coverage",
+      "passed": true
+    },
+    {
+      "check": "Expected ATT&CK coverage gaps",
+      "passed": true
+    },
+    {
+      "check": "Coverage gaps receive correct engineering priorities",
+      "passed": true
+    },
+    {
+      "check": "Experimental Cloud Accounts detection does not create false strong coverage",
+      "passed": true
+    },
+    {
+      "check": "T1059.001 redundancy review",
+      "passed": true
+    },
+    {
+      "check": "T1110 redundancy review",
+      "passed": true
+    },
+    {
+      "check": "Strong two-detection coverage does not incorrectly trigger redundancy threshold",
+      "passed": true
+    },
+    {
+      "check": "Multi-tactic ATT&CK mappings are split correctly",
+      "passed": true
+    },
+    {
+      "check": "Detection coverage analyst guardrails are preserved",
+      "passed": true
+    }
+  ]
+}
