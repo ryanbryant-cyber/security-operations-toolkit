@@ -1,0 +1,274 @@
+{
+  "model_name": "MITRE ATT&CK Detection Coverage Analysis Model",
+  "model_version": "1.0",
+  "maximum_coverage_score": 100,
+
+  "coverage_scoring": {
+    "detection_presence": {
+      "points": 15,
+      "description": "At least one detection exists for the technique."
+    },
+
+    "validated_detection": {
+      "points_per_detection": 15,
+      "maximum_points": 30,
+      "description": "Validated detections increase confidence in technique coverage."
+    },
+
+    "data_source_diversity": {
+      "points_per_unique_source": 10,
+      "maximum_points": 20,
+      "description": "Independent telemetry sources improve resilience and visibility."
+    },
+
+    "detection_type_diversity": {
+      "points_per_unique_type": 5,
+      "maximum_points": 15,
+      "description": "Different detection methods reduce dependence on one analytic approach."
+    },
+
+    "active_detection_bonus": {
+      "maximum_points": 10,
+      "description": "Coverage receives additional credit when detections are active rather than experimental."
+    },
+
+    "confidence_score": {
+      "maximum_points": 10,
+      "description": "Average detection confidence contributes to overall coverage strength."
+    },
+
+    "needs_review_penalty": {
+      "points_per_detection": 10,
+      "maximum_penalty": 20,
+      "description": "Detections requiring additional review reduce effective coverage confidence."
+    },
+
+    "experimental_penalty": {
+      "points_per_detection": 10,
+      "maximum_penalty": 20,
+      "description": "Experimental detections provide less reliable operational coverage."
+    }
+  },
+
+  "coverage_thresholds": {
+    "STRONG": 75,
+    "MODERATE": 50,
+    "LOW": 1,
+    "GAP": 0
+  },
+
+  "priority_levels": {
+    "Critical": 3,
+    "High": 2,
+    "Moderate": 1
+  },
+
+  "priority_techniques": [
+    {
+      "technique_id": "T1566.001",
+      "technique": "Spearphishing Attachment",
+      "tactic": "Initial Access",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1566.002",
+      "technique": "Spearphishing Link",
+      "tactic": "Initial Access",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1078.004",
+      "technique": "Cloud Accounts",
+      "tactic": "Initial Access",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1059.001",
+      "technique": "PowerShell",
+      "tactic": "Execution",
+      "priority": "Critical"
+    },
+    {
+      "technique_id": "T1543.003",
+      "technique": "Windows Service",
+      "tactic": "Persistence|Privilege Escalation",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1053.005",
+      "technique": "Scheduled Task",
+      "tactic": "Persistence",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1098",
+      "technique": "Account Manipulation",
+      "tactic": "Persistence|Privilege Escalation",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1218.011",
+      "technique": "Rundll32",
+      "tactic": "Defense Evasion",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1562.001",
+      "technique": "Impair Defenses",
+      "tactic": "Defense Evasion",
+      "priority": "Critical"
+    },
+    {
+      "technique_id": "T1110",
+      "technique": "Brute Force",
+      "tactic": "Credential Access",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1003",
+      "technique": "OS Credential Dumping",
+      "tactic": "Credential Access",
+      "priority": "Critical"
+    },
+    {
+      "technique_id": "T1552",
+      "technique": "Unsecured Credentials",
+      "tactic": "Credential Access",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1539",
+      "technique": "Steal Web Session Cookie",
+      "tactic": "Credential Access",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1087",
+      "technique": "Account Discovery",
+      "tactic": "Discovery",
+      "priority": "Moderate"
+    },
+    {
+      "technique_id": "T1016",
+      "technique": "System Network Configuration Discovery",
+      "tactic": "Discovery",
+      "priority": "Moderate"
+    },
+    {
+      "technique_id": "T1526",
+      "technique": "Cloud Service Discovery",
+      "tactic": "Discovery",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1021.002",
+      "technique": "SMB Windows Admin Shares",
+      "tactic": "Lateral Movement",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1021.001",
+      "technique": "Remote Desktop Protocol",
+      "tactic": "Lateral Movement",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1530",
+      "technique": "Data from Cloud Storage",
+      "tactic": "Collection",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1119",
+      "technique": "Automated Collection",
+      "tactic": "Collection",
+      "priority": "Moderate"
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique": "Web Protocols",
+      "tactic": "Command and Control",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1567.002",
+      "technique": "Exfiltration to Cloud Storage",
+      "tactic": "Exfiltration",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1498",
+      "technique": "Network Denial of Service",
+      "tactic": "Impact",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1499.003",
+      "technique": "Application Exhaustion Flood",
+      "tactic": "Impact",
+      "priority": "High"
+    },
+    {
+      "technique_id": "T1486",
+      "technique": "Data Encrypted for Impact",
+      "tactic": "Impact",
+      "priority": "Critical"
+    }
+  ],
+
+  "redundancy_analysis": {
+    "review_threshold": 3,
+    "strong_overlap_minimum_data_sources": 2,
+    "strong_overlap_minimum_detection_types": 2,
+    "description": "Three or more detections mapped to the same technique should be reviewed for both resilient coverage and potential duplicate alerting."
+  },
+
+  "gap_prioritization": {
+    "critical_gap": {
+      "priority": "CRITICAL",
+      "condition": "GAP coverage on a Critical-priority technique"
+    },
+
+    "high_gap": {
+      "priority": "HIGH",
+      "condition": "GAP coverage on a High-priority technique"
+    },
+
+    "critical_low_coverage": {
+      "priority": "HIGH",
+      "condition": "LOW coverage on a Critical-priority technique"
+    },
+
+    "moderate_gap": {
+      "priority": "MODERATE",
+      "condition": "GAP coverage on a Moderate-priority technique"
+    }
+  },
+
+  "recommendation_templates": {
+    "STRONG": "Maintain current coverage, validate periodically, and review overlapping detections for unnecessary duplicate alerting.",
+
+    "MODERATE": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation.",
+
+    "LOW": "Prioritize tuning and validation. Add independent telemetry or detection logic before treating this technique as reliably covered.",
+
+    "GAP": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+  },
+
+  "tactic_analysis": {
+    "strong_average_threshold": 75,
+    "moderate_average_threshold": 50,
+    "low_average_threshold": 1,
+    "description": "Tactic strength is based on the average coverage score of priority techniques assigned to that tactic."
+  },
+
+  "analyst_guardrails": [
+    "Do not interpret detection count alone as strong coverage.",
+    "Do not treat an unvalidated or experimental rule as equivalent to a validated production detection.",
+    "Do not assume multiple detections provide independent coverage when they rely on the same telemetry and logic.",
+    "Do not treat a MITRE ATT&CK mapping as proof that a detection reliably identifies every implementation of that technique.",
+    "Do not classify a technique as fully covered solely because one rule exists.",
+    "Review false-positive behavior and analyst workload when multiple detections overlap.",
+    "Treat the coverage model as an engineering prioritization aid rather than a universal measurement standard."
+  ]
+}
