@@ -1,0 +1,1320 @@
+{
+  "model_name": "MITRE ATT&CK Detection Coverage Analysis Model",
+  "summary": {
+    "catalog_detection_count": 25,
+    "priority_technique_count": 25,
+    "strong_techniques": 3,
+    "moderate_techniques": 15,
+    "low_techniques": 1,
+    "coverage_gaps": 6,
+    "validated_detections": 24,
+    "detections_needing_review": 1,
+    "experimental_detections": 1,
+    "tactics_analyzed": 12,
+    "engineering_priorities": 7,
+    "redundancy_reviews": 2
+  },
+  "technique_coverage": [
+    {
+      "technique_id": "T1566.001",
+      "technique": "Spearphishing Attachment",
+      "tactics": [
+        "Initial Access"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Email Security Telemetry"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 90.0,
+      "coverage_score": 64.0,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 9.0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-013"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1566.002",
+      "technique": "Spearphishing Link",
+      "tactics": [
+        "Initial Access"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Email Security Telemetry"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 90.0,
+      "coverage_score": 64.0,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 9.0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-012"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1078.004",
+      "technique": "Cloud Accounts",
+      "tactics": [
+        "Initial Access"
+      ],
+      "technique_priority": "High",
+      "detection_count": 2,
+      "validated_detection_count": 1,
+      "needs_review_count": 1,
+      "experimental_count": 1,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Entra Sign-in Logs"
+      ],
+      "detection_types": [
+        "KQL",
+        "Python"
+      ],
+      "average_confidence": 82.5,
+      "coverage_score": 43.25,
+      "coverage_rating": "LOW",
+      "engineering_priority": "REVIEW",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 10,
+        "active_detection_points": 5.0,
+        "confidence_points": 8.25,
+        "needs_review_penalty": -10,
+        "experimental_penalty": -10
+      },
+      "detection_ids": [
+        "DET-017",
+        "DET-025"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Prioritize tuning and validation. Add independent telemetry or detection logic before treating this technique as reliably covered."
+    },
+    {
+      "technique_id": "T1059.001",
+      "technique": "PowerShell",
+      "tactics": [
+        "Execution"
+      ],
+      "technique_priority": "Critical",
+      "detection_count": 3,
+      "validated_detection_count": 3,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 3,
+      "data_sources": [
+        "Memory Forensics Artifacts",
+        "Sentinel Process Events",
+        "Windows Process Creation"
+      ],
+      "detection_types": [
+        "KQL",
+        "Python",
+        "Sigma"
+      ],
+      "average_confidence": 91.67,
+      "coverage_score": 99.17,
+      "coverage_rating": "STRONG",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 30,
+        "data_source_diversity_points": 20,
+        "detection_type_diversity_points": 15,
+        "active_detection_points": 10.0,
+        "confidence_points": 9.17,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-004",
+        "DET-005",
+        "DET-006"
+      ],
+      "redundancy_review": {
+        "review_required": true,
+        "classification": "Layered Coverage - Review Alert Overlap",
+        "notes": "Multiple detections use diverse telemetry or analytic types. Maintain layered coverage while reviewing duplicate alerting."
+      },
+      "recommendation": "Maintain current coverage, validate periodically, and review overlapping detections for unnecessary duplicate alerting."
+    },
+    {
+      "technique_id": "T1543.003",
+      "technique": "Windows Service",
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Windows System Event Log"
+      ],
+      "detection_types": [
+        "Sigma"
+      ],
+      "average_confidence": 90.0,
+      "coverage_score": 64.0,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 9.0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-007"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1053.005",
+      "technique": "Scheduled Task",
+      "tactics": [
+        "Persistence"
+      ],
+      "technique_priority": "High",
+      "detection_count": 0,
+      "validated_detection_count": 0,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 0,
+      "data_sources": [],
+      "detection_types": [],
+      "average_confidence": 0,
+      "coverage_score": 0,
+      "coverage_rating": "GAP",
+      "engineering_priority": "HIGH",
+      "score_breakdown": {
+        "detection_presence": 0,
+        "validated_detection_points": 0,
+        "data_source_diversity_points": 0,
+        "detection_type_diversity_points": 0,
+        "active_detection_points": 0,
+        "confidence_points": 0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1098",
+      "technique": "Account Manipulation",
+      "tactics": [
+        "Persistence",
+        "Privilege Escalation"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Privileged Activity Logs"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 90.0,
+      "coverage_score": 64.0,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 9.0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-018"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1218.011",
+      "technique": "Rundll32",
+      "tactics": [
+        "Defense Evasion"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Memory Forensics Artifacts"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 85.0,
+      "coverage_score": 63.5,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 8.5,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-008"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1562.001",
+      "technique": "Impair Defenses",
+      "tactics": [
+        "Defense Evasion"
+      ],
+      "technique_priority": "Critical",
+      "detection_count": 0,
+      "validated_detection_count": 0,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 0,
+      "data_sources": [],
+      "detection_types": [],
+      "average_confidence": 0,
+      "coverage_score": 0,
+      "coverage_rating": "GAP",
+      "engineering_priority": "CRITICAL",
+      "score_breakdown": {
+        "detection_presence": 0,
+        "validated_detection_points": 0,
+        "data_source_diversity_points": 0,
+        "detection_type_diversity_points": 0,
+        "active_detection_points": 0,
+        "confidence_points": 0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1110",
+      "technique": "Brute Force",
+      "tactics": [
+        "Credential Access"
+      ],
+      "technique_priority": "High",
+      "detection_count": 3,
+      "validated_detection_count": 3,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 3,
+      "data_sources": [
+        "Entra Sign-in Logs",
+        "Windows Security Event Log"
+      ],
+      "detection_types": [
+        "KQL",
+        "Sigma"
+      ],
+      "average_confidence": 88.33,
+      "coverage_score": 93.83,
+      "coverage_rating": "STRONG",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 30,
+        "data_source_diversity_points": 20,
+        "detection_type_diversity_points": 10,
+        "active_detection_points": 10.0,
+        "confidence_points": 8.83,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-001",
+        "DET-002",
+        "DET-003"
+      ],
+      "redundancy_review": {
+        "review_required": true,
+        "classification": "Layered Coverage - Review Alert Overlap",
+        "notes": "Multiple detections use diverse telemetry or analytic types. Maintain layered coverage while reviewing duplicate alerting."
+      },
+      "recommendation": "Maintain current coverage, validate periodically, and review overlapping detections for unnecessary duplicate alerting."
+    },
+    {
+      "technique_id": "T1003",
+      "technique": "OS Credential Dumping",
+      "tactics": [
+        "Credential Access"
+      ],
+      "technique_priority": "Critical",
+      "detection_count": 0,
+      "validated_detection_count": 0,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 0,
+      "data_sources": [],
+      "detection_types": [],
+      "average_confidence": 0,
+      "coverage_score": 0,
+      "coverage_rating": "GAP",
+      "engineering_priority": "CRITICAL",
+      "score_breakdown": {
+        "detection_presence": 0,
+        "validated_detection_points": 0,
+        "data_source_diversity_points": 0,
+        "detection_type_diversity_points": 0,
+        "active_detection_points": 0,
+        "confidence_points": 0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1552",
+      "technique": "Unsecured Credentials",
+      "tactics": [
+        "Credential Access"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Repository Scan Results"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 95.0,
+      "coverage_score": 64.5,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 9.5,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-021"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1539",
+      "technique": "Steal Web Session Cookie",
+      "tactics": [
+        "Credential Access"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Session Telemetry"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 90.0,
+      "coverage_score": 64.0,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 9.0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-014"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1087",
+      "technique": "Account Discovery",
+      "tactics": [
+        "Discovery"
+      ],
+      "technique_priority": "Moderate",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Memory Forensics Artifacts"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 85.0,
+      "coverage_score": 63.5,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 8.5,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-009"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1016",
+      "technique": "System Network Configuration Discovery",
+      "tactics": [
+        "Discovery"
+      ],
+      "technique_priority": "Moderate",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Memory Forensics Artifacts"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 85.0,
+      "coverage_score": 63.5,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 8.5,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-010"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1526",
+      "technique": "Cloud Service Discovery",
+      "tactics": [
+        "Discovery"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Azure Resource Activity"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 85.0,
+      "coverage_score": 63.5,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 8.5,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-019"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1021.002",
+      "technique": "SMB Windows Admin Shares",
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Network Connection Artifacts"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 75.0,
+      "coverage_score": 62.5,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 7.5,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-011"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1021.001",
+      "technique": "Remote Desktop Protocol",
+      "tactics": [
+        "Lateral Movement"
+      ],
+      "technique_priority": "High",
+      "detection_count": 0,
+      "validated_detection_count": 0,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 0,
+      "data_sources": [],
+      "detection_types": [],
+      "average_confidence": 0,
+      "coverage_score": 0,
+      "coverage_rating": "GAP",
+      "engineering_priority": "HIGH",
+      "score_breakdown": {
+        "detection_presence": 0,
+        "validated_detection_points": 0,
+        "data_source_diversity_points": 0,
+        "detection_type_diversity_points": 0,
+        "active_detection_points": 0,
+        "confidence_points": 0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1530",
+      "technique": "Data from Cloud Storage",
+      "tactics": [
+        "Collection"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "Azure Storage Activity"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 85.0,
+      "coverage_score": 63.5,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 8.5,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-020"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1119",
+      "technique": "Automated Collection",
+      "tactics": [
+        "Collection"
+      ],
+      "technique_priority": "Moderate",
+      "detection_count": 0,
+      "validated_detection_count": 0,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 0,
+      "data_sources": [],
+      "detection_types": [],
+      "average_confidence": 0,
+      "coverage_score": 0,
+      "coverage_rating": "GAP",
+      "engineering_priority": "MODERATE",
+      "score_breakdown": {
+        "detection_presence": 0,
+        "validated_detection_points": 0,
+        "data_source_diversity_points": 0,
+        "detection_type_diversity_points": 0,
+        "active_detection_points": 0,
+        "confidence_points": 0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1071.001",
+      "technique": "Web Protocols",
+      "tactics": [
+        "Command and Control"
+      ],
+      "technique_priority": "High",
+      "detection_count": 2,
+      "validated_detection_count": 2,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 2,
+      "data_sources": [
+        "Memory Network Artifacts",
+        "Network Connection Logs"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 77.5,
+      "coverage_score": 87.75,
+      "coverage_rating": "STRONG",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 30,
+        "data_source_diversity_points": 20,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 7.75,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-023",
+        "DET-024"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain current coverage, validate periodically, and review overlapping detections for unnecessary duplicate alerting."
+    },
+    {
+      "technique_id": "T1567.002",
+      "technique": "Exfiltration to Cloud Storage",
+      "tactics": [
+        "Exfiltration"
+      ],
+      "technique_priority": "High",
+      "detection_count": 0,
+      "validated_detection_count": 0,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 0,
+      "data_sources": [],
+      "detection_types": [],
+      "average_confidence": 0,
+      "coverage_score": 0,
+      "coverage_rating": "GAP",
+      "engineering_priority": "HIGH",
+      "score_breakdown": {
+        "detection_presence": 0,
+        "validated_detection_points": 0,
+        "data_source_diversity_points": 0,
+        "detection_type_diversity_points": 0,
+        "active_detection_points": 0,
+        "confidence_points": 0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1498",
+      "technique": "Network Denial of Service",
+      "tactics": [
+        "Impact"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "HTTP Traffic Telemetry"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 95.0,
+      "coverage_score": 64.5,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 9.5,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-015"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1499.003",
+      "technique": "Application Exhaustion Flood",
+      "tactics": [
+        "Impact"
+      ],
+      "technique_priority": "High",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "HTTP Traffic Telemetry"
+      ],
+      "detection_types": [
+        "Python"
+      ],
+      "average_confidence": 90.0,
+      "coverage_score": 64.0,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 9.0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-016"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    },
+    {
+      "technique_id": "T1486",
+      "technique": "Data Encrypted for Impact",
+      "tactics": [
+        "Impact"
+      ],
+      "technique_priority": "Critical",
+      "detection_count": 1,
+      "validated_detection_count": 1,
+      "needs_review_count": 0,
+      "experimental_count": 0,
+      "active_detection_count": 1,
+      "data_sources": [
+        "YARA Scan Results"
+      ],
+      "detection_types": [
+        "YARA"
+      ],
+      "average_confidence": 70.0,
+      "coverage_score": 62.0,
+      "coverage_rating": "MODERATE",
+      "engineering_priority": "MAINTAIN",
+      "score_breakdown": {
+        "detection_presence": 15,
+        "validated_detection_points": 15,
+        "data_source_diversity_points": 10,
+        "detection_type_diversity_points": 5,
+        "active_detection_points": 10.0,
+        "confidence_points": 7.0,
+        "needs_review_penalty": 0,
+        "experimental_penalty": 0
+      },
+      "detection_ids": [
+        "DET-022"
+      ],
+      "redundancy_review": {
+        "review_required": false,
+        "classification": "No Redundancy Review",
+        "notes": "Detection count is below the redundancy review threshold."
+      },
+      "recommendation": "Maintain existing detections and improve coverage through additional telemetry, analytic diversity, or validation."
+    }
+  ],
+  "tactic_coverage": [
+    {
+      "tactic": "Collection",
+      "priority_technique_count": 2,
+      "average_coverage_score": 31.75,
+      "coverage_rating": "LOW",
+      "strong_techniques": 0,
+      "low_techniques": 0,
+      "gap_techniques": 1,
+      "technique_ids": [
+        "T1530",
+        "T1119"
+      ]
+    },
+    {
+      "tactic": "Command and Control",
+      "priority_technique_count": 1,
+      "average_coverage_score": 87.75,
+      "coverage_rating": "STRONG",
+      "strong_techniques": 1,
+      "low_techniques": 0,
+      "gap_techniques": 0,
+      "technique_ids": [
+        "T1071.001"
+      ]
+    },
+    {
+      "tactic": "Credential Access",
+      "priority_technique_count": 4,
+      "average_coverage_score": 55.58,
+      "coverage_rating": "MODERATE",
+      "strong_techniques": 1,
+      "low_techniques": 0,
+      "gap_techniques": 1,
+      "technique_ids": [
+        "T1110",
+        "T1003",
+        "T1552",
+        "T1539"
+      ]
+    },
+    {
+      "tactic": "Defense Evasion",
+      "priority_technique_count": 2,
+      "average_coverage_score": 31.75,
+      "coverage_rating": "LOW",
+      "strong_techniques": 0,
+      "low_techniques": 0,
+      "gap_techniques": 1,
+      "technique_ids": [
+        "T1218.011",
+        "T1562.001"
+      ]
+    },
+    {
+      "tactic": "Discovery",
+      "priority_technique_count": 3,
+      "average_coverage_score": 63.5,
+      "coverage_rating": "MODERATE",
+      "strong_techniques": 0,
+      "low_techniques": 0,
+      "gap_techniques": 0,
+      "technique_ids": [
+        "T1087",
+        "T1016",
+        "T1526"
+      ]
+    },
+    {
+      "tactic": "Execution",
+      "priority_technique_count": 1,
+      "average_coverage_score": 99.17,
+      "coverage_rating": "STRONG",
+      "strong_techniques": 1,
+      "low_techniques": 0,
+      "gap_techniques": 0,
+      "technique_ids": [
+        "T1059.001"
+      ]
+    },
+    {
+      "tactic": "Exfiltration",
+      "priority_technique_count": 1,
+      "average_coverage_score": 0.0,
+      "coverage_rating": "GAP",
+      "strong_techniques": 0,
+      "low_techniques": 0,
+      "gap_techniques": 1,
+      "technique_ids": [
+        "T1567.002"
+      ]
+    },
+    {
+      "tactic": "Impact",
+      "priority_technique_count": 3,
+      "average_coverage_score": 63.5,
+      "coverage_rating": "MODERATE",
+      "strong_techniques": 0,
+      "low_techniques": 0,
+      "gap_techniques": 0,
+      "technique_ids": [
+        "T1498",
+        "T1499.003",
+        "T1486"
+      ]
+    },
+    {
+      "tactic": "Initial Access",
+      "priority_technique_count": 3,
+      "average_coverage_score": 57.08,
+      "coverage_rating": "MODERATE",
+      "strong_techniques": 0,
+      "low_techniques": 1,
+      "gap_techniques": 0,
+      "technique_ids": [
+        "T1566.001",
+        "T1566.002",
+        "T1078.004"
+      ]
+    },
+    {
+      "tactic": "Lateral Movement",
+      "priority_technique_count": 2,
+      "average_coverage_score": 31.25,
+      "coverage_rating": "LOW",
+      "strong_techniques": 0,
+      "low_techniques": 0,
+      "gap_techniques": 1,
+      "technique_ids": [
+        "T1021.002",
+        "T1021.001"
+      ]
+    },
+    {
+      "tactic": "Persistence",
+      "priority_technique_count": 3,
+      "average_coverage_score": 42.67,
+      "coverage_rating": "LOW",
+      "strong_techniques": 0,
+      "low_techniques": 0,
+      "gap_techniques": 1,
+      "technique_ids": [
+        "T1543.003",
+        "T1053.005",
+        "T1098"
+      ]
+    },
+    {
+      "tactic": "Privilege Escalation",
+      "priority_technique_count": 2,
+      "average_coverage_score": 64.0,
+      "coverage_rating": "MODERATE",
+      "strong_techniques": 0,
+      "low_techniques": 0,
+      "gap_techniques": 0,
+      "technique_ids": [
+        "T1543.003",
+        "T1098"
+      ]
+    }
+  ],
+  "engineering_priorities": [
+    {
+      "technique_id": "T1003",
+      "technique": "OS Credential Dumping",
+      "technique_priority": "Critical",
+      "coverage_rating": "GAP",
+      "coverage_score": 0,
+      "engineering_priority": "CRITICAL",
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1562.001",
+      "technique": "Impair Defenses",
+      "technique_priority": "Critical",
+      "coverage_rating": "GAP",
+      "coverage_score": 0,
+      "engineering_priority": "CRITICAL",
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1021.001",
+      "technique": "Remote Desktop Protocol",
+      "technique_priority": "High",
+      "coverage_rating": "GAP",
+      "coverage_score": 0,
+      "engineering_priority": "HIGH",
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1053.005",
+      "technique": "Scheduled Task",
+      "technique_priority": "High",
+      "coverage_rating": "GAP",
+      "coverage_score": 0,
+      "engineering_priority": "HIGH",
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1567.002",
+      "technique": "Exfiltration to Cloud Storage",
+      "technique_priority": "High",
+      "coverage_rating": "GAP",
+      "coverage_score": 0,
+      "engineering_priority": "HIGH",
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1119",
+      "technique": "Automated Collection",
+      "technique_priority": "Moderate",
+      "coverage_rating": "GAP",
+      "coverage_score": 0,
+      "engineering_priority": "MODERATE",
+      "recommendation": "Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+    },
+    {
+      "technique_id": "T1078.004",
+      "technique": "Cloud Accounts",
+      "technique_priority": "High",
+      "coverage_rating": "LOW",
+      "coverage_score": 43.25,
+      "engineering_priority": "REVIEW",
+      "recommendation": "Prioritize tuning and validation. Add independent telemetry or detection logic before treating this technique as reliably covered."
+    }
+  ],
+  "redundancy_review": [
+    {
+      "technique_id": "T1059.001",
+      "technique": "PowerShell",
+      "detection_count": 3,
+      "data_sources": [
+        "Memory Forensics Artifacts",
+        "Sentinel Process Events",
+        "Windows Process Creation"
+      ],
+      "detection_types": [
+        "KQL",
+        "Python",
+        "Sigma"
+      ],
+      "coverage_rating": "STRONG",
+      "classification": "Layered Coverage - Review Alert Overlap",
+      "notes": "Multiple detections use diverse telemetry or analytic types. Maintain layered coverage while reviewing duplicate alerting."
+    },
+    {
+      "technique_id": "T1110",
+      "technique": "Brute Force",
+      "detection_count": 3,
+      "data_sources": [
+        "Entra Sign-in Logs",
+        "Windows Security Event Log"
+      ],
+      "detection_types": [
+        "KQL",
+        "Sigma"
+      ],
+      "coverage_rating": "STRONG",
+      "classification": "Layered Coverage - Review Alert Overlap",
+      "notes": "Multiple detections use diverse telemetry or analytic types. Maintain layered coverage while reviewing duplicate alerting."
+    }
+  ],
+  "analyst_guardrails": [
+    "Do not interpret detection count alone as strong coverage.",
+    "Do not treat an unvalidated or experimental rule as equivalent to a validated production detection.",
+    "Do not assume multiple detections provide independent coverage when they rely on the same telemetry and logic.",
+    "Do not treat a MITRE ATT&CK mapping as proof that a detection reliably identifies every implementation of that technique.",
+    "Do not classify a technique as fully covered solely because one rule exists.",
+    "Review false-positive behavior and analyst workload when multiple detections overlap.",
+    "Treat the coverage model as an engineering prioritization aid rather than a universal measurement standard."
+  ]
+}

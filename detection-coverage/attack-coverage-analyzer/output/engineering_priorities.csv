@@ -1,0 +1,8 @@
+technique_id,technique,technique_priority,coverage_rating,coverage_score,engineering_priority,recommendation
+T1003,OS Credential Dumping,Critical,GAP,0,CRITICAL,"Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+T1562.001,Impair Defenses,Critical,GAP,0,CRITICAL,"Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+T1021.001,Remote Desktop Protocol,High,GAP,0,HIGH,"Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+T1053.005,Scheduled Task,High,GAP,0,HIGH,"Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+T1567.002,Exfiltration to Cloud Storage,High,GAP,0,HIGH,"Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+T1119,Automated Collection,Moderate,GAP,0,MODERATE,"Develop new detection capability for this technique using appropriate endpoint, identity, network, cloud, or application telemetry."
+T1078.004,Cloud Accounts,High,LOW,43.25,REVIEW,Prioritize tuning and validation. Add independent telemetry or detection logic before treating this technique as reliably covered.

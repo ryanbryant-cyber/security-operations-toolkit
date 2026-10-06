@@ -1,0 +1,13 @@
+tactic,priority_technique_count,average_coverage_score,coverage_rating,strong_techniques,low_techniques,gap_techniques,technique_ids
+Collection,2,31.75,LOW,0,0,1,T1530 | T1119
+Command and Control,1,87.75,STRONG,1,0,0,T1071.001
+Credential Access,4,55.58,MODERATE,1,0,1,T1110 | T1003 | T1552 | T1539
+Defense Evasion,2,31.75,LOW,0,0,1,T1218.011 | T1562.001
+Discovery,3,63.5,MODERATE,0,0,0,T1087 | T1016 | T1526
+Execution,1,99.17,STRONG,1,0,0,T1059.001
+Exfiltration,1,0.0,GAP,0,0,1,T1567.002
+Impact,3,63.5,MODERATE,0,0,0,T1498 | T1499.003 | T1486
+Initial Access,3,57.08,MODERATE,0,1,0,T1566.001 | T1566.002 | T1078.004
+Lateral Movement,2,31.25,LOW,0,0,1,T1021.002 | T1021.001
+Persistence,3,42.67,LOW,0,0,1,T1543.003 | T1053.005 | T1098
+Privilege Escalation,2,64.0,MODERATE,0,0,0,T1543.003 | T1098
