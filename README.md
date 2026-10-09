@@ -347,6 +347,39 @@ Key project outcomes:
 
 [View the DNS Tunneling Detection & Triage Lab](network-detection/dns-tunneling-detection-lab/)
 
+### Forensic Operations
+
+#### Digital Evidence Integrity & Chain-of-Custody Tool
+
+DFIR operations project focused on preserving, documenting, and verifying the integrity of digital evidence collected during cybersecurity investigations.
+
+The project registers synthetic forensic artifacts, assigns unique evidence IDs, records metadata, calculates SHA-256 hashes, maintains chain-of-custody records, and later verifies whether evidence remains unchanged, has been altered, or is missing.
+
+Key project outcomes:
+
+- Registered 6 synthetic forensic evidence artifacts
+- Assigned unique evidence identifiers from `EV-001` through `EV-006`
+- Captured evidence metadata including type, source, size, custodian, and registration timestamp
+- Calculated SHA-256 hashes for all registered evidence
+- Generated a structured evidence manifest
+- Generated an analyst-facing evidence inventory
+- Created 12 initial chain-of-custody records
+- Preserved separate `Collected` and `Registered` custody actions
+- Created a controlled verification copy while preserving the original evidence package
+- Detected 1 intentionally altered artifact through SHA-256 mismatch
+- Detected 1 intentionally missing evidence artifact
+- Verified 4 unchanged evidence files
+- Appended integrity-verification events to the chain-of-custody record
+- Distinguished `VERIFIED`, `HASH MISMATCH`, and `MISSING` evidence states
+- Confirmed the original registered evidence package remained unchanged
+- Generated structured JSON and CSV integrity reports
+- Implemented an independent validation harness
+- Passed 11 of 11 validation checks
+
+**Skills:** Digital Forensics | Evidence Integrity | Chain of Custody | DFIR Operations | SHA-256 Hashing | Forensic Documentation | Evidence Registration | Evidence Verification | Evidence Handling | File Metadata Analysis | Incident Documentation | Python | Security Automation | Validation Testing
+
+[View the Digital Evidence Integrity & Chain-of-Custody Tool](forensic-operations/evidence-integrity-tool/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
