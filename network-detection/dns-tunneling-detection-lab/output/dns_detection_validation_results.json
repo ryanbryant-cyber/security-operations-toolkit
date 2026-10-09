@@ -1,0 +1,48 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 10,
+  "checks_passed": 10,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "DNS analysis summary",
+      "passed": true
+    },
+    {
+      "check": "Primary DNS tunneling finding",
+      "passed": true
+    },
+    {
+      "check": "All six DNS behavioral indicators are present",
+      "passed": true
+    },
+    {
+      "check": "Multiple TXT queries contribute to the finding",
+      "passed": true
+    },
+    {
+      "check": "Unique and encoded subdomain behavior is preserved",
+      "passed": true
+    },
+    {
+      "check": "Normal peer hosts do not become analyst findings",
+      "passed": true
+    },
+    {
+      "check": "Only the higher-interest parent domain becomes a finding",
+      "passed": true
+    },
+    {
+      "check": "Analyst assessment preserves evidentiary uncertainty",
+      "passed": true
+    },
+    {
+      "check": "DNS analyst guardrails are preserved",
+      "passed": true
+    },
+    {
+      "check": "Correlated DNS behavior reaches CRITICAL priority",
+      "passed": true
+    }
+  ]
+}
