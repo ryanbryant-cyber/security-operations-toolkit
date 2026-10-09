@@ -1,0 +1,11 @@
+{
+  "case_id": "CASE-2026-001",
+  "case_name": "Northstar Ridge Suspicious Finance Activity",
+  "case_type": "Cybersecurity Incident Investigation",
+  "opened_date": "2026-10-09T14:20:00Z",
+  "lead_analyst": "Ryan Bryant",
+  "organization": "Northstar Ridge",
+  "description": "Synthetic forensic case used to demonstrate evidence registration, SHA-256 hashing, chain-of-custody documentation, and later integrity verification.",
+  "evidence_storage_location": "forensic-operations/evidence-integrity-tool/sample-evidence",
+  "status": "Open"
+}
