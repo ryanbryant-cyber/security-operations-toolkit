@@ -1,0 +1,35 @@
+{
+  "expected_summary": {
+    "evidence_checked": 6,
+    "verified": 4,
+    "hash_mismatch": 1,
+    "missing": 1
+  },
+
+  "expected_statuses": {
+    "EV-001": "VERIFIED",
+    "EV-002": "HASH MISMATCH",
+    "EV-003": "VERIFIED",
+    "EV-004": "VERIFIED",
+    "EV-005": "MISSING",
+    "EV-006": "VERIFIED"
+  },
+
+  "expected_files": {
+    "EV-001": "analyst_notes.txt",
+    "EV-002": "authentication_events.csv",
+    "EV-003": "incident_timeline.csv",
+    "EV-004": "investigation_results.json",
+    "EV-005": "network_connections.csv",
+    "EV-006": "powershell_transcript.txt"
+  },
+
+  "expected_evidence_count": 6,
+  "minimum_custody_records": 18,
+
+  "required_custody_actions": [
+    "Collected",
+    "Registered",
+    "Verified"
+  ]
+}
