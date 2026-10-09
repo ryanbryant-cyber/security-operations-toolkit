@@ -1,0 +1,78 @@
+{
+  "model_name": "DNS Tunneling Behavioral Detection Rules",
+  "model_version": "1.0",
+  "maximum_score": 100,
+
+  "analysis_window_seconds": 120,
+
+  "thresholds": {
+    "minimum_queries_to_parent_domain": 10,
+    "long_subdomain_length": 18,
+    "unique_subdomain_ratio": 0.8,
+    "txt_query_count": 3,
+    "high_frequency_average_seconds": 6.0,
+    "encoded_pattern_minimum_ratio": 0.7
+  },
+
+  "risk_weights": {
+    "high_query_frequency": 20,
+    "long_subdomain_labels": 15,
+    "high_unique_subdomain_ratio": 20,
+    "multiple_txt_queries": 15,
+    "encoded_looking_subdomains": 20,
+    "single_parent_domain_concentration": 10
+  },
+
+  "priority_thresholds": {
+    "CRITICAL": 80,
+    "HIGH": 60,
+    "MODERATE": 30,
+    "LOW": 0
+  },
+
+  "encoded_pattern": {
+    "allowed_characters": "0123456789abcdef",
+    "minimum_label_length": 16,
+    "description": "Subdomain label consists primarily of hexadecimal-looking characters and is long enough to warrant review."
+  },
+
+  "recommended_actions": {
+    "CRITICAL": [
+      "Preserve DNS resolver and endpoint telemetry.",
+      "Review the affected host for suspicious processes or scripts generating DNS activity.",
+      "Review the parent domain and destination infrastructure using approved threat-intelligence sources.",
+      "Compare DNS activity with endpoint and network telemetry.",
+      "Consider temporarily restricting the affected host if additional compromise evidence is confirmed.",
+      "Escalate to SOC Tier 2 or Incident Response."
+    ],
+
+    "HIGH": [
+      "Preserve DNS telemetry.",
+      "Review endpoint processes associated with DNS generation.",
+      "Investigate the parent domain and destination infrastructure.",
+      "Correlate with proxy, EDR, and firewall activity.",
+      "Escalate if additional suspicious behavior is identified."
+    ],
+
+    "MODERATE": [
+      "Review the DNS pattern for legitimate application behavior.",
+      "Compare the host against peer systems.",
+      "Investigate repeated TXT activity or unusually long subdomains.",
+      "Continue monitoring for related endpoint or network evidence."
+    ],
+
+    "LOW": [
+      "Retain for baseline comparison.",
+      "No containment action is recommended unless additional suspicious evidence appears."
+    ]
+  },
+
+  "analyst_guardrails": [
+    "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+    "Do not classify TXT record usage as malicious by itself.",
+    "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+    "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+    "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+    "Distinguish observed DNS behavior from analyst hypotheses."
+  ]
+}
