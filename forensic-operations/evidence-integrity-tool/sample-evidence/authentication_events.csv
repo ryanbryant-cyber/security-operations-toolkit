@@ -1,0 +1,5 @@
+timestamp,user,source_ip,event_type,result,notes
+2026-10-09T13:41:58Z,finance.user,198.51.100.24,Failed Sign-in,Failure,First failed external authentication
+2026-10-09T13:42:11Z,finance.user,198.51.100.24,Failed Sign-in,Failure,Second failed external authentication
+2026-10-09T13:42:27Z,finance.user,198.51.100.24,Failed Sign-in,Failure,Third failed external authentication
+2026-10-09T13:43:06Z,finance.user,198.51.100.24,Successful Sign-in,Success,Successful authentication after repeated failures
