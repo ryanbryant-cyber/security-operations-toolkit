@@ -1,0 +1,4 @@
+timestamp,host,process,remote_ip,remote_port,state,notes
+2026-10-09T13:44:32Z,NFG-FIN-WS07,powershell.exe,203.0.113.77,443,ESTABLISHED,External HTTPS connection
+2026-10-09T13:45:18Z,NFG-FIN-WS07,cmd.exe,10.10.20.40,445,SYN_SENT,Attempted internal SMB connection
+2026-10-09T13:52:44Z,NFG-FIN-WS07,svc-helper.exe,203.0.113.88,8443,ESTABLISHED,External connection from service process
