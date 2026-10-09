@@ -1,0 +1,8 @@
+timestamp,source,event,assessment
+2026-10-09T13:41:58Z,Authentication,Repeated failed sign-ins begin,Confirmed
+2026-10-09T13:43:06Z,Authentication,Successful sign-in from same external source,Confirmed
+2026-10-09T13:43:47Z,File Activity,update.ps1 created,Confirmed
+2026-10-09T13:44:12Z,Process Creation,Suspicious PowerShell execution,Confirmed
+2026-10-09T13:45:18Z,Network,Attempted SMB connection to Finance server,Confirmed Attempt
+2026-10-09T13:52:11Z,Persistence,SystemHelper service installed,Confirmed
+2026-10-09T13:52:44Z,Network,Outbound TCP 8443 connection observed,Confirmed
