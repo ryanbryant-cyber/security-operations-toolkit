@@ -1,0 +1,18 @@
+PowerShell Transcript - Synthetic Evidence
+
+Host: NFG-FIN-WS07
+User: finance.user
+
+2026-10-09 13:44:12
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File update.ps1
+
+2026-10-09 13:44:55
+whoami /all
+
+2026-10-09 13:45:12
+ipconfig /all
+
+2026-10-09 13:45:44
+net localgroup administrators
+
+Synthetic training transcript only.
