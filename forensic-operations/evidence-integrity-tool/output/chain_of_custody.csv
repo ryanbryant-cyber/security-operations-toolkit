@@ -11,3 +11,9 @@ CASE-2026-001,EV-005,2026-10-09T18:28:55.352387+00:00,Collected,Ryan Bryant,fore
 CASE-2026-001,EV-005,2026-10-09T18:28:55.352387+00:00,Registered,Ryan Bryant,forensic-operations/evidence-integrity-tool/sample-evidence,Evidence metadata and SHA-256 hash recorded.,Initial SHA-256: 12e81f80466bd2e5b6fdc0f478caf5f6c68e38e98bdefe038fc3e7a898374c4d
 CASE-2026-001,EV-006,2026-10-09T18:28:55.352387+00:00,Collected,Ryan Bryant,forensic-operations/evidence-integrity-tool/sample-evidence,Initial evidence collection for synthetic incident case.,powershell_transcript.txt entered into the evidence package.
 CASE-2026-001,EV-006,2026-10-09T18:28:55.352387+00:00,Registered,Ryan Bryant,forensic-operations/evidence-integrity-tool/sample-evidence,Evidence metadata and SHA-256 hash recorded.,Initial SHA-256: 4381bd3a79a2f3feb1ce5ff518c74150bc4262c4cda509163e2e94cf70a3c843
+CASE-2026-001,EV-001,2026-10-09T18:34:22.117410+00:00,Verified,Ryan Bryant,verification-evidence,Evidence integrity verification.,Integrity status: VERIFIED
+CASE-2026-001,EV-002,2026-10-09T18:34:22.117410+00:00,Verified,Ryan Bryant,verification-evidence,Evidence integrity verification.,Integrity status: HASH MISMATCH
+CASE-2026-001,EV-003,2026-10-09T18:34:22.117410+00:00,Verified,Ryan Bryant,verification-evidence,Evidence integrity verification.,Integrity status: VERIFIED
+CASE-2026-001,EV-004,2026-10-09T18:34:22.117410+00:00,Verified,Ryan Bryant,verification-evidence,Evidence integrity verification.,Integrity status: VERIFIED
+CASE-2026-001,EV-005,2026-10-09T18:34:22.117410+00:00,Verified,Ryan Bryant,verification-evidence,Evidence integrity verification.,Integrity status: MISSING
+CASE-2026-001,EV-006,2026-10-09T18:34:22.117410+00:00,Verified,Ryan Bryant,verification-evidence,Evidence integrity verification.,Integrity status: VERIFIED

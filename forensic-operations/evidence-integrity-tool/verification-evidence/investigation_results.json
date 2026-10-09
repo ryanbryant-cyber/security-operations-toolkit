@@ -1,0 +1,16 @@
+{
+  "case_id": "CASE-2026-001",
+  "host": "NFG-FIN-WS07",
+  "user": "finance.user",
+  "finding_count": 6,
+  "priority": "HIGH",
+  "findings": [
+    "Repeated failed sign-ins",
+    "Successful sign-in after failures",
+    "Suspicious PowerShell execution",
+    "Attempted internal SMB communication",
+    "Service persistence",
+    "External network connection"
+  ],
+  "assessment": "Evidence supports a high-priority incident investigation but does not independently prove credential theft, successful lateral movement, or command-and-control."
+}

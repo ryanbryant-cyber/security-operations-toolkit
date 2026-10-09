@@ -1,0 +1,73 @@
+{
+  "case_id": "CASE-2026-001",
+  "verification_directory": "verification-evidence",
+  "hash_algorithm": "SHA-256",
+  "summary": {
+    "evidence_checked": 6,
+    "verified": 4,
+    "hash_mismatch": 1,
+    "missing": 1
+  },
+  "results": [
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-001",
+      "file_name": "analyst_notes.txt",
+      "expected_sha256": "f1d47c6d93c3dd330ee63f71b424ce53f85cdccdad6da1ba647ff975d9846048",
+      "current_sha256": "f1d47c6d93c3dd330ee63f71b424ce53f85cdccdad6da1ba647ff975d9846048",
+      "status": "VERIFIED",
+      "verified_timestamp": "2026-10-09T18:34:22.117410+00:00",
+      "notes": "Current SHA-256 matches the registered evidence manifest."
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-002",
+      "file_name": "authentication_events.csv",
+      "expected_sha256": "a81102bbb7f3d640e01ce00a9b65f5ab7446f853264b5ea53cd0cf22061ea9d5",
+      "current_sha256": "16f6f7ac25c4bf957cfda61360047d2057b77716e4c223f8c2e96e7847ed25f8",
+      "status": "HASH MISMATCH",
+      "verified_timestamp": "2026-10-09T18:34:22.117410+00:00",
+      "notes": "Current SHA-256 differs from the originally registered hash."
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-003",
+      "file_name": "incident_timeline.csv",
+      "expected_sha256": "7f388b6f8e5ae02e29cf59b2fb4ab4e8c2b4068f7c13e954ba391a499333dcea",
+      "current_sha256": "7f388b6f8e5ae02e29cf59b2fb4ab4e8c2b4068f7c13e954ba391a499333dcea",
+      "status": "VERIFIED",
+      "verified_timestamp": "2026-10-09T18:34:22.117410+00:00",
+      "notes": "Current SHA-256 matches the registered evidence manifest."
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-004",
+      "file_name": "investigation_results.json",
+      "expected_sha256": "e7ba67fb36029c6692c53dc731a53cb39cd588168b1006cd04899cd5ddd38005",
+      "current_sha256": "e7ba67fb36029c6692c53dc731a53cb39cd588168b1006cd04899cd5ddd38005",
+      "status": "VERIFIED",
+      "verified_timestamp": "2026-10-09T18:34:22.117410+00:00",
+      "notes": "Current SHA-256 matches the registered evidence manifest."
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-005",
+      "file_name": "network_connections.csv",
+      "expected_sha256": "12e81f80466bd2e5b6fdc0f478caf5f6c68e38e98bdefe038fc3e7a898374c4d",
+      "current_sha256": null,
+      "status": "MISSING",
+      "verified_timestamp": "2026-10-09T18:34:22.117410+00:00",
+      "notes": "Evidence file was recorded in the manifest but was not present during verification."
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-006",
+      "file_name": "powershell_transcript.txt",
+      "expected_sha256": "4381bd3a79a2f3feb1ce5ff518c74150bc4262c4cda509163e2e94cf70a3c843",
+      "current_sha256": "4381bd3a79a2f3feb1ce5ff518c74150bc4262c4cda509163e2e94cf70a3c843",
+      "status": "VERIFIED",
+      "verified_timestamp": "2026-10-09T18:34:22.117410+00:00",
+      "notes": "Current SHA-256 matches the registered evidence manifest."
+    }
+  ]
+}
