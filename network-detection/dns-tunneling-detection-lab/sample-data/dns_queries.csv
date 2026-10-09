@@ -1,0 +1,30 @@
+timestamp,source_host,source_ip,query_name,query_type,response_code,parent_domain,response_ip,notes
+2026-10-09T12:10:01Z,NFG-HR-WS03,10.10.20.22,login.microsoftonline.com,A,NOERROR,microsoftonline.com,20.190.128.18,Normal Microsoft authentication lookup
+2026-10-09T12:10:08Z,NFG-HR-WS03,10.10.20.22,graph.microsoft.com,A,NOERROR,microsoft.com,20.190.128.19,Normal Microsoft Graph lookup
+2026-10-09T12:10:17Z,NFG-HR-WS03,10.10.20.22,updates.microsoft.com,A,NOERROR,microsoft.com,20.112.52.29,Normal update service lookup
+2026-10-09T12:10:29Z,NFG-HR-WS03,10.10.20.22,portal.office.com,A,NOERROR,office.com,13.107.6.156,Normal Microsoft 365 lookup
+2026-10-09T12:10:45Z,NFG-HR-WS03,10.10.20.22,time.windows.com,A,NOERROR,windows.com,20.189.79.72,Normal Windows time lookup
+2026-10-09T12:11:03Z,NFG-HR-WS03,10.10.20.22,intranet.northstar.example,A,NOERROR,northstar.example,10.10.10.20,Normal internal DNS lookup
+2026-10-09T12:11:26Z,NFG-HR-WS03,10.10.20.22,files.northstar.example,A,NOERROR,northstar.example,10.10.10.30,Normal internal file service lookup
+2026-10-09T12:12:02Z,NFG-FIN-WS07,10.10.20.17,login.microsoftonline.com,A,NOERROR,microsoftonline.com,20.190.128.18,Normal Finance authentication lookup
+2026-10-09T12:12:16Z,NFG-FIN-WS07,10.10.20.17,finance.northstar.example,A,NOERROR,northstar.example,10.10.20.40,Normal internal Finance lookup
+2026-10-09T12:12:31Z,NFG-FIN-WS07,10.10.20.17,portal.office.com,A,NOERROR,office.com,13.107.6.156,Normal Microsoft 365 lookup
+2026-10-09T12:13:01Z,NFG-MKT-WS08,10.10.20.41,cdn.example.net,A,NOERROR,example.net,192.0.2.20,Normal CDN lookup
+2026-10-09T12:13:14Z,NFG-MKT-WS08,10.10.20.41,analytics.example.net,A,NOERROR,example.net,192.0.2.21,Normal analytics lookup
+2026-10-09T12:14:02Z,NFG-FIN-WS07,10.10.20.17,a8f31d92b741c0e54f2a.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:14:06Z,NFG-FIN-WS07,10.10.20.17,b90e41c72f64aa130d9b.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:14:10Z,NFG-FIN-WS07,10.10.20.17,c71a80f924bc317e04d5.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:14:14Z,NFG-FIN-WS07,10.10.20.17,d62ff10981ca56b710de.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:14:18Z,NFG-FIN-WS07,10.10.20.17,e51b0aa37c9914f82c77.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:14:22Z,NFG-FIN-WS07,10.10.20.17,f4d19b02c47e55a98ab1.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:14:26Z,NFG-FIN-WS07,10.10.20.17,6731aaff28b7460ca419.tunnel-demo.example,TXT,NOERROR,tunnel-demo.example,203.0.113.60,TXT query with changing subdomain
+2026-10-09T12:14:30Z,NFG-FIN-WS07,10.10.20.17,784d51ea920fb117bc23.tunnel-demo.example,TXT,NOERROR,tunnel-demo.example,203.0.113.60,TXT query with changing subdomain
+2026-10-09T12:14:34Z,NFG-FIN-WS07,10.10.20.17,89ff116ab3c429e7dd81.tunnel-demo.example,TXT,NOERROR,tunnel-demo.example,203.0.113.60,TXT query with changing subdomain
+2026-10-09T12:14:38Z,NFG-FIN-WS07,10.10.20.17,9a57d10328f76bc0e511.tunnel-demo.example,TXT,NOERROR,tunnel-demo.example,203.0.113.60,TXT query with changing subdomain
+2026-10-09T12:14:42Z,NFG-FIN-WS07,10.10.20.17,ab33e219708dd5c84291.tunnel-demo.example,TXT,NOERROR,tunnel-demo.example,203.0.113.60,TXT query with changing subdomain
+2026-10-09T12:14:46Z,NFG-FIN-WS07,10.10.20.17,bc44f62093eea67d1192.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:14:50Z,NFG-FIN-WS07,10.10.20.17,cd559731a4ffb78e2203.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:14:54Z,NFG-FIN-WS07,10.10.20.17,de66a842b500c89f3314.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:14:58Z,NFG-FIN-WS07,10.10.20.17,ef77b953c611d90a4425.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:15:02Z,NFG-FIN-WS07,10.10.20.17,f088ca64d722ea1b5536.tunnel-demo.example,A,NOERROR,tunnel-demo.example,203.0.113.60,Long changing subdomain
+2026-10-09T12:16:04Z,NFG-FIN-WS07,10.10.20.17,finance.northstar.example,A,NOERROR,northstar.example,10.10.20.40,Normal Finance lookup after higher-interest activity
