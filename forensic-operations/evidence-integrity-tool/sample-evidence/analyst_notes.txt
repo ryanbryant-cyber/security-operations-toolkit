@@ -1,0 +1,22 @@
+CASE-2026-001
+Northstar Ridge Suspicious Finance Activity
+
+Analyst Notes
+
+Observed evidence includes repeated failed authentication attempts followed by a successful sign-in from the same external source, suspicious PowerShell execution, attempted SMB communication, service persistence, and outbound network activity.
+
+Confirmed:
+- Repeated authentication failures
+- Successful sign-in
+- Suspicious PowerShell activity
+- Attempted SMB communication
+- Service creation
+- Outbound network connection
+
+Not confirmed:
+- Credential theft mechanism
+- Successful lateral movement
+- Command-and-control ownership
+- Malware family attribution
+
+These notes are synthetic and created for forensic evidence-integrity training.
