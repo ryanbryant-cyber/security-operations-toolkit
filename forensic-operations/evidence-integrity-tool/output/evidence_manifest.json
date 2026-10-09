@@ -1,0 +1,102 @@
+{
+  "case": {
+    "case_id": "CASE-2026-001",
+    "case_name": "Northstar Ridge Suspicious Finance Activity",
+    "case_type": "Cybersecurity Incident Investigation",
+    "opened_date": "2026-10-09T14:20:00Z",
+    "lead_analyst": "Ryan Bryant",
+    "organization": "Northstar Ridge",
+    "description": "Synthetic forensic case used to demonstrate evidence registration, SHA-256 hashing, chain-of-custody documentation, and later integrity verification.",
+    "evidence_storage_location": "forensic-operations/evidence-integrity-tool/sample-evidence",
+    "status": "Open"
+  },
+  "manifest_created": "2026-10-09T18:28:55.353029+00:00",
+  "hash_algorithm": "SHA-256",
+  "evidence_count": 6,
+  "evidence": [
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-001",
+      "file_name": "analyst_notes.txt",
+      "relative_path": "sample-evidence/analyst_notes.txt",
+      "evidence_type": "Analyst Notes",
+      "source_system": "Analyst Work Product",
+      "description": "Synthetic analyst notes documenting confirmed evidence and unresolved hypotheses.",
+      "file_size_bytes": 716,
+      "sha256": "f1d47c6d93c3dd330ee63f71b424ce53f85cdccdad6da1ba647ff975d9846048",
+      "registered_timestamp": "2026-10-09T18:28:55.352387+00:00",
+      "registered_by": "Ryan Bryant",
+      "integrity_status": "REGISTERED"
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-002",
+      "file_name": "authentication_events.csv",
+      "relative_path": "sample-evidence/authentication_events.csv",
+      "evidence_type": "Authentication Log",
+      "source_system": "Identity Monitoring",
+      "description": "Synthetic authentication telemetry associated with the Finance incident.",
+      "file_size_bytes": 499,
+      "sha256": "a81102bbb7f3d640e01ce00a9b65f5ab7446f853264b5ea53cd0cf22061ea9d5",
+      "registered_timestamp": "2026-10-09T18:28:55.352387+00:00",
+      "registered_by": "Ryan Bryant",
+      "integrity_status": "REGISTERED"
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-003",
+      "file_name": "incident_timeline.csv",
+      "relative_path": "sample-evidence/incident_timeline.csv",
+      "evidence_type": "Incident Timeline",
+      "source_system": "Analyst Timeline",
+      "description": "Chronological synthetic incident timeline built from correlated evidence.",
+      "file_size_bytes": 587,
+      "sha256": "7f388b6f8e5ae02e29cf59b2fb4ab4e8c2b4068f7c13e954ba391a499333dcea",
+      "registered_timestamp": "2026-10-09T18:28:55.352387+00:00",
+      "registered_by": "Ryan Bryant",
+      "integrity_status": "REGISTERED"
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-004",
+      "file_name": "investigation_results.json",
+      "relative_path": "sample-evidence/investigation_results.json",
+      "evidence_type": "Investigation Results",
+      "source_system": "Incident Analysis",
+      "description": "Structured synthetic investigation findings and analyst assessment.",
+      "file_size_bytes": 547,
+      "sha256": "e7ba67fb36029c6692c53dc731a53cb39cd588168b1006cd04899cd5ddd38005",
+      "registered_timestamp": "2026-10-09T18:28:55.352387+00:00",
+      "registered_by": "Ryan Bryant",
+      "integrity_status": "REGISTERED"
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-005",
+      "file_name": "network_connections.csv",
+      "relative_path": "sample-evidence/network_connections.csv",
+      "evidence_type": "Network Evidence",
+      "source_system": "Network Monitoring",
+      "description": "Synthetic network connection evidence associated with the investigated host.",
+      "file_size_bytes": 382,
+      "sha256": "12e81f80466bd2e5b6fdc0f478caf5f6c68e38e98bdefe038fc3e7a898374c4d",
+      "registered_timestamp": "2026-10-09T18:28:55.352387+00:00",
+      "registered_by": "Ryan Bryant",
+      "integrity_status": "REGISTERED"
+    },
+    {
+      "case_id": "CASE-2026-001",
+      "evidence_id": "EV-006",
+      "file_name": "powershell_transcript.txt",
+      "relative_path": "sample-evidence/powershell_transcript.txt",
+      "evidence_type": "Command Transcript",
+      "source_system": "Windows PowerShell",
+      "description": "Synthetic PowerShell transcript associated with endpoint investigation activity.",
+      "file_size_bytes": 326,
+      "sha256": "4381bd3a79a2f3feb1ce5ff518c74150bc4262c4cda509163e2e94cf70a3c843",
+      "registered_timestamp": "2026-10-09T18:28:55.352387+00:00",
+      "registered_by": "Ryan Bryant",
+      "integrity_status": "REGISTERED"
+    }
+  ]
+}
