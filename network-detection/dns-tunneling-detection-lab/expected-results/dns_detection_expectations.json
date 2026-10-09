@@ -1,0 +1,37 @@
+{
+  "expected_summary": {
+    "dns_event_count": 29,
+    "hosts_analyzed": 3,
+    "parent_domains_analyzed": 7,
+    "behavior_groups_analyzed": 10,
+    "findings": 1,
+    "critical_findings": 1,
+    "high_findings": 0,
+    "moderate_findings": 0
+  },
+
+  "expected_finding": {
+    "finding_id": "DNS-001",
+    "finding_type": "Possible DNS Tunneling Activity",
+    "source_host": "NFG-FIN-WS07",
+    "source_ip": "10.10.20.17",
+    "parent_domain": "tunnel-demo.example",
+    "query_count": 16,
+    "txt_query_count": 5,
+    "unique_subdomain_ratio": 1.0,
+    "encoded_subdomain_ratio": 1.0,
+    "average_query_interval_seconds": 4.0,
+    "risk_score": 100,
+    "priority": "CRITICAL",
+    "indicator_count": 6
+  },
+
+  "required_indicators": [
+    "High query frequency",
+    "Long subdomain labels",
+    "High unique-subdomain ratio",
+    "Multiple TXT queries",
+    "Encoded-looking subdomains",
+    "Single parent-domain concentration"
+  ]
+}
