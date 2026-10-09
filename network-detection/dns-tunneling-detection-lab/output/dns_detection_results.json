@@ -1,0 +1,462 @@
+{
+  "summary": {
+    "dns_event_count": 29,
+    "hosts_analyzed": 3,
+    "parent_domains_analyzed": 7,
+    "behavior_groups_analyzed": 10,
+    "findings": 1,
+    "critical_findings": 1,
+    "high_findings": 0,
+    "moderate_findings": 0
+  },
+  "behavior_analysis": [
+    {
+      "source_host": "NFG-FIN-WS07",
+      "source_ip": "10.10.20.17",
+      "parent_domain": "tunnel-demo.example",
+      "first_query": "2026-10-09T12:14:02Z",
+      "last_query": "2026-10-09T12:15:02Z",
+      "window_seconds": 60,
+      "query_count": 16,
+      "txt_query_count": 5,
+      "unique_subdomain_count": 16,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 16,
+      "long_subdomain_ratio": 1.0,
+      "encoded_subdomain_count": 16,
+      "encoded_subdomain_ratio": 1.0,
+      "average_query_interval_seconds": 4.0,
+      "risk_score": 100,
+      "priority": "CRITICAL",
+      "indicator_count": 6,
+      "indicators": [
+        {
+          "indicator": "High query frequency",
+          "points": 20,
+          "evidence": "16 queries were observed with an average interval of 4.0 seconds."
+        },
+        {
+          "indicator": "Long subdomain labels",
+          "points": 15,
+          "evidence": "16 of 16 subdomain labels were at least 18 characters long."
+        },
+        {
+          "indicator": "High unique-subdomain ratio",
+          "points": 20,
+          "evidence": "Unique-subdomain ratio was 100%."
+        },
+        {
+          "indicator": "Multiple TXT queries",
+          "points": 15,
+          "evidence": "5 TXT queries were observed for the parent domain."
+        },
+        {
+          "indicator": "Encoded-looking subdomains",
+          "points": 20,
+          "evidence": "100% of observed subdomain labels matched the configured hexadecimal-looking pattern."
+        },
+        {
+          "indicator": "Single parent-domain concentration",
+          "points": 10,
+          "evidence": "16 queries were concentrated on tunnel-demo.example."
+        }
+      ],
+      "recommended_actions": [
+        "Preserve DNS resolver and endpoint telemetry.",
+        "Review the affected host for suspicious processes or scripts generating DNS activity.",
+        "Review the parent domain and destination infrastructure using approved threat-intelligence sources.",
+        "Compare DNS activity with endpoint and network telemetry.",
+        "Consider temporarily restricting the affected host if additional compromise evidence is confirmed.",
+        "Escalate to SOC Tier 2 or Incident Response."
+      ],
+      "analyst_assessment": "Multiple DNS behavioral indicators are present and warrant investigation for possible DNS tunneling or covert communications. The DNS telemetry alone does not prove command-and-control, data exfiltration, or the contents of any information that may have been transported.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    },
+    {
+      "source_host": "NFG-FIN-WS07",
+      "source_ip": "10.10.20.17",
+      "parent_domain": "microsoftonline.com",
+      "first_query": "2026-10-09T12:12:02Z",
+      "last_query": "2026-10-09T12:12:02Z",
+      "window_seconds": 0,
+      "query_count": 1,
+      "txt_query_count": 0,
+      "unique_subdomain_count": 1,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 0,
+      "long_subdomain_ratio": 0.0,
+      "encoded_subdomain_count": 0,
+      "encoded_subdomain_ratio": 0.0,
+      "average_query_interval_seconds": null,
+      "risk_score": 0,
+      "priority": "LOW",
+      "indicator_count": 0,
+      "indicators": [],
+      "recommended_actions": [
+        "Retain for baseline comparison.",
+        "No containment action is recommended unless additional suspicious evidence appears."
+      ],
+      "analyst_assessment": "Observed DNS behavior remains within the configured low-priority range and is retained for baseline comparison.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    },
+    {
+      "source_host": "NFG-FIN-WS07",
+      "source_ip": "10.10.20.17",
+      "parent_domain": "northstar.example",
+      "first_query": "2026-10-09T12:12:16Z",
+      "last_query": "2026-10-09T12:16:04Z",
+      "window_seconds": 228,
+      "query_count": 2,
+      "txt_query_count": 0,
+      "unique_subdomain_count": 1,
+      "unique_subdomain_ratio": 0.5,
+      "long_subdomain_count": 0,
+      "long_subdomain_ratio": 0.0,
+      "encoded_subdomain_count": 0,
+      "encoded_subdomain_ratio": 0.0,
+      "average_query_interval_seconds": 228.0,
+      "risk_score": 0,
+      "priority": "LOW",
+      "indicator_count": 0,
+      "indicators": [],
+      "recommended_actions": [
+        "Retain for baseline comparison.",
+        "No containment action is recommended unless additional suspicious evidence appears."
+      ],
+      "analyst_assessment": "Observed DNS behavior remains within the configured low-priority range and is retained for baseline comparison.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    },
+    {
+      "source_host": "NFG-FIN-WS07",
+      "source_ip": "10.10.20.17",
+      "parent_domain": "office.com",
+      "first_query": "2026-10-09T12:12:31Z",
+      "last_query": "2026-10-09T12:12:31Z",
+      "window_seconds": 0,
+      "query_count": 1,
+      "txt_query_count": 0,
+      "unique_subdomain_count": 1,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 0,
+      "long_subdomain_ratio": 0.0,
+      "encoded_subdomain_count": 0,
+      "encoded_subdomain_ratio": 0.0,
+      "average_query_interval_seconds": null,
+      "risk_score": 0,
+      "priority": "LOW",
+      "indicator_count": 0,
+      "indicators": [],
+      "recommended_actions": [
+        "Retain for baseline comparison.",
+        "No containment action is recommended unless additional suspicious evidence appears."
+      ],
+      "analyst_assessment": "Observed DNS behavior remains within the configured low-priority range and is retained for baseline comparison.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    },
+    {
+      "source_host": "NFG-HR-WS03",
+      "source_ip": "10.10.20.22",
+      "parent_domain": "microsoft.com",
+      "first_query": "2026-10-09T12:10:08Z",
+      "last_query": "2026-10-09T12:10:17Z",
+      "window_seconds": 9,
+      "query_count": 2,
+      "txt_query_count": 0,
+      "unique_subdomain_count": 2,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 0,
+      "long_subdomain_ratio": 0.0,
+      "encoded_subdomain_count": 0,
+      "encoded_subdomain_ratio": 0.0,
+      "average_query_interval_seconds": 9.0,
+      "risk_score": 0,
+      "priority": "LOW",
+      "indicator_count": 0,
+      "indicators": [],
+      "recommended_actions": [
+        "Retain for baseline comparison.",
+        "No containment action is recommended unless additional suspicious evidence appears."
+      ],
+      "analyst_assessment": "Observed DNS behavior remains within the configured low-priority range and is retained for baseline comparison.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    },
+    {
+      "source_host": "NFG-HR-WS03",
+      "source_ip": "10.10.20.22",
+      "parent_domain": "microsoftonline.com",
+      "first_query": "2026-10-09T12:10:01Z",
+      "last_query": "2026-10-09T12:10:01Z",
+      "window_seconds": 0,
+      "query_count": 1,
+      "txt_query_count": 0,
+      "unique_subdomain_count": 1,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 0,
+      "long_subdomain_ratio": 0.0,
+      "encoded_subdomain_count": 0,
+      "encoded_subdomain_ratio": 0.0,
+      "average_query_interval_seconds": null,
+      "risk_score": 0,
+      "priority": "LOW",
+      "indicator_count": 0,
+      "indicators": [],
+      "recommended_actions": [
+        "Retain for baseline comparison.",
+        "No containment action is recommended unless additional suspicious evidence appears."
+      ],
+      "analyst_assessment": "Observed DNS behavior remains within the configured low-priority range and is retained for baseline comparison.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    },
+    {
+      "source_host": "NFG-HR-WS03",
+      "source_ip": "10.10.20.22",
+      "parent_domain": "northstar.example",
+      "first_query": "2026-10-09T12:11:03Z",
+      "last_query": "2026-10-09T12:11:26Z",
+      "window_seconds": 23,
+      "query_count": 2,
+      "txt_query_count": 0,
+      "unique_subdomain_count": 2,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 0,
+      "long_subdomain_ratio": 0.0,
+      "encoded_subdomain_count": 0,
+      "encoded_subdomain_ratio": 0.0,
+      "average_query_interval_seconds": 23.0,
+      "risk_score": 0,
+      "priority": "LOW",
+      "indicator_count": 0,
+      "indicators": [],
+      "recommended_actions": [
+        "Retain for baseline comparison.",
+        "No containment action is recommended unless additional suspicious evidence appears."
+      ],
+      "analyst_assessment": "Observed DNS behavior remains within the configured low-priority range and is retained for baseline comparison.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    },
+    {
+      "source_host": "NFG-HR-WS03",
+      "source_ip": "10.10.20.22",
+      "parent_domain": "office.com",
+      "first_query": "2026-10-09T12:10:29Z",
+      "last_query": "2026-10-09T12:10:29Z",
+      "window_seconds": 0,
+      "query_count": 1,
+      "txt_query_count": 0,
+      "unique_subdomain_count": 1,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 0,
+      "long_subdomain_ratio": 0.0,
+      "encoded_subdomain_count": 0,
+      "encoded_subdomain_ratio": 0.0,
+      "average_query_interval_seconds": null,
+      "risk_score": 0,
+      "priority": "LOW",
+      "indicator_count": 0,
+      "indicators": [],
+      "recommended_actions": [
+        "Retain for baseline comparison.",
+        "No containment action is recommended unless additional suspicious evidence appears."
+      ],
+      "analyst_assessment": "Observed DNS behavior remains within the configured low-priority range and is retained for baseline comparison.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    },
+    {
+      "source_host": "NFG-HR-WS03",
+      "source_ip": "10.10.20.22",
+      "parent_domain": "windows.com",
+      "first_query": "2026-10-09T12:10:45Z",
+      "last_query": "2026-10-09T12:10:45Z",
+      "window_seconds": 0,
+      "query_count": 1,
+      "txt_query_count": 0,
+      "unique_subdomain_count": 1,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 0,
+      "long_subdomain_ratio": 0.0,
+      "encoded_subdomain_count": 0,
+      "encoded_subdomain_ratio": 0.0,
+      "average_query_interval_seconds": null,
+      "risk_score": 0,
+      "priority": "LOW",
+      "indicator_count": 0,
+      "indicators": [],
+      "recommended_actions": [
+        "Retain for baseline comparison.",
+        "No containment action is recommended unless additional suspicious evidence appears."
+      ],
+      "analyst_assessment": "Observed DNS behavior remains within the configured low-priority range and is retained for baseline comparison.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    },
+    {
+      "source_host": "NFG-MKT-WS08",
+      "source_ip": "10.10.20.41",
+      "parent_domain": "example.net",
+      "first_query": "2026-10-09T12:13:01Z",
+      "last_query": "2026-10-09T12:13:14Z",
+      "window_seconds": 13,
+      "query_count": 2,
+      "txt_query_count": 0,
+      "unique_subdomain_count": 2,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 0,
+      "long_subdomain_ratio": 0.0,
+      "encoded_subdomain_count": 0,
+      "encoded_subdomain_ratio": 0.0,
+      "average_query_interval_seconds": 13.0,
+      "risk_score": 0,
+      "priority": "LOW",
+      "indicator_count": 0,
+      "indicators": [],
+      "recommended_actions": [
+        "Retain for baseline comparison.",
+        "No containment action is recommended unless additional suspicious evidence appears."
+      ],
+      "analyst_assessment": "Observed DNS behavior remains within the configured low-priority range and is retained for baseline comparison.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "source_host": "NFG-FIN-WS07",
+      "source_ip": "10.10.20.17",
+      "parent_domain": "tunnel-demo.example",
+      "first_query": "2026-10-09T12:14:02Z",
+      "last_query": "2026-10-09T12:15:02Z",
+      "window_seconds": 60,
+      "query_count": 16,
+      "txt_query_count": 5,
+      "unique_subdomain_count": 16,
+      "unique_subdomain_ratio": 1.0,
+      "long_subdomain_count": 16,
+      "long_subdomain_ratio": 1.0,
+      "encoded_subdomain_count": 16,
+      "encoded_subdomain_ratio": 1.0,
+      "average_query_interval_seconds": 4.0,
+      "risk_score": 100,
+      "priority": "CRITICAL",
+      "indicator_count": 6,
+      "indicators": [
+        {
+          "indicator": "High query frequency",
+          "points": 20,
+          "evidence": "16 queries were observed with an average interval of 4.0 seconds."
+        },
+        {
+          "indicator": "Long subdomain labels",
+          "points": 15,
+          "evidence": "16 of 16 subdomain labels were at least 18 characters long."
+        },
+        {
+          "indicator": "High unique-subdomain ratio",
+          "points": 20,
+          "evidence": "Unique-subdomain ratio was 100%."
+        },
+        {
+          "indicator": "Multiple TXT queries",
+          "points": 15,
+          "evidence": "5 TXT queries were observed for the parent domain."
+        },
+        {
+          "indicator": "Encoded-looking subdomains",
+          "points": 20,
+          "evidence": "100% of observed subdomain labels matched the configured hexadecimal-looking pattern."
+        },
+        {
+          "indicator": "Single parent-domain concentration",
+          "points": 10,
+          "evidence": "16 queries were concentrated on tunnel-demo.example."
+        }
+      ],
+      "recommended_actions": [
+        "Preserve DNS resolver and endpoint telemetry.",
+        "Review the affected host for suspicious processes or scripts generating DNS activity.",
+        "Review the parent domain and destination infrastructure using approved threat-intelligence sources.",
+        "Compare DNS activity with endpoint and network telemetry.",
+        "Consider temporarily restricting the affected host if additional compromise evidence is confirmed.",
+        "Escalate to SOC Tier 2 or Incident Response."
+      ],
+      "analyst_assessment": "Multiple DNS behavioral indicators are present and warrant investigation for possible DNS tunneling or covert communications. The DNS telemetry alone does not prove command-and-control, data exfiltration, or the contents of any information that may have been transported.",
+      "analyst_guardrails": [
+        "Do not classify long DNS queries as tunneling without additional behavioral evidence.",
+        "Do not classify TXT record usage as malicious by itself.",
+        "Do not assume high subdomain diversity is malicious because legitimate cloud and security applications may generate changing hostnames.",
+        "Do not classify hexadecimal-looking labels as encoded exfiltration without supporting endpoint or network evidence.",
+        "Treat the final score as investigation priority rather than proof of command-and-control or data exfiltration.",
+        "Distinguish observed DNS behavior from analyst hypotheses."
+      ],
+      "finding_id": "DNS-001",
+      "finding_type": "Possible DNS Tunneling Activity"
+    }
+  ]
+}
