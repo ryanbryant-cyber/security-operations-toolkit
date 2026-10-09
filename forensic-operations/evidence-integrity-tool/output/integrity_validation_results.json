@@ -1,0 +1,53 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 11,
+  "checks_passed": 11,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "Integrity verification summary",
+      "passed": true
+    },
+    {
+      "check": "Evidence integrity states match expected ground truth",
+      "passed": true
+    },
+    {
+      "check": "Evidence IDs remain mapped to the correct files",
+      "passed": true
+    },
+    {
+      "check": "Evidence manifest count",
+      "passed": true
+    },
+    {
+      "check": "Original sample-evidence package remains unchanged",
+      "mismatches": [],
+      "passed": true
+    },
+    {
+      "check": "Altered authentication evidence produces SHA-256 mismatch",
+      "passed": true
+    },
+    {
+      "check": "Removed network evidence is classified as MISSING",
+      "passed": true
+    },
+    {
+      "check": "All VERIFIED evidence matches the registered SHA-256 hash",
+      "passed": true
+    },
+    {
+      "check": "Chain-of-custody contains registration and verification history",
+      "passed": true
+    },
+    {
+      "check": "Each evidence item contains Collected, Registered, and Verified custody actions",
+      "passed": true
+    },
+    {
+      "check": "Case identity remains consistent across evidence records",
+      "passed": true
+    }
+  ]
+}
