@@ -315,6 +315,38 @@ Key project outcomes:
 
 [View the MITRE ATT&CK Detection Coverage & Gap Analysis Tool](detection-coverage/attack-coverage-analyzer/)
 
+### Network Detection
+
+#### DNS Tunneling Detection & Triage Lab
+
+Defensive network-detection project focused on identifying DNS behavior that may indicate covert tunneling or command-and-control activity.
+
+The project analyzes synthetic DNS telemetry from three workstations and compares normal DNS behavior against higher-interest patterns involving rapid query frequency, long changing subdomains, TXT record usage, high unique-subdomain ratios, and encoded-looking labels.
+
+Key project outcomes:
+
+- Analyzed 29 synthetic DNS events
+- Evaluated 3 source hosts
+- Evaluated 7 parent domains
+- Analyzed 10 host/domain behavior groups
+- Generated 1 analyst finding
+- Identified 16 higher-interest DNS queries from `NFG-FIN-WS07`
+- Detected 5 TXT queries
+- Measured a 100% unique-subdomain ratio
+- Measured a 100% encoded-looking subdomain ratio
+- Measured a 4.0-second average query interval
+- Correlated 6 independent DNS behavioral indicators
+- Assigned a CRITICAL investigation priority
+- Kept normal HR and Marketing DNS traffic out of the analyst queue
+- Generated structured JSON and CSV reports
+- Preserved uncertainty around DNS tunneling, command-and-control, and data exfiltration
+- Implemented an independent validation harness
+- Passed 10 of 10 validation checks
+
+**Skills:** DNS Security | DNS Tunneling Detection | Network Security Monitoring | Behavioral Detection | Command-and-Control Analysis | DNS Query Analysis | TXT Record Analysis | Subdomain Analysis | Network Detection Engineering | SOC Triage | Risk Scoring | Python | Security Automation | Validation Testing
+
+[View the DNS Tunneling Detection & Triage Lab](network-detection/dns-tunneling-detection-lab/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
