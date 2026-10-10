@@ -1,0 +1,96 @@
+{
+  "required_fields": [
+    "timestamp",
+    "event_source",
+    "event_category",
+    "host",
+    "source_ip",
+    "action",
+    "outcome",
+    "severity",
+    "raw_event_id"
+  ],
+
+  "optional_fields": [
+    "user",
+    "destination_ip"
+  ],
+
+  "ip_fields": [
+    "source_ip",
+    "destination_ip"
+  ],
+
+  "duplicate_identity_fields": [
+    "event_source",
+    "raw_event_id"
+  ],
+
+  "severity_normalization": {
+    "Windows Security": {
+      "Information": "Informational",
+      "Warning": "Medium",
+      "Error": "High",
+      "Critical": "Critical"
+    },
+
+    "Microsoft Entra ID": {
+      "Low": "Low",
+      "Medium": "Medium",
+      "High": "High"
+    },
+
+    "Endpoint Detection": {
+      "Low": "Low",
+      "Medium": "Medium",
+      "High": "High",
+      "Critical": "Critical"
+    },
+
+    "Firewall": {
+      "Low": "Low",
+      "Medium": "Medium",
+      "High": "High",
+      "Critical": "Critical"
+    },
+
+    "DNS Resolver": {
+      "Informational": "Informational",
+      "Warning": "Medium",
+      "High": "High",
+      "Critical": "Critical"
+    }
+  },
+
+  "allowed_normalized_severities": [
+    "Informational",
+    "Low",
+    "Medium",
+    "High",
+    "Critical"
+  ],
+
+  "quality_penalties": {
+    "missing_required_field": 25,
+    "invalid_timestamp": 20,
+    "invalid_ip_address": 20,
+    "invalid_severity": 15,
+    "duplicate_event": 10,
+    "unknown_event_source": 40
+  },
+
+  "fatal_issues": [
+    "missing_required_field",
+    "invalid_timestamp",
+    "invalid_ip_address",
+    "invalid_severity",
+    "unknown_event_source"
+  ],
+
+  "nonfatal_issues": [
+    "duplicate_event"
+  ],
+
+  "minimum_quality_score": 0,
+  "maximum_quality_score": 100
+}
