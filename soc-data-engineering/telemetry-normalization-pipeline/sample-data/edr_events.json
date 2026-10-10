@@ -1,0 +1,65 @@
+{
+  "source": "Endpoint Detection",
+  "events": [
+    {
+      "event_time": "2026-10-10T13:04:19Z",
+      "host_name": "NFG-FIN-WS07",
+      "user_name": "finance.user",
+      "remote_ip": "203.0.113.88",
+      "local_ip": "10.10.20.17",
+      "process_name": "powershell.exe",
+      "event_action": "Process Start",
+      "disposition": "Detected",
+      "severity": "High",
+      "event_id": "EDR-3001"
+    },
+    {
+      "event_time": "2026-10-10T13:04:46Z",
+      "host_name": "NFG-FIN-WS07",
+      "user_name": "finance.user",
+      "remote_ip": "203.0.113.88",
+      "local_ip": "10.10.20.17",
+      "process_name": "rundll32.exe",
+      "event_action": "Process Start",
+      "disposition": "Detected",
+      "severity": "Medium",
+      "event_id": "EDR-3002"
+    },
+    {
+      "event_time": "2026-10-10T13:09:02Z",
+      "host_name": "NFG-MKT-WS08",
+      "user_name": "marketing.user",
+      "remote_ip": "",
+      "local_ip": "10.10.20.41",
+      "process_name": "powershell.exe",
+      "event_action": "Process Start",
+      "disposition": "Allowed",
+      "severity": "Low",
+      "event_id": "EDR-3003"
+    },
+    {
+      "event_time": "2026-10-10T13:14:55Z",
+      "host_name": "NFG-HR-WS03",
+      "user_name": "alex.employee",
+      "remote_ip": "",
+      "local_ip": "10.10.20.22",
+      "process_name": "outlook.exe",
+      "event_action": "Process Start",
+      "disposition": "Allowed",
+      "severity": "Low",
+      "event_id": "EDR-3004"
+    },
+    {
+      "event_time": "2026-10-10T13:17:21Z",
+      "host_name": "NFG-ADMIN-WS01",
+      "user_name": "it.admin",
+      "remote_ip": "198.51.100.15",
+      "local_ip": "10.10.20.10",
+      "process_name": "mmc.exe",
+      "event_action": "Process Start",
+      "disposition": "Allowed",
+      "severity": "Low",
+      "event_id": "EDR-3005"
+    }
+  ]
+}
