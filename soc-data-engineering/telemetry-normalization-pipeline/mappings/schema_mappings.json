@@ -1,0 +1,82 @@
+{
+  "normalized_schema": [
+    "timestamp",
+    "event_source",
+    "event_category",
+    "host",
+    "user",
+    "source_ip",
+    "destination_ip",
+    "action",
+    "outcome",
+    "severity",
+    "raw_event_id"
+  ],
+
+  "sources": {
+    "Windows Security": {
+      "timestamp": "TimeCreated",
+      "host": "Computer",
+      "user": "TargetUserName",
+      "source_ip": "IpAddress",
+      "destination_ip": "DestinationIp",
+      "action": "Action",
+      "outcome": "Result",
+      "severity": "Level",
+      "raw_event_id": "EventRecordID",
+      "event_category": "Authentication"
+    },
+
+    "Microsoft Entra ID": {
+      "timestamp": "createdDateTime",
+      "host": "deviceName",
+      "user": "userPrincipalName",
+      "source_ip": "ipAddress",
+      "destination_ip": "resourceIp",
+      "action": "operation",
+      "outcome": "status",
+      "severity": "riskLevel",
+      "raw_event_id": "id",
+      "event_category": "Authentication"
+    },
+
+    "Endpoint Detection": {
+      "timestamp": "event_time",
+      "host": "host_name",
+      "user": "user_name",
+      "source_ip": "local_ip",
+      "destination_ip": "remote_ip",
+      "action": "event_action",
+      "outcome": "disposition",
+      "severity": "severity",
+      "raw_event_id": "event_id",
+      "event_category": "Endpoint"
+    },
+
+    "Firewall": {
+      "timestamp": "time",
+      "host": "device",
+      "user": "account",
+      "source_ip": "src_ip",
+      "destination_ip": "dst_ip",
+      "action": "rule_action",
+      "outcome": "result",
+      "severity": "priority",
+      "raw_event_id": "log_id",
+      "event_category": "Network"
+    },
+
+    "DNS Resolver": {
+      "timestamp": "event_time",
+      "host": "client_host",
+      "user": null,
+      "source_ip": "client_ip",
+      "destination_ip": "response_ip",
+      "action": "record_type",
+      "outcome": "response_code",
+      "severity": "severity_level",
+      "raw_event_id": "dns_event_id",
+      "event_category": "DNS"
+    }
+  }
+}
