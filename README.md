@@ -380,6 +380,39 @@ Key project outcomes:
 
 [View the Digital Evidence Integrity & Chain-of-Custody Tool](forensic-operations/evidence-integrity-tool/)
 
+### SOC Data Engineering
+
+#### SOC Telemetry Normalization & Data Quality Pipeline
+
+SOC engineering project focused on transforming heterogeneous security telemetry into a consistent, validated schema suitable for SIEM analysis, threat hunting, dashboards, and detection engineering.
+
+The Python pipeline ingests synthetic telemetry from Windows Security, Microsoft Entra ID, Endpoint Detection, Firewall, and DNS sources, then performs schema mapping, field normalization, timestamp standardization, identity normalization, IP validation, severity normalization, duplicate detection, event-quality scoring, and source-level telemetry health analysis.
+
+Key project outcomes:
+
+- Ingested 25 synthetic security events from 5 telemetry sources
+- Normalized vendor-specific schemas into 11 common SOC fields
+- Standardized usernames, hostnames, timestamps, IP addresses, and severity values
+- Distinguished required fields from source-specific optional fields
+- Detected 1 duplicate Windows Security event
+- Detected 1 Entra ID event with a missing required host
+- Detected 1 Firewall event with an invalid IP address
+- Detected 1 Firewall event with a missing event identifier
+- Produced 21 clean analyst-ready normalized events
+- Preserved duplicate and invalid telemetry in separate reports
+- Calculated event-level data-quality scores
+- Calculated source-level telemetry-health scores
+- Produced an overall telemetry quality score of **92.96 — GOOD**
+- Identified DNS and EDR telemetry as **EXCELLENT**
+- Identified Firewall telemetry as the lowest-quality source at **81.7 — FAIR**
+- Generated JSON and CSV outputs for analysis and reporting
+- Implemented independent expected-result validation
+- Passed **15 of 15 validation checks**
+
+**Skills:** SOC Engineering | SIEM Data Engineering | Security Telemetry | Log Normalization | Schema Mapping | ETL | Data Quality | Event Validation | Duplicate Detection | Telemetry Health Monitoring | Python | JSON | CSV | Security Automation | Validation Testing
+
+[View the SOC Telemetry Normalization & Data Quality Pipeline](soc-data-engineering/telemetry-normalization-pipeline/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
