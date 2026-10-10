@@ -2,6 +2,7 @@ import csv
 import ipaddress
 import json
 
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -28,6 +29,36 @@ QUALITY_RULES_FILE = (
 OUTPUT_DIR = (
     BASE_DIR
     / "output"
+)
+
+NORMALIZED_JSON = (
+    OUTPUT_DIR
+    / "normalized_events.json"
+)
+
+NORMALIZED_CSV = (
+    OUTPUT_DIR
+    / "normalized_events.csv"
+)
+
+INVALID_JSON = (
+    OUTPUT_DIR
+    / "invalid_events.json"
+)
+
+DUPLICATE_JSON = (
+    OUTPUT_DIR
+    / "duplicate_events.json"
+)
+
+QUALITY_REPORT_JSON = (
+    OUTPUT_DIR
+    / "telemetry_quality_report.json"
+)
+
+QUALITY_SUMMARY_CSV = (
+    OUTPUT_DIR
+    / "telemetry_quality_summary.csv"
 )
 
 
@@ -304,13 +335,13 @@ def determine_status(
         ]
     )
 
-    event_issue_types = {
+    issue_types = {
         issue["issue_type"]
         for issue in issues
     }
 
     if fatal_issues.intersection(
-        event_issue_types
+        issue_types
     ):
         return "INVALID"
 
@@ -331,47 +362,59 @@ def normalize_event(
             source_mapping,
             "timestamp"
         ),
-        "event_source": source_name,
+
+        "event_source": (
+            source_name
+        ),
+
         "event_category": (
             source_mapping.get(
                 "event_category"
             )
         ),
+
         "host": get_raw_value(
             raw_event,
             source_mapping,
             "host"
         ),
+
         "user": get_raw_value(
             raw_event,
             source_mapping,
             "user"
         ),
+
         "source_ip": get_raw_value(
             raw_event,
             source_mapping,
             "source_ip"
         ),
+
         "destination_ip": get_raw_value(
             raw_event,
             source_mapping,
             "destination_ip"
         ),
+
         "action": get_raw_value(
             raw_event,
             source_mapping,
             "action"
         ),
+
         "outcome": get_raw_value(
             raw_event,
             source_mapping,
             "outcome"
         ),
+
         "severity": get_raw_value(
             raw_event,
             source_mapping,
             "severity"
         ),
+
         "raw_event_id": get_raw_value(
             raw_event,
             source_mapping,
@@ -423,7 +466,9 @@ def normalize_event(
 
     normalized_source_ip = (
         normalize_ip(
-            raw_values["source_ip"]
+            raw_values[
+                "source_ip"
+            ]
         )
     )
 
@@ -474,14 +519,18 @@ def normalize_event(
     normalized_severity = (
         normalize_severity(
             source_name,
-            raw_values["severity"],
+            raw_values[
+                "severity"
+            ],
             quality_rules
         )
     )
 
     if (
         not is_blank(
-            raw_values["severity"]
+            raw_values[
+                "severity"
+            ]
         )
         and normalized_severity
         is None
@@ -491,7 +540,8 @@ def normalize_event(
             "invalid_severity",
             "severity",
             (
-                f"Unsupported severity value: "
+                f"Unsupported severity "
+                f"value: "
                 f"{raw_values['severity']}"
             )
         )
@@ -500,11 +550,13 @@ def normalize_event(
         "timestamp": (
             normalized_timestamp
         ),
+
         "event_source": (
             normalize_text(
                 source_name
             )
         ),
+
         "event_category": (
             normalize_text(
                 raw_values[
@@ -512,27 +564,35 @@ def normalize_event(
                 ]
             )
         ),
+
         "host": normalize_host(
             raw_values["host"]
         ),
+
         "user": normalize_user(
             raw_values["user"]
         ),
+
         "source_ip": (
             normalized_source_ip
         ),
+
         "destination_ip": (
             normalized_destination_ip
         ),
+
         "action": normalize_text(
             raw_values["action"]
         ),
+
         "outcome": normalize_text(
             raw_values["outcome"]
         ),
+
         "severity": (
             normalized_severity
         ),
+
         "raw_event_id": (
             normalize_text(
                 raw_values[
@@ -596,8 +656,9 @@ def normalize_all_telemetry(
                     "unknown_event_source",
                     "event_source",
                     (
-                        f"No schema mapping exists "
-                        f"for source '{source_name}'."
+                        f"No schema mapping "
+                        f"exists for source "
+                        f"'{source_name}'."
                     )
                 )
 
@@ -607,23 +668,31 @@ def normalize_all_telemetry(
                             "file_name"
                         ]
                     ),
+
                     "source_event_number": (
                         event_number
                     ),
+
                     "normalized_event": {
                         "event_source": (
                             source_name
                         )
                     },
+
                     "issues": issues,
+
                     "quality_score": (
                         calculate_quality_score(
                             issues,
                             quality_rules
                         )
                     ),
+
                     "status": "INVALID",
-                    "raw_event": raw_event
+
+                    "raw_event": (
+                        raw_event
+                    )
                 })
 
                 continue
@@ -646,21 +715,688 @@ def normalize_all_telemetry(
                         "file_name"
                     ]
                 ),
+
                 "source_event_number": (
                     event_number
                 ),
+
                 "normalized_event": (
                     normalized_event
                 ),
+
                 "issues": issues,
+
                 "quality_score": (
                     quality_score
                 ),
-                "status": status,
-                "raw_event": raw_event
+
+                "status": (
+                    status
+                ),
+
+                "raw_event": (
+                    raw_event
+                )
             })
 
     return results
+
+
+def apply_duplicate_detection(
+    results,
+    quality_rules
+):
+    seen = set()
+
+    identity_fields = (
+        quality_rules[
+            "duplicate_identity_fields"
+        ]
+    )
+
+    for result in results:
+        event = result[
+            "normalized_event"
+        ]
+
+        identity_values = [
+            event.get(
+                field
+            )
+            for field in identity_fields
+        ]
+
+        if any(
+            is_blank(value)
+            for value in identity_values
+        ):
+            continue
+
+        identity = tuple(
+            identity_values
+        )
+
+        if identity in seen:
+            add_issue(
+                result[
+                    "issues"
+                ],
+                "duplicate_event",
+                (
+                    "+".join(
+                        identity_fields
+                    )
+                ),
+                (
+                    "Event identity already "
+                    "appeared earlier in the "
+                    "telemetry stream."
+                )
+            )
+
+            result[
+                "quality_score"
+            ] = calculate_quality_score(
+                result["issues"],
+                quality_rules
+            )
+
+            if (
+                result["status"]
+                != "INVALID"
+            ):
+                result[
+                    "status"
+                ] = "DUPLICATE"
+
+        else:
+            seen.add(
+                identity
+            )
+
+    return results
+
+
+def quality_label(score):
+    if score >= 95:
+        return "EXCELLENT"
+
+    if score >= 85:
+        return "GOOD"
+
+    if score >= 70:
+        return "FAIR"
+
+    return "POOR"
+
+
+def calculate_source_summary(
+    source_name,
+    source_results
+):
+    total = len(
+        source_results
+    )
+
+    valid = sum(
+        1
+        for result in source_results
+        if result["status"]
+        == "VALID"
+    )
+
+    duplicates = sum(
+        1
+        for result in source_results
+        if result["status"]
+        == "DUPLICATE"
+    )
+
+    invalid = sum(
+        1
+        for result in source_results
+        if result["status"]
+        == "INVALID"
+    )
+
+    if total:
+        average_event_score = round(
+            sum(
+                result[
+                    "quality_score"
+                ]
+                for result
+                in source_results
+            )
+            / total,
+            2
+        )
+
+        accepted_event_rate = round(
+            (
+                valid
+                / total
+            )
+            * 100,
+            2
+        )
+
+    else:
+        average_event_score = 0.0
+        accepted_event_rate = 0.0
+
+    source_quality_score = round(
+        (
+            average_event_score
+            * 0.70
+        )
+        +
+        (
+            accepted_event_rate
+            * 0.30
+        ),
+        2
+    )
+
+    return {
+        "source": source_name,
+        "total_events": total,
+        "normalized_events": valid,
+        "duplicate_events": duplicates,
+        "invalid_events": invalid,
+        "average_event_score": (
+            average_event_score
+        ),
+        "accepted_event_rate": (
+            accepted_event_rate
+        ),
+        "source_quality_score": (
+            source_quality_score
+        ),
+        "quality_label": (
+            quality_label(
+                source_quality_score
+            )
+        )
+    }
+
+
+def build_quality_report(
+    results
+):
+    source_names = sorted({
+        result[
+            "normalized_event"
+        ].get(
+            "event_source",
+            "UNKNOWN"
+        )
+        for result in results
+    })
+
+    source_summaries = []
+
+    for source_name in source_names:
+        source_results = [
+            result
+            for result in results
+            if result[
+                "normalized_event"
+            ].get(
+                "event_source",
+                "UNKNOWN"
+            )
+            == source_name
+        ]
+
+        source_summaries.append(
+            calculate_source_summary(
+                source_name,
+                source_results
+            )
+        )
+
+    total = len(
+        results
+    )
+
+    valid = sum(
+        1
+        for result in results
+        if result["status"]
+        == "VALID"
+    )
+
+    duplicates = sum(
+        1
+        for result in results
+        if result["status"]
+        == "DUPLICATE"
+    )
+
+    invalid = sum(
+        1
+        for result in results
+        if result["status"]
+        == "INVALID"
+    )
+
+    if total:
+        average_event_score = round(
+            sum(
+                result[
+                    "quality_score"
+                ]
+                for result in results
+            )
+            / total,
+            2
+        )
+
+        accepted_event_rate = round(
+            (
+                valid
+                / total
+            )
+            * 100,
+            2
+        )
+
+    else:
+        average_event_score = 0.0
+        accepted_event_rate = 0.0
+
+    overall_quality_score = round(
+        (
+            average_event_score
+            * 0.70
+        )
+        +
+        (
+            accepted_event_rate
+            * 0.30
+        ),
+        2
+    )
+
+    issue_counter = Counter()
+
+    for result in results:
+        for issue in result[
+            "issues"
+        ]:
+            issue_counter[
+                issue[
+                    "issue_type"
+                ]
+            ] += 1
+
+    return {
+        "generated_timestamp": (
+            utc_now()
+        ),
+
+        "scoring_method": {
+            "average_event_score_weight": (
+                0.70
+            ),
+            "accepted_event_rate_weight": (
+                0.30
+            ),
+            "description": (
+                "Source and overall quality "
+                "scores combine average "
+                "event quality with the "
+                "percentage of events accepted "
+                "into the clean normalized "
+                "dataset."
+            )
+        },
+
+        "overall": {
+            "raw_events": total,
+            "normalized_events": valid,
+            "duplicate_events": (
+                duplicates
+            ),
+            "invalid_events": invalid,
+            "average_event_score": (
+                average_event_score
+            ),
+            "accepted_event_rate": (
+                accepted_event_rate
+            ),
+            "overall_quality_score": (
+                overall_quality_score
+            ),
+            "quality_label": (
+                quality_label(
+                    overall_quality_score
+                )
+            )
+        },
+
+        "issue_counts": dict(
+            issue_counter
+        ),
+
+        "sources": (
+            source_summaries
+        )
+    }
+
+
+def export_json(
+    file_path,
+    data
+):
+    with open(
+        file_path,
+        "w",
+        encoding="utf-8"
+    ) as file:
+        json.dump(
+            data,
+            file,
+            indent=2
+        )
+
+
+def export_normalized_events(
+    results,
+    mappings
+):
+    valid_events = [
+        result[
+            "normalized_event"
+        ]
+        for result in results
+        if result["status"]
+        == "VALID"
+    ]
+
+    export_json(
+        NORMALIZED_JSON,
+        {
+            "generated_timestamp": (
+                utc_now()
+            ),
+            "event_count": len(
+                valid_events
+            ),
+            "schema": mappings[
+                "normalized_schema"
+            ],
+            "events": valid_events
+        }
+    )
+
+    with open(
+        NORMALIZED_CSV,
+        "w",
+        encoding="utf-8",
+        newline=""
+    ) as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=mappings[
+                "normalized_schema"
+            ]
+        )
+
+        writer.writeheader()
+
+        for event in valid_events:
+            writer.writerow(
+                event
+            )
+
+    return valid_events
+
+
+def export_problem_events(
+    results
+):
+    invalid_events = [
+        result
+        for result in results
+        if result["status"]
+        == "INVALID"
+    ]
+
+    duplicate_events = [
+        result
+        for result in results
+        if result["status"]
+        == "DUPLICATE"
+    ]
+
+    export_json(
+        INVALID_JSON,
+        {
+            "generated_timestamp": (
+                utc_now()
+            ),
+            "invalid_event_count": (
+                len(
+                    invalid_events
+                )
+            ),
+            "events": invalid_events
+        }
+    )
+
+    export_json(
+        DUPLICATE_JSON,
+        {
+            "generated_timestamp": (
+                utc_now()
+            ),
+            "duplicate_event_count": (
+                len(
+                    duplicate_events
+                )
+            ),
+            "events": duplicate_events
+        }
+    )
+
+    return (
+        invalid_events,
+        duplicate_events
+    )
+
+
+def export_quality_report(
+    report
+):
+    export_json(
+        QUALITY_REPORT_JSON,
+        report
+    )
+
+    fieldnames = [
+        "source",
+        "total_events",
+        "normalized_events",
+        "duplicate_events",
+        "invalid_events",
+        "average_event_score",
+        "accepted_event_rate",
+        "source_quality_score",
+        "quality_label"
+    ]
+
+    with open(
+        QUALITY_SUMMARY_CSV,
+        "w",
+        encoding="utf-8",
+        newline=""
+    ) as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=fieldnames
+        )
+
+        writer.writeheader()
+
+        for source in report[
+            "sources"
+        ]:
+            writer.writerow(
+                source
+            )
+
+
+def print_report(
+    telemetry_sources,
+    mappings,
+    quality_rules,
+    results,
+    report
+):
+    overall = report[
+        "overall"
+    ]
+
+    print()
+    print("=" * 78)
+
+    print(
+        "SOC TELEMETRY NORMALIZATION "
+        "AND DATA QUALITY PIPELINE"
+    )
+
+    print("=" * 78)
+
+    print(
+        f"Telemetry sources loaded: "
+        f"{len(telemetry_sources)}"
+    )
+
+    print(
+        f"Raw events loaded:        "
+        f"{overall['raw_events']}"
+    )
+
+    print(
+        f"Schema fields defined:    "
+        f"{len(mappings['normalized_schema'])}"
+    )
+
+    print(
+        f"Required fields defined:  "
+        f"{len(quality_rules['required_fields'])}"
+    )
+
+    print("=" * 78)
+    print("PIPELINE RESULTS")
+    print("=" * 78)
+
+    print(
+        f"Clean normalized events:  "
+        f"{overall['normalized_events']}"
+    )
+
+    print(
+        f"Duplicate events:         "
+        f"{overall['duplicate_events']}"
+    )
+
+    print(
+        f"Invalid events:           "
+        f"{overall['invalid_events']}"
+    )
+
+    print(
+        f"Average event score:      "
+        f"{overall['average_event_score']}"
+    )
+
+    print(
+        f"Accepted event rate:      "
+        f"{overall['accepted_event_rate']}%"
+    )
+
+    print(
+        f"Overall quality score:    "
+        f"{overall['overall_quality_score']}"
+    )
+
+    print(
+        f"Overall quality rating:   "
+        f"{overall['quality_label']}"
+    )
+
+    print("=" * 78)
+    print("SOURCE QUALITY")
+    print("=" * 78)
+
+    for source in report[
+        "sources"
+    ]:
+        print(
+            f"{source['source']:<24} "
+            f"score="
+            f"{source['source_quality_score']:<6} "
+            f"{source['quality_label']:<10} "
+            f"clean="
+            f"{source['normalized_events']} "
+            f"dup="
+            f"{source['duplicate_events']} "
+            f"invalid="
+            f"{source['invalid_events']}"
+        )
+
+    print("=" * 78)
+    print("DATA QUALITY ISSUES")
+    print("=" * 78)
+
+    for issue, count in sorted(
+        report[
+            "issue_counts"
+        ].items()
+    ):
+        print(
+            f"{issue:<28} "
+            f"{count}"
+        )
+
+    print("=" * 78)
+    print("OUTPUT FILES")
+    print("=" * 78)
+
+    print(
+        f"Normalized JSON: "
+        f"{NORMALIZED_JSON}"
+    )
+
+    print(
+        f"Normalized CSV:  "
+        f"{NORMALIZED_CSV}"
+    )
+
+    print(
+        f"Invalid events:  "
+        f"{INVALID_JSON}"
+    )
+
+    print(
+        f"Duplicates:      "
+        f"{DUPLICATE_JSON}"
+    )
+
+    print(
+        f"Quality report:  "
+        f"{QUALITY_REPORT_JSON}"
+    )
+
+    print(
+        f"Quality summary: "
+        f"{QUALITY_SUMMARY_CSV}"
+    )
+
+    print("=" * 78)
 
 
 def main():
@@ -676,120 +1412,41 @@ def main():
         load_telemetry()
     )
 
-    total_events = sum(
-        len(source["events"])
-        for source in telemetry_sources
-    )
-
     results = normalize_all_telemetry(
         telemetry_sources,
         mappings,
         quality_rules
     )
 
-    valid_count = sum(
-        1
-        for result in results
-        if result["status"]
-        == "VALID"
+    results = apply_duplicate_detection(
+        results,
+        quality_rules
     )
 
-    invalid_count = (
-        len(results)
-        - valid_count
+    export_normalized_events(
+        results,
+        mappings
     )
 
-    print()
-    print("=" * 72)
-    print(
-        "SOC TELEMETRY NORMALIZATION "
-        "AND DATA QUALITY PIPELINE"
-    )
-    print("=" * 72)
-
-    print(
-        f"Telemetry sources loaded: "
-        f"{len(telemetry_sources)}"
+    export_problem_events(
+        results
     )
 
-    print(
-        f"Raw events loaded:        "
-        f"{total_events}"
+    report = build_quality_report(
+        results
     )
 
-    print(
-        f"Schema fields defined:    "
-        f"{len(mappings['normalized_schema'])}"
+    export_quality_report(
+        report
     )
 
-    print(
-        f"Required fields defined:  "
-        f"{len(quality_rules['required_fields'])}"
+    print_report(
+        telemetry_sources,
+        mappings,
+        quality_rules,
+        results,
+        report
     )
-
-    print("=" * 72)
-
-    for source in telemetry_sources:
-        print(
-            f"{source['source']:<24} "
-            f"{len(source['events'])} events "
-            f"({source['file_name']})"
-        )
-
-    print("=" * 72)
-    print("PRELIMINARY QUALITY RESULTS")
-    print("=" * 72)
-
-    print(
-        f"Events normalized:        "
-        f"{len(results)}"
-    )
-
-    print(
-        f"Preliminary valid:        "
-        f"{valid_count}"
-    )
-
-    print(
-        f"Preliminary invalid:      "
-        f"{invalid_count}"
-    )
-
-    print("=" * 72)
-
-    for result in results:
-        if result["status"] != "INVALID":
-            continue
-
-        event = result[
-            "normalized_event"
-        ]
-
-        event_id = (
-            event.get(
-                "raw_event_id"
-            )
-            or "(missing ID)"
-        )
-
-        issue_text = ", ".join(
-            (
-                f"{issue['issue_type']}"
-                f":{issue['field']}"
-            )
-            for issue in result[
-                "issues"
-            ]
-        )
-
-        print(
-            f"{event.get('event_source', 'UNKNOWN'):<24} "
-            f"{event_id:<14} "
-            f"score={result['quality_score']:<3} "
-            f"{issue_text}"
-        )
-
-    print("=" * 72)
 
 
 if __name__ == "__main__":
