@@ -1,0 +1,117 @@
+{
+  "generated_timestamp": "2026-10-10T17:15:28.935833Z",
+  "invalid_event_count": 3,
+  "events": [
+    {
+      "source_file": "entra_signins.json",
+      "source_event_number": 5,
+      "normalized_event": {
+        "timestamp": "2026-10-10T13:12:33Z",
+        "event_source": "Microsoft Entra ID",
+        "event_category": "Authentication",
+        "host": null,
+        "user": "contractor.user",
+        "source_ip": "203.0.113.55",
+        "destination_ip": "20.190.128.18",
+        "action": "User Sign-in",
+        "outcome": "Success",
+        "severity": "High",
+        "raw_event_id": "ENTRA-2005"
+      },
+      "issues": [
+        {
+          "issue_type": "missing_required_field",
+          "field": "host",
+          "details": "Required normalized field 'host' has no usable source value."
+        }
+      ],
+      "quality_score": 75,
+      "status": "INVALID",
+      "raw_event": {
+        "createdDateTime": "2026-10-10T13:12:33Z",
+        "userPrincipalName": "contractor.user@northstar.example",
+        "deviceName": "",
+        "ipAddress": "203.0.113.55",
+        "resourceIp": "20.190.128.18",
+        "operation": "User Sign-in",
+        "status": "Success",
+        "riskLevel": "High",
+        "id": "ENTRA-2005"
+      }
+    },
+    {
+      "source_file": "firewall_events.json",
+      "source_event_number": 4,
+      "normalized_event": {
+        "timestamp": "2026-10-10T13:15:09Z",
+        "event_source": "Firewall",
+        "event_category": "Network",
+        "host": "NFG-LAB-01",
+        "user": "lab.user",
+        "source_ip": null,
+        "destination_ip": "203.0.113.20",
+        "action": "Allow",
+        "outcome": "Success",
+        "severity": "Medium",
+        "raw_event_id": "FW-4004"
+      },
+      "issues": [
+        {
+          "issue_type": "invalid_ip_address",
+          "field": "source_ip",
+          "details": "Invalid source IP: 999.10.20.15"
+        }
+      ],
+      "quality_score": 80,
+      "status": "INVALID",
+      "raw_event": {
+        "time": "2026-10-10T13:15:09Z",
+        "src_ip": "999.10.20.15",
+        "dst_ip": "203.0.113.20",
+        "device": "NFG-LAB-01",
+        "account": "lab.user",
+        "rule_action": "Allow",
+        "result": "Success",
+        "priority": "Medium",
+        "log_id": "FW-4004"
+      }
+    },
+    {
+      "source_file": "firewall_events.json",
+      "source_event_number": 5,
+      "normalized_event": {
+        "timestamp": "2026-10-10T13:18:33Z",
+        "event_source": "Firewall",
+        "event_category": "Network",
+        "host": "NFG-ADMIN-WS01",
+        "user": "it.admin",
+        "source_ip": "10.10.20.10",
+        "destination_ip": "198.51.100.15",
+        "action": "Allow",
+        "outcome": "Success",
+        "severity": "Low",
+        "raw_event_id": null
+      },
+      "issues": [
+        {
+          "issue_type": "missing_required_field",
+          "field": "raw_event_id",
+          "details": "Required normalized field 'raw_event_id' has no usable source value."
+        }
+      ],
+      "quality_score": 75,
+      "status": "INVALID",
+      "raw_event": {
+        "time": "2026-10-10T13:18:33Z",
+        "src_ip": "10.10.20.10",
+        "dst_ip": "198.51.100.15",
+        "device": "NFG-ADMIN-WS01",
+        "account": "it.admin",
+        "rule_action": "Allow",
+        "result": "Success",
+        "priority": "Low",
+        "log_id": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "validation_status": "PASS",
+  "checks_run": 15,
+  "checks_passed": 15,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "Overall event counts",
+      "passed": true,
+      "details": "Expected 25 raw, 21 clean, 1 duplicate, and 3 invalid events."
+    },
+    {
+      "check": "Overall quality scoring",
+      "passed": true,
+      "details": "Expected overall quality score 92.96 with GOOD rating."
+    },
+    {
+      "check": "Quality issue counts",
+      "passed": true,
+      "details": "Expected 1 duplicate, 1 invalid IP, and 2 missing required fields."
+    },
+    {
+      "check": "Source-level quality metrics",
+      "passed": true,
+      "details": "All five telemetry sources must match expected counts, scores, and quality labels."
+    },
+    {
+      "check": "Normalized JSON output count",
+      "passed": true,
+      "details": "Clean normalized JSON must contain exactly 21 events."
+    },
+    {
+      "check": "Normalized CSV output count",
+      "passed": true,
+      "details": "Normalized CSV must contain 21 data rows."
+    },
+    {
+      "check": "Duplicate event identification",
+      "passed": true,
+      "details": "WIN-1002 must be identified as the single duplicate event."
+    },
+    {
+      "check": "Duplicate excluded from clean dataset",
+      "passed": true,
+      "details": "The original WIN-1002 should remain once while its duplicate copy is excluded."
+    },
+    {
+      "check": "Invalid event output count",
+      "passed": true,
+      "details": "Invalid event report must contain exactly three records."
+    },
+    {
+      "check": "Entra missing-host detection",
+      "passed": true,
+      "details": "ENTRA-2005 must fail because the required host is missing."
+    },
+    {
+      "check": "Firewall invalid-IP detection",
+      "passed": true,
+      "details": "FW-4004 must fail because 999.10.20.15 is not a valid IP."
+    },
+    {
+      "check": "Firewall missing-ID detection",
+      "passed": true,
+      "details": "The fifth firewall event must fail because its event ID is missing."
+    },
+    {
+      "check": "Identity and hostname normalization",
+      "passed": true,
+      "details": "Entra UPN must normalize to finance.user and hostname must remain standardized uppercase."
+    },
+    {
+      "check": "Severity value normalization",
+      "passed": true,
+      "details": "Windows Warning severity must normalize to Medium."
+    },
+    {
+      "check": "Optional DNS user field handling",
+      "passed": true,
+      "details": "DNS event should remain valid even though the user field does not apply."
+    }
+  ]
+}

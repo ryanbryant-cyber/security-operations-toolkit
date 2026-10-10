@@ -1,0 +1,80 @@
+{
+  "generated_timestamp": "2026-10-10T17:15:28.936474Z",
+  "scoring_method": {
+    "average_event_score_weight": 0.7,
+    "accepted_event_rate_weight": 0.3,
+    "description": "Source and overall quality scores combine average event quality with the percentage of events accepted into the clean normalized dataset."
+  },
+  "overall": {
+    "raw_events": 25,
+    "normalized_events": 21,
+    "duplicate_events": 1,
+    "invalid_events": 3,
+    "average_event_score": 96.8,
+    "accepted_event_rate": 84.0,
+    "overall_quality_score": 92.96,
+    "quality_label": "GOOD"
+  },
+  "issue_counts": {
+    "missing_required_field": 2,
+    "invalid_ip_address": 1,
+    "duplicate_event": 1
+  },
+  "sources": [
+    {
+      "source": "DNS Resolver",
+      "total_events": 5,
+      "normalized_events": 5,
+      "duplicate_events": 0,
+      "invalid_events": 0,
+      "average_event_score": 100.0,
+      "accepted_event_rate": 100.0,
+      "source_quality_score": 100.0,
+      "quality_label": "EXCELLENT"
+    },
+    {
+      "source": "Endpoint Detection",
+      "total_events": 5,
+      "normalized_events": 5,
+      "duplicate_events": 0,
+      "invalid_events": 0,
+      "average_event_score": 100.0,
+      "accepted_event_rate": 100.0,
+      "source_quality_score": 100.0,
+      "quality_label": "EXCELLENT"
+    },
+    {
+      "source": "Firewall",
+      "total_events": 5,
+      "normalized_events": 3,
+      "duplicate_events": 0,
+      "invalid_events": 2,
+      "average_event_score": 91.0,
+      "accepted_event_rate": 60.0,
+      "source_quality_score": 81.7,
+      "quality_label": "FAIR"
+    },
+    {
+      "source": "Microsoft Entra ID",
+      "total_events": 5,
+      "normalized_events": 4,
+      "duplicate_events": 0,
+      "invalid_events": 1,
+      "average_event_score": 95.0,
+      "accepted_event_rate": 80.0,
+      "source_quality_score": 90.5,
+      "quality_label": "GOOD"
+    },
+    {
+      "source": "Windows Security",
+      "total_events": 5,
+      "normalized_events": 4,
+      "duplicate_events": 1,
+      "invalid_events": 0,
+      "average_event_score": 98.0,
+      "accepted_event_rate": 80.0,
+      "source_quality_score": 92.6,
+      "quality_label": "GOOD"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "generated_timestamp": "2026-10-10T17:15:28.936128Z",
+  "duplicate_event_count": 1,
+  "events": [
+    {
+      "source_file": "windows_events.json",
+      "source_event_number": 3,
+      "normalized_event": {
+        "timestamp": "2026-10-10T13:03:07Z",
+        "event_source": "Windows Security",
+        "event_category": "Authentication",
+        "host": "NFG-FIN-WS07",
+        "user": "finance.user",
+        "source_ip": "198.51.100.24",
+        "destination_ip": "10.10.20.17",
+        "action": "Logon",
+        "outcome": "Success",
+        "severity": "Informational",
+        "raw_event_id": "WIN-1002"
+      },
+      "issues": [
+        {
+          "issue_type": "duplicate_event",
+          "field": "event_source+raw_event_id",
+          "details": "Event identity already appeared earlier in the telemetry stream."
+        }
+      ],
+      "quality_score": 90,
+      "status": "DUPLICATE",
+      "raw_event": {
+        "TimeCreated": "2026-10-10T13:03:07Z",
+        "Computer": "NFG-FIN-WS07",
+        "TargetUserName": "finance.user",
+        "IpAddress": "198.51.100.24",
+        "DestinationIp": "10.10.20.17",
+        "EventID": "4624",
+        "Action": "Logon",
+        "Result": "Success",
+        "Level": "Information",
+        "EventRecordID": "WIN-1002"
+      }
+    }
+  ]
+}

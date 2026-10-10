@@ -1,0 +1,22 @@
+timestamp,event_source,event_category,host,user,source_ip,destination_ip,action,outcome,severity,raw_event_id
+2026-10-10T13:01:08Z,DNS Resolver,DNS,NFG-FIN-WS07,,10.10.20.17,20.190.128.18,A,NOERROR,Informational,DNS-5001
+2026-10-10T13:03:51Z,DNS Resolver,DNS,NFG-HR-WS03,,10.10.20.22,10.10.10.20,A,NOERROR,Informational,DNS-5002
+2026-10-10T13:07:22Z,DNS Resolver,DNS,NFG-MKT-WS08,,10.10.20.41,13.107.6.156,A,NOERROR,Informational,DNS-5003
+2026-10-10T13:12:01Z,DNS Resolver,DNS,NFG-FIN-WS07,,10.10.20.17,203.0.113.60,TXT,NOERROR,Medium,DNS-5004
+2026-10-10T13:19:44Z,DNS Resolver,DNS,NFG-ADMIN-WS01,,10.10.20.10,20.190.128.25,A,NOERROR,Informational,DNS-5005
+2026-10-10T13:04:19Z,Endpoint Detection,Endpoint,NFG-FIN-WS07,finance.user,10.10.20.17,203.0.113.88,Process Start,Detected,High,EDR-3001
+2026-10-10T13:04:46Z,Endpoint Detection,Endpoint,NFG-FIN-WS07,finance.user,10.10.20.17,203.0.113.88,Process Start,Detected,Medium,EDR-3002
+2026-10-10T13:09:02Z,Endpoint Detection,Endpoint,NFG-MKT-WS08,marketing.user,10.10.20.41,,Process Start,Allowed,Low,EDR-3003
+2026-10-10T13:14:55Z,Endpoint Detection,Endpoint,NFG-HR-WS03,alex.employee,10.10.20.22,,Process Start,Allowed,Low,EDR-3004
+2026-10-10T13:17:21Z,Endpoint Detection,Endpoint,NFG-ADMIN-WS01,it.admin,10.10.20.10,198.51.100.15,Process Start,Allowed,Low,EDR-3005
+2026-10-10T13:02:41Z,Microsoft Entra ID,Authentication,NFG-FIN-WS07,finance.user,198.51.100.24,20.190.128.18,User Sign-in,Failure,Medium,ENTRA-2001
+2026-10-10T13:03:11Z,Microsoft Entra ID,Authentication,NFG-FIN-WS07,finance.user,198.51.100.24,20.190.128.18,User Sign-in,Success,High,ENTRA-2002
+2026-10-10T13:08:22Z,Microsoft Entra ID,Authentication,NFG-HR-WS03,alex.employee,10.10.20.22,20.190.128.18,User Sign-in,Success,Low,ENTRA-2003
+2026-10-10T13:10:07Z,Microsoft Entra ID,Authentication,NFG-ADMIN-WS01,it.admin,10.10.20.10,20.190.128.18,Azure Portal Sign-in,Success,Low,ENTRA-2004
+2026-10-10T13:05:31Z,Firewall,Network,NFG-FIN-WS07,finance.user,10.10.20.17,203.0.113.88,Allow,Success,Medium,FW-4001
+2026-10-10T13:06:18Z,Firewall,Network,NFG-FIN-WS07,finance.user,10.10.20.17,10.10.20.40,Deny,Blocked,High,FW-4002
+2026-10-10T13:11:46Z,Firewall,Network,NFG-HR-WS03,alex.employee,10.10.20.22,198.51.100.15,Allow,Success,Low,FW-4003
+2026-10-10T13:02:11Z,Windows Security,Authentication,NFG-FIN-WS07,finance.user,198.51.100.24,10.10.20.17,Logon,Failure,Medium,WIN-1001
+2026-10-10T13:03:07Z,Windows Security,Authentication,NFG-FIN-WS07,finance.user,198.51.100.24,10.10.20.17,Logon,Success,Informational,WIN-1002
+2026-10-10T13:05:14Z,Windows Security,Authentication,NFG-HR-WS03,alex.employee,10.10.20.22,10.10.20.22,Logon,Success,Informational,WIN-1003
+2026-10-10T13:07:41Z,Windows Security,Authentication,NFG-ADMIN-WS01,it.admin,10.10.20.10,10.10.10.5,Special Privileges Assigned,Success,Informational,WIN-1004

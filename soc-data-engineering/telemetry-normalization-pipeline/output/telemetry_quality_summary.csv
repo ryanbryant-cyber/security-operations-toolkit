@@ -1,0 +1,6 @@
+source,total_events,normalized_events,duplicate_events,invalid_events,average_event_score,accepted_event_rate,source_quality_score,quality_label
+DNS Resolver,5,5,0,0,100.0,100.0,100.0,EXCELLENT
+Endpoint Detection,5,5,0,0,100.0,100.0,100.0,EXCELLENT
+Firewall,5,3,0,2,91.0,60.0,81.7,FAIR
+Microsoft Entra ID,5,4,0,1,95.0,80.0,90.5,GOOD
+Windows Security,5,4,1,0,98.0,80.0,92.6,GOOD
