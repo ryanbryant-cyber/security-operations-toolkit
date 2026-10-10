@@ -1,0 +1,60 @@
+{
+  "source": "Microsoft Entra ID",
+  "events": [
+    {
+      "createdDateTime": "2026-10-10T13:02:41Z",
+      "userPrincipalName": "finance.user@northstar.example",
+      "deviceName": "NFG-FIN-WS07",
+      "ipAddress": "198.51.100.24",
+      "resourceIp": "20.190.128.18",
+      "operation": "User Sign-in",
+      "status": "Failure",
+      "riskLevel": "Medium",
+      "id": "ENTRA-2001"
+    },
+    {
+      "createdDateTime": "2026-10-10T13:03:11Z",
+      "userPrincipalName": "finance.user@northstar.example",
+      "deviceName": "NFG-FIN-WS07",
+      "ipAddress": "198.51.100.24",
+      "resourceIp": "20.190.128.18",
+      "operation": "User Sign-in",
+      "status": "Success",
+      "riskLevel": "High",
+      "id": "ENTRA-2002"
+    },
+    {
+      "createdDateTime": "2026-10-10T13:08:22Z",
+      "userPrincipalName": "alex.employee@northstar.example",
+      "deviceName": "NFG-HR-WS03",
+      "ipAddress": "10.10.20.22",
+      "resourceIp": "20.190.128.18",
+      "operation": "User Sign-in",
+      "status": "Success",
+      "riskLevel": "Low",
+      "id": "ENTRA-2003"
+    },
+    {
+      "createdDateTime": "2026-10-10T13:10:07Z",
+      "userPrincipalName": "it.admin@northstar.example",
+      "deviceName": "NFG-ADMIN-WS01",
+      "ipAddress": "10.10.20.10",
+      "resourceIp": "20.190.128.18",
+      "operation": "Azure Portal Sign-in",
+      "status": "Success",
+      "riskLevel": "Low",
+      "id": "ENTRA-2004"
+    },
+    {
+      "createdDateTime": "2026-10-10T13:12:33Z",
+      "userPrincipalName": "contractor.user@northstar.example",
+      "deviceName": "",
+      "ipAddress": "203.0.113.55",
+      "resourceIp": "20.190.128.18",
+      "operation": "User Sign-in",
+      "status": "Success",
+      "riskLevel": "High",
+      "id": "ENTRA-2005"
+    }
+  ]
+}
