@@ -1,0 +1,98 @@
+{
+  "overall": {
+    "raw_events": 25,
+    "normalized_events": 21,
+    "duplicate_events": 1,
+    "invalid_events": 3,
+    "average_event_score": 96.8,
+    "accepted_event_rate": 84.0,
+    "overall_quality_score": 92.96,
+    "quality_label": "GOOD"
+  },
+
+  "issue_counts": {
+    "duplicate_event": 1,
+    "invalid_ip_address": 1,
+    "missing_required_field": 2
+  },
+
+  "sources": {
+    "DNS Resolver": {
+      "total_events": 5,
+      "normalized_events": 5,
+      "duplicate_events": 0,
+      "invalid_events": 0,
+      "source_quality_score": 100.0,
+      "quality_label": "EXCELLENT"
+    },
+
+    "Endpoint Detection": {
+      "total_events": 5,
+      "normalized_events": 5,
+      "duplicate_events": 0,
+      "invalid_events": 0,
+      "source_quality_score": 100.0,
+      "quality_label": "EXCELLENT"
+    },
+
+    "Microsoft Entra ID": {
+      "total_events": 5,
+      "normalized_events": 4,
+      "duplicate_events": 0,
+      "invalid_events": 1,
+      "source_quality_score": 90.5,
+      "quality_label": "GOOD"
+    },
+
+    "Firewall": {
+      "total_events": 5,
+      "normalized_events": 3,
+      "duplicate_events": 0,
+      "invalid_events": 2,
+      "source_quality_score": 81.7,
+      "quality_label": "FAIR"
+    },
+
+    "Windows Security": {
+      "total_events": 5,
+      "normalized_events": 4,
+      "duplicate_events": 1,
+      "invalid_events": 0,
+      "source_quality_score": 92.6,
+      "quality_label": "GOOD"
+    }
+  },
+
+  "expected_duplicate": {
+    "event_source": "Windows Security",
+    "raw_event_id": "WIN-1002",
+    "quality_score": 90
+  },
+
+  "expected_invalid_events": [
+    {
+      "source_file": "entra_signins.json",
+      "source_event_number": 5,
+      "raw_event_id": "ENTRA-2005",
+      "issue_type": "missing_required_field",
+      "field": "host",
+      "quality_score": 75
+    },
+    {
+      "source_file": "firewall_events.json",
+      "source_event_number": 4,
+      "raw_event_id": "FW-4004",
+      "issue_type": "invalid_ip_address",
+      "field": "source_ip",
+      "quality_score": 80
+    },
+    {
+      "source_file": "firewall_events.json",
+      "source_event_number": 5,
+      "raw_event_id": null,
+      "issue_type": "missing_required_field",
+      "field": "raw_event_id",
+      "quality_score": 75
+    }
+  ]
+}
