@@ -1,0 +1,60 @@
+{
+  "source": "Firewall",
+  "events": [
+    {
+      "time": "2026-10-10T13:05:31Z",
+      "src_ip": "10.10.20.17",
+      "dst_ip": "203.0.113.88",
+      "device": "NFG-FIN-WS07",
+      "account": "finance.user",
+      "rule_action": "Allow",
+      "result": "Success",
+      "priority": "Medium",
+      "log_id": "FW-4001"
+    },
+    {
+      "time": "2026-10-10T13:06:18Z",
+      "src_ip": "10.10.20.17",
+      "dst_ip": "10.10.20.40",
+      "device": "NFG-FIN-WS07",
+      "account": "finance.user",
+      "rule_action": "Deny",
+      "result": "Blocked",
+      "priority": "High",
+      "log_id": "FW-4002"
+    },
+    {
+      "time": "2026-10-10T13:11:46Z",
+      "src_ip": "10.10.20.22",
+      "dst_ip": "198.51.100.15",
+      "device": "NFG-HR-WS03",
+      "account": "alex.employee",
+      "rule_action": "Allow",
+      "result": "Success",
+      "priority": "Low",
+      "log_id": "FW-4003"
+    },
+    {
+      "time": "2026-10-10T13:15:09Z",
+      "src_ip": "999.10.20.15",
+      "dst_ip": "203.0.113.20",
+      "device": "NFG-LAB-01",
+      "account": "lab.user",
+      "rule_action": "Allow",
+      "result": "Success",
+      "priority": "Medium",
+      "log_id": "FW-4004"
+    },
+    {
+      "time": "2026-10-10T13:18:33Z",
+      "src_ip": "10.10.20.10",
+      "dst_ip": "198.51.100.15",
+      "device": "NFG-ADMIN-WS01",
+      "account": "it.admin",
+      "rule_action": "Allow",
+      "result": "Success",
+      "priority": "Low",
+      "log_id": ""
+    }
+  ]
+}
