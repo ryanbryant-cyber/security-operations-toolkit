@@ -14,8 +14,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  static-validation:
-    name: Static Detection Validation
+  detection-validation:
+    name: Detection Validation Pipeline
     runs-on: ubuntu-latest
 
     steps:
@@ -36,44 +36,125 @@ jobs:
         run: |
           python detection-engineering/detection-as-code-ci-pipeline/validate_detections.py
 
-      - name: Enforce detection quality gate
+      - name: Run behavioral detection tests
+        run: |
+          python detection-engineering/detection-as-code-ci-pipeline/run_rule_tests.py
+
+      - name: Enforce combined detection quality gate
         run: |
           python - <<'PY'
           import json
           import sys
 
-          report_path = (
+          base_path = (
               "detection-engineering/"
               "detection-as-code-ci-pipeline/"
               "output/"
-              "rule_validation_results.json"
           )
 
-          with open(report_path, "r", encoding="utf-8") as file:
-              report = json.load(file)
+          static_report_path = (
+              base_path
+              + "rule_validation_results.json"
+          )
+
+          behavioral_report_path = (
+              base_path
+              + "rule_test_results.json"
+          )
+
+          with open(
+              static_report_path,
+              "r",
+              encoding="utf-8"
+          ) as file:
+              static_report = json.load(file)
+
+          with open(
+              behavioral_report_path,
+              "r",
+              encoding="utf-8"
+          ) as file:
+              behavioral_report = json.load(file)
 
           print()
-          print("Detection Quality Gate")
-          print("======================")
-          print(f"Rules scanned: {report['rules_scanned']}")
-          print(f"PASS:          {report['pass_rules']}")
-          print(f"REVIEW:        {report['review_rules']}")
-          print(f"FAIL:          {report['fail_rules']}")
-          print(f"Quality gate:  {report['quality_gate']}")
+          print("Detection-as-Code CI Quality Gate")
+          print("=================================")
 
-          if report["quality_gate"] != "PASSED":
-              print()
+          print()
+          print("STATIC VALIDATION")
+          print(
+              f"Rules scanned: "
+              f"{static_report['rules_scanned']}"
+          )
+          print(
+              f"PASS:          "
+              f"{static_report['pass_rules']}"
+          )
+          print(
+              f"REVIEW:        "
+              f"{static_report['review_rules']}"
+          )
+          print(
+              f"FAIL:          "
+              f"{static_report['fail_rules']}"
+          )
+          print(
+              f"Static gate:   "
+              f"{static_report['quality_gate']}"
+          )
+
+          print()
+          print("BEHAVIORAL TESTING")
+          print(
+              f"Tests run:     "
+              f"{behavioral_report['tests_run']}"
+          )
+          print(
+              f"PASS:          "
+              f"{behavioral_report['tests_passed']}"
+          )
+          print(
+              f"FAIL:          "
+              f"{behavioral_report['tests_failed']}"
+          )
+          print(
+              f"SKIPPED:       "
+              f"{behavioral_report['tests_skipped']}"
+          )
+          print(
+              f"Behavior gate: "
+              f"{behavioral_report['quality_gate']}"
+          )
+
+          static_failed = (
+              static_report["quality_gate"]
+              != "PASSED"
+          )
+
+          behavioral_failed = (
+              behavioral_report["quality_gate"]
+              != "PASSED"
+          )
+
+          print()
+          print("FINAL CI DECISION")
+          print("=================")
+
+          if static_failed or behavioral_failed:
               print(
-                  "CI rejected the detection set because "
-                  "fatal validation findings were detected."
+                  "FAILED - Detection set is "
+                  "not deployment-ready."
               )
+
               sys.exit(1)
 
-          print()
-          print("Detection set passed the CI quality gate.")
+          print(
+              "PASSED - Detection set passed "
+              "all configured quality gates."
+          )
           PY
 
-      - name: Upload validation reports
+      - name: Upload detection validation reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -81,3 +162,5 @@ jobs:
           path: |
             detection-engineering/detection-as-code-ci-pipeline/output/rule_validation_results.json
             detection-engineering/detection-as-code-ci-pipeline/output/rule_validation_summary.csv
+            detection-engineering/detection-as-code-ci-pipeline/output/rule_test_results.json
+            detection-engineering/detection-as-code-ci-pipeline/output/rule_test_summary.csv
