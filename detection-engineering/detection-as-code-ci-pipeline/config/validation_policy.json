@@ -1,0 +1,90 @@
+{
+  "required_fields": [
+    "title",
+    "id",
+    "status",
+    "description",
+    "author",
+    "date",
+    "tags",
+    "logsource",
+    "detection",
+    "falsepositives",
+    "level"
+  ],
+
+  "approved_statuses": [
+    "experimental",
+    "test",
+    "stable"
+  ],
+
+  "approved_levels": [
+    "informational",
+    "low",
+    "medium",
+    "high",
+    "critical"
+  ],
+
+  "uuid_pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+
+  "date_pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+
+  "attack_tag_pattern": "^attack\\.t\\d{4}(\\.\\d{3})?$",
+
+  "require_attack_mapping": true,
+
+  "required_logsource_any_of": [
+    "product",
+    "service",
+    "category"
+  ],
+
+  "required_detection_fields": [
+    "condition"
+  ],
+
+  "minimum_title_length": 8,
+
+  "minimum_description_length": 20,
+
+  "minimum_falsepositive_entries": 1,
+
+  "require_test_case": true,
+
+  "test_case_required_fields": [
+    "rule_id",
+    "description",
+    "event",
+    "expected_match"
+  ],
+
+  "fatal_failures": [
+    "yaml_parse_error",
+    "missing_required_field",
+    "invalid_uuid",
+    "duplicate_rule_id",
+    "invalid_status",
+    "invalid_level",
+    "invalid_date",
+    "missing_attack_mapping",
+    "invalid_attack_tag",
+    "invalid_logsource",
+    "missing_detection_condition",
+    "missing_test_case",
+    "invalid_test_case",
+    "rule_test_failure"
+  ],
+
+  "review_findings": [
+    "short_title",
+    "short_description",
+    "limited_falsepositive_documentation"
+  ],
+
+  "quality_gate": {
+    "fail_on_fatal": true,
+    "fail_on_review": false
+  }
+}
