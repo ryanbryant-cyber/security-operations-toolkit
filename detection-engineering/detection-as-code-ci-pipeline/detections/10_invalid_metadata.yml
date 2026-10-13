@@ -1,0 +1,25 @@
+title: Suspicious Scheduled Task Registration
+id: e441a5ad-1641-4727-96f7-f7d48ec40ca8
+status: production
+description: Detects creation of a scheduled task that may warrant review for persistence or unauthorized automation activity.
+author: Ryan Bryant
+date: "2026-10-13"
+
+tags:
+  - attack.persistence
+  - attack.t1053.005
+
+logsource:
+  product: windows
+  service: security
+
+detection:
+  selection:
+    EventID: 4698
+
+  condition: selection
+
+falsepositives:
+  - Authorized administrative scheduled tasks
+
+level: severe
