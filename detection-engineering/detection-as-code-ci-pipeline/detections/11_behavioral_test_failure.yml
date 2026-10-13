@@ -1,0 +1,28 @@
+title: PowerShell Download String Activity
+id: 6d92da14-9804-4490-9382-a74241262c17
+status: test
+description: Detects PowerShell command lines containing a download string associated with scripted remote content retrieval.
+author: Ryan Bryant
+date: "2026-10-13"
+
+tags:
+  - attack.execution
+  - attack.t1059.001
+
+logsource:
+  product: windows
+  category: process_creation
+
+detection:
+  selection_image:
+    Image|endswith: '\powershell.exe'
+
+  selection_command:
+    CommandLine|contains: 'DownloadString'
+
+  condition: selection_image and selection_command
+
+falsepositives:
+  - Authorized administrative scripts that retrieve remote content
+
+level: medium
