@@ -413,6 +413,36 @@ Key project outcomes:
 
 [View the SOC Telemetry Normalization & Data Quality Pipeline](soc-data-engineering/telemetry-normalization-pipeline/)
 
+#### Detection-as-Code CI Validation Pipeline
+
+Detection engineering and DevSecOps project focused on treating security detection rules as version-controlled code that must pass automated quality checks before being considered deployment-ready.
+
+The project combines Sigma-style YAML rules, Python validation, MITRE ATT&CK metadata checks, synthetic behavioral testing, negative test fixtures, and GitHub Actions to create an automated detection-quality gate.
+
+Key project outcomes:
+
+- Built 6 deployment-candidate Sigma-style detection rules
+- Validated YAML structure and required metadata
+- Enforced UUID format and duplicate rule-ID detection
+- Validated approved rule status and severity values
+- Required MITRE ATT&CK technique mappings
+- Validated logsource structure and detection conditions
+- Added documentation-quality review checks
+- Built a Python behavioral test harness for synthetic events
+- Validated 6 of 6 production rule behaviors successfully
+- Created 5 known-bad negative fixtures
+- Confirmed all 5 invalid fixtures were rejected or behaved exactly as expected
+- Demonstrated detection of structurally valid but behaviorally incorrect logic
+- Integrated the pipeline into GitHub Actions
+- Demonstrated a failed CI run when invalid rules were mixed with production candidates
+- Demonstrated a successful CI run after separating test fixtures from deployable rules
+- Uploaded structured JSON and CSV validation reports as CI artifacts
+- Final combined quality gate passed across static, behavioral, and negative-fixture validation
+
+**Skills:** Detection Engineering | Detection-as-Code | DevSecOps | CI/CD Security | GitHub Actions | Sigma | YAML | Python | MITRE ATT&CK | Rule Validation | Behavioral Testing | Negative Testing | Quality Gates | Regular Expressions | JSON | CSV | Git | Security Automation
+
+[View the Detection-as-Code CI Validation Pipeline](detection-engineering/detection-as-code-ci-pipeline/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
