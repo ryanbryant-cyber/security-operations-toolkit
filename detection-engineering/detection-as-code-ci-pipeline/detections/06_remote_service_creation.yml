@@ -1,0 +1,25 @@
+title: Windows Remote Service Creation
+id: c52efc98-10ad-49cb-80f7-2f6b75bc1d21
+status: stable
+description: Detects creation of a Windows service that may indicate remote execution or administrative deployment activity.
+author: Ryan Bryant
+date: "2026-10-13"
+
+tags:
+  - attack.lateral_movement
+  - attack.t1021.002
+
+logsource:
+  product: windows
+  service: system
+
+detection:
+  selection:
+    EventID: 7045
+
+  condition: selection
+
+falsepositives:
+  - Legitimate software deployment and authorized remote administration
+
+level: high
