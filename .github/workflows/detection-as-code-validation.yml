@@ -40,6 +40,10 @@ jobs:
         run: |
           python detection-engineering/detection-as-code-ci-pipeline/run_rule_tests.py
 
+      - name: Run negative fixture validation
+        run: |
+          python detection-engineering/detection-as-code-ci-pipeline/validate_negative_fixtures.py
+
       - name: Enforce combined detection quality gate
         run: |
           python - <<'PY'
@@ -52,29 +56,26 @@ jobs:
               "output/"
           )
 
-          static_report_path = (
-              base_path
-              + "rule_validation_results.json"
-          )
-
-          behavioral_report_path = (
-              base_path
-              + "rule_test_results.json"
-          )
-
           with open(
-              static_report_path,
+              base_path + "rule_validation_results.json",
               "r",
               encoding="utf-8"
           ) as file:
               static_report = json.load(file)
 
           with open(
-              behavioral_report_path,
+              base_path + "rule_test_results.json",
               "r",
               encoding="utf-8"
           ) as file:
               behavioral_report = json.load(file)
+
+          with open(
+              base_path + "negative_fixture_results.json",
+              "r",
+              encoding="utf-8"
+          ) as file:
+              negative_report = json.load(file)
 
           print()
           print("Detection-as-Code CI Quality Gate")
@@ -126,6 +127,25 @@ jobs:
               f"{behavioral_report['quality_gate']}"
           )
 
+          print()
+          print("NEGATIVE FIXTURE TESTING")
+          print(
+              f"Fixtures checked: "
+              f"{negative_report['fixtures_checked']}"
+          )
+          print(
+              f"PASS:             "
+              f"{negative_report['fixtures_passed']}"
+          )
+          print(
+              f"FAIL:             "
+              f"{negative_report['fixtures_failed']}"
+          )
+          print(
+              f"Fixture gate:     "
+              f"{negative_report['quality_gate']}"
+          )
+
           static_failed = (
               static_report["quality_gate"]
               != "PASSED"
@@ -136,21 +156,33 @@ jobs:
               != "PASSED"
           )
 
+          negative_failed = (
+              negative_report["quality_gate"]
+              != "PASSED"
+          )
+
           print()
           print("FINAL CI DECISION")
           print("=================")
 
-          if static_failed or behavioral_failed:
+          if (
+              static_failed
+              or behavioral_failed
+              or negative_failed
+          ):
               print(
-                  "FAILED - Detection set is "
-                  "not deployment-ready."
+                  "FAILED - Detection repository "
+                  "did not satisfy all configured "
+                  "quality gates."
               )
 
               sys.exit(1)
 
           print(
-              "PASSED - Detection set passed "
-              "all configured quality gates."
+              "PASSED - Production rules passed "
+              "static and behavioral validation, "
+              "and known-bad fixtures were "
+              "rejected as expected."
           )
           PY
 
@@ -164,3 +196,5 @@ jobs:
             detection-engineering/detection-as-code-ci-pipeline/output/rule_validation_summary.csv
             detection-engineering/detection-as-code-ci-pipeline/output/rule_test_results.json
             detection-engineering/detection-as-code-ci-pipeline/output/rule_test_summary.csv
+            detection-engineering/detection-as-code-ci-pipeline/output/negative_fixture_results.json
+            detection-engineering/detection-as-code-ci-pipeline/output/negative_fixture_summary.csv
