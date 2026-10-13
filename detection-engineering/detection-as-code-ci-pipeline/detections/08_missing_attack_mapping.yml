@@ -1,0 +1,24 @@
+title: Suspicious LSASS Access Activity
+id: b9ce5c9c-a094-48a7-a8bb-3154ec91bd38
+status: experimental
+description: Detects process activity associated with access to the Windows LSASS process for analyst investigation.
+author: Ryan Bryant
+date: "2026-10-13"
+
+tags:
+  - attack.credential_access
+
+logsource:
+  product: windows
+  category: process_access
+
+detection:
+  selection:
+    TargetImage|endswith: '\lsass.exe'
+
+  condition: selection
+
+falsepositives:
+  - Legitimate security and administrative software accessing LSASS
+
+level: high
