@@ -1,0 +1,28 @@
+title: Suspicious PsExec Service Installation
+id: c52efc98-10ad-49cb-80f7-2f6b75bc1d21
+status: experimental
+description: Detects Windows service creation referencing the PsExec service name commonly associated with remote administration.
+author: Ryan Bryant
+date: "2026-10-13"
+
+tags:
+  - attack.lateral_movement
+  - attack.t1021.002
+
+logsource:
+  product: windows
+  service: system
+
+detection:
+  selection_event:
+    EventID: 7045
+
+  selection_service:
+    ServiceName|contains: 'PSEXESVC'
+
+  condition: selection_event and selection_service
+
+falsepositives:
+  - Authorized PsExec use by administrators
+
+level: high
