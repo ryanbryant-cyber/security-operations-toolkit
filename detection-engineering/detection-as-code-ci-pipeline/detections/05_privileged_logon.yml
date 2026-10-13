@@ -1,0 +1,25 @@
+title: Windows Special Privileges Assigned
+id: 3eb82810-6f31-46e5-b544-8e84da9a6f19
+status: stable
+description: Detects Windows logon activity where special administrative privileges are assigned to a new session.
+author: Ryan Bryant
+date: "2026-10-13"
+
+tags:
+  - attack.privilege_escalation
+  - attack.t1078
+
+logsource:
+  product: windows
+  service: security
+
+detection:
+  selection:
+    EventID: 4672
+
+  condition: selection
+
+falsepositives:
+  - Expected administrator or service-account logons
+
+level: medium
