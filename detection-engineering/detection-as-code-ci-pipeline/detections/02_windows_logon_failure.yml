@@ -1,0 +1,25 @@
+title: Windows Failed User Logon
+id: 1a0f0d16-7dd3-4dc2-9c83-7198a447a2c1
+status: stable
+description: Detects a Windows authentication event indicating an unsuccessful user logon attempt.
+author: Ryan Bryant
+date: "2026-10-13"
+
+tags:
+  - attack.credential_access
+  - attack.t1110
+
+logsource:
+  product: windows
+  service: security
+
+detection:
+  selection:
+    EventID: 4625
+
+  condition: selection
+
+falsepositives:
+  - Users entering an incorrect password during normal authentication
+
+level: low
