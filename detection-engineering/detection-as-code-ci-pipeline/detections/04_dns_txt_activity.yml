@@ -1,0 +1,24 @@
+title: DNS TXT Query Activity
+id: 9c11d76f-4e8d-44be-a0f2-2ce9082a7bd6
+status: test
+description: Detects DNS TXT record queries that may warrant review for unusual application or tunneling behavior.
+author: Ryan Bryant
+date: "2026-10-13"
+
+tags:
+  - attack.command_and_control
+  - attack.t1071.004
+
+logsource:
+  category: dns
+
+detection:
+  selection:
+    QueryType: TXT
+
+  condition: selection
+
+falsepositives:
+  - Legitimate TXT queries used for email security and domain verification
+
+level: low
