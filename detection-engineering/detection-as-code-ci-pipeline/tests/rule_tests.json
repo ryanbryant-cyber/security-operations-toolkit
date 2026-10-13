@@ -1,0 +1,67 @@
+[
+  {
+    "rule_id": "7d3bf66a-38d8-4bb7-b7c9-9ac116b6ef11",
+    "description": "Encoded PowerShell command should match",
+    "event": {
+      "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "CommandLine": "powershell.exe -EncodedCommand SQBFAFgA"
+    },
+    "expected_match": true
+  },
+  {
+    "rule_id": "1a0f0d16-7dd3-4dc2-9c83-7198a447a2c1",
+    "description": "Windows failed logon event should match",
+    "event": {
+      "EventID": 4625,
+      "TargetUserName": "finance.user",
+      "IpAddress": "198.51.100.24"
+    },
+    "expected_match": true
+  },
+  {
+    "rule_id": "5f4d2a18-96bb-4b29-8d75-d6c4e590f1a3",
+    "description": "Rundll32 loading a DLL from Temp should match",
+    "event": {
+      "Image": "C:\\Windows\\System32\\rundll32.exe",
+      "CommandLine": "rundll32.exe C:\\Users\\finance.user\\AppData\\Local\\Temp\\financehelper.dll,Start"
+    },
+    "expected_match": true
+  },
+  {
+    "rule_id": "9c11d76f-4e8d-44be-a0f2-2ce9082a7bd6",
+    "description": "DNS TXT query should match",
+    "event": {
+      "QueryName": "tunnel-demo.example",
+      "QueryType": "TXT"
+    },
+    "expected_match": true
+  },
+  {
+    "rule_id": "3eb82810-6f31-46e5-b544-8e84da9a6f19",
+    "description": "Windows special privileges event should match",
+    "event": {
+      "EventID": 4672,
+      "SubjectUserName": "it.admin"
+    },
+    "expected_match": true
+  },
+  {
+    "rule_id": "c52efc98-10ad-49cb-80f7-2f6b75bc1d21",
+    "description": "Windows service creation event should match",
+    "event": {
+      "EventID": 7045,
+      "ServiceName": "Northstar Remote Support",
+      "ImagePath": "C:\\Program Files\\Northstar\\support.exe"
+    },
+    "expected_match": true
+  },
+  {
+    "rule_id": "6d92da14-9804-4490-9382-a74241262c17",
+    "description": "Intentional behavioral failure for PowerShell download rule",
+    "event": {
+      "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "CommandLine": "powershell.exe Invoke-WebRequest https://example.invalid/update.ps1"
+    },
+    "expected_match": true
+  }
+]
