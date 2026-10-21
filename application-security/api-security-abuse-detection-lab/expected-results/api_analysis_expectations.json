@@ -1,0 +1,99 @@
+{
+  "normalized_event_count": 27,
+  "finding_count": 6,
+
+  "findings": {
+    "API-001": {
+      "title": "Repeated Authentication Failures",
+      "severity": "HIGH",
+      "user": "contractor.user",
+      "supporting_event_count": 6
+    },
+
+    "API-002": {
+      "title": "Unauthorized Object Access Pattern",
+      "severity": "HIGH",
+      "user": "contractor.user",
+      "supporting_event_count": 7
+    },
+
+    "API-003": {
+      "title": "Suspicious Token Reuse",
+      "severity": "HIGH",
+      "user": "finance.user",
+      "supporting_event_count": 7
+    },
+
+    "API-004": {
+      "title": "Sequential Object Enumeration",
+      "severity": "HIGH",
+      "user": "contractor.user",
+      "supporting_event_count": 6
+    },
+
+    "API-005": {
+      "title": "Unauthorized Administrative Endpoint Access",
+      "severity": "HIGH",
+      "user": "contractor.user",
+      "supporting_event_count": 1
+    },
+
+    "API-006": {
+      "title": "Excessive API Request Rate",
+      "severity": "MEDIUM",
+      "user": "contractor.user",
+      "supporting_event_count": 9
+    }
+  },
+
+  "expected_request_evidence": {
+    "API-001": [
+      "REQ-0011",
+      "REQ-0012",
+      "REQ-0013",
+      "REQ-0014",
+      "REQ-0015",
+      "REQ-0016"
+    ],
+
+    "API-004": [
+      "REQ-0017",
+      "REQ-0018",
+      "REQ-0019",
+      "REQ-0020",
+      "REQ-0021",
+      "REQ-0022"
+    ],
+
+    "API-005": [
+      "REQ-0023"
+    ]
+  },
+
+  "enrichment_expectations": {
+    "unexpected_source_events": 2,
+    "out_of_scope_object_events": 7
+  },
+
+  "user_summary_expectations": {
+    "contractor.user": {
+      "request_count": 14,
+      "failed_authentication_count": 5,
+      "authorization_denied_count": 8,
+      "out_of_scope_object_count": 7
+    },
+
+    "finance.user": {
+      "request_count": 7,
+      "unexpected_source_count": 2
+    }
+  },
+
+  "token_expectations": {
+    "TOK-FIN-001": {
+      "request_count": 7,
+      "distinct_source_ips": 2,
+      "unexpected_source_event_count": 2
+    }
+  }
+}
