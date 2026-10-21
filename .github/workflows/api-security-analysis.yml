@@ -15,7 +15,7 @@ on:
 
 jobs:
   api-security-analysis:
-    name: API Security Analysis
+    name: API Security Analysis and Validation
     runs-on: ubuntu-latest
 
     steps:
@@ -27,11 +27,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run API analysis foundation
+      - name: Run API security analysis
         run: |
           python application-security/api-security-abuse-detection-lab/analyze_api_activity.py
 
-      - name: Verify normalized output
+      - name: Verify analysis foundation
         run: |
           python - <<'PY'
           import json
@@ -105,10 +105,104 @@ jobs:
           )
           PY
 
-      - name: Upload API analysis output
+      - name: Run independent API validation
+        run: |
+          python application-security/api-security-abuse-detection-lab/validate_api_analysis.py
+
+      - name: Enforce API security quality gate
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+
+          base_path = (
+              "application-security/"
+              "api-security-abuse-detection-lab/"
+              "output/"
+          )
+
+          with open(
+              base_path + "api_validation_results.json",
+              "r",
+              encoding="utf-8"
+          ) as file:
+              validation = json.load(file)
+
+          with open(
+              base_path + "api_findings.json",
+              "r",
+              encoding="utf-8"
+          ) as file:
+              findings = json.load(file)
+
+          print()
+          print("API Security CI Quality Gate")
+          print("============================")
+          print(
+              f"Security findings: "
+              f"{findings['finding_count']}"
+          )
+          print(
+              f"Validation checks: "
+              f"{validation['checks_run']}"
+          )
+          print(
+              f"Checks passed:     "
+              f"{validation['checks_passed']}"
+          )
+          print(
+              f"Checks failed:     "
+              f"{validation['checks_failed']}"
+          )
+          print(
+              f"Validation status: "
+              f"{validation['validation_status']}"
+          )
+
+          print()
+          print("Finding Summary")
+          print("===============")
+
+          for finding in findings["findings"]:
+              print(
+                  f"{finding['finding_id']} | "
+                  f"{finding['severity']:<6} | "
+                  f"{finding['title']}"
+              )
+
+          print()
+          print("FINAL CI DECISION")
+          print("=================")
+
+          if (
+              validation["validation_status"]
+              != "PASS"
+              or validation["checks_failed"] != 0
+              or findings["finding_count"] != 6
+          ):
+              print(
+                  "FAILED - API security analysis "
+                  "did not satisfy the configured "
+                  "validation requirements."
+              )
+              sys.exit(1)
+
+          print(
+              "PASSED - API security findings, "
+              "correlation results, and supporting "
+              "evidence matched expected ground truth."
+          )
+          PY
+
+      - name: Upload API security reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: api-security-analysis-output
+          name: api-security-analysis-reports
           path: |
             application-security/api-security-abuse-detection-lab/output/normalized_api_events.json
+            application-security/api-security-abuse-detection-lab/output/api_findings.json
+            application-security/api-security-abuse-detection-lab/output/api_findings_summary.csv
+            application-security/api-security-abuse-detection-lab/output/user_activity_summary.json
+            application-security/api-security-abuse-detection-lab/output/token_activity_summary.json
+            application-security/api-security-abuse-detection-lab/output/api_validation_results.json
