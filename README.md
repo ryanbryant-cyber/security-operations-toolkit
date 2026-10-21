@@ -443,6 +443,49 @@ Key project outcomes:
 
 [View the Detection-as-Code CI Validation Pipeline](detection-engineering/detection-as-code-ci-pipeline/)
 
+### Application Security
+
+#### API Security Assessment & Abuse Detection Lab
+
+Application security and SOC analysis project focused on detecting suspicious and unauthorized behavior within synthetic REST API telemetry.
+
+The Python analysis engine enriches API request logs with identity, role, expected source-IP, token, and object-authorization context, then correlates behavior across authentication, authorization, object access, token reuse, request timing, and administrative API activity.
+
+Key project outcomes:
+
+- Processed 27 synthetic API requests
+- Enriched events with identity and role context
+- Compared observed source IPs against expected identity behavior
+- Correlated protected API objects with user authorization scope
+- Identified 7 out-of-scope object requests
+- Identified 2 API events from unexpected source IP addresses
+- Detected 5 failed contractor authentication attempts followed by a successful login
+- Detected repeated unauthorized object-access attempts
+- Detected suspicious reuse of `TOK-FIN-001` from 2 distinct source IPs
+- Detected sequential account enumeration across objects `1001` through `1006`
+- Detected unauthorized contractor access to `/api/admin/users`
+- Detected 9 contractor API requests within 22 seconds
+- Generated 6 structured security findings
+- Mapped findings to relevant OWASP API Security 2023 categories
+- Preserved analyst guardrails to distinguish suspicious behavior from confirmed compromise
+- Generated user-level and token-level correlation summaries
+- Generated structured JSON and CSV analysis reports
+- Implemented independent expected-result validation
+- Passed **11 of 11 validation checks**
+- Automated analysis and validation with GitHub Actions
+- Enforced a final CI quality gate
+- Final GitHub Actions validation completed successfully
+
+**Final Findings:**
+
+```text
+API-001 | HIGH   | Repeated Authentication Failures
+API-002 | HIGH   | Unauthorized Object Access Pattern
+API-003 | HIGH   | Suspicious Token Reuse
+API-004 | HIGH   | Sequential Object Enumeration
+API-005 | HIGH   | Unauthorized Administrative Endpoint Access
+API-006 | MEDIUM | Excessive API Request Rate
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
