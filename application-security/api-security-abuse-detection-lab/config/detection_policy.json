@@ -1,0 +1,97 @@
+{
+  "authentication_abuse": {
+    "login_endpoint": "/api/auth/login",
+    "failure_value": "failure",
+    "success_value": "success",
+    "failure_threshold": 5,
+    "failure_window_seconds": 60,
+    "success_after_failures_seconds": 30,
+    "severity": "HIGH",
+    "owasp_mapping": [
+      "API2:2023 Broken Authentication"
+    ]
+  },
+
+  "object_authorization": {
+    "protected_resources": {
+      "accounts": "/api/accounts/",
+      "invoices": "/api/invoices/",
+      "reports": "/api/reports/"
+    },
+    "unauthorized_attempt_threshold": 3,
+    "authorization_denied_value": "denied",
+    "severity": "HIGH",
+    "owasp_mapping": [
+      "API1:2023 Broken Object Level Authorization"
+    ]
+  },
+
+  "token_reuse": {
+    "minimum_distinct_source_ips": 2,
+    "window_seconds": 600,
+    "require_unexpected_source_ip": true,
+    "severity": "HIGH",
+    "owasp_mapping": [
+      "API2:2023 Broken Authentication"
+    ]
+  },
+
+  "object_enumeration": {
+    "resource": "accounts",
+    "endpoint_prefix": "/api/accounts/",
+    "minimum_distinct_objects": 5,
+    "minimum_sequential_run": 5,
+    "window_seconds": 30,
+    "severity": "HIGH",
+    "owasp_mapping": [
+      "API1:2023 Broken Object Level Authorization",
+      "API9:2023 Improper Inventory Management"
+    ]
+  },
+
+  "administrative_access": {
+    "endpoint_prefix": "/api/admin/",
+    "approved_roles": [
+      "administrator"
+    ],
+    "finding_on_denied_attempt": true,
+    "severity": "HIGH",
+    "owasp_mapping": [
+      "API5:2023 Broken Function Level Authorization"
+    ]
+  },
+
+  "rate_abuse": {
+    "request_threshold": 8,
+    "window_seconds": 30,
+    "severity": "MEDIUM",
+    "owasp_mapping": [
+      "API4:2023 Unrestricted Resource Consumption"
+    ]
+  },
+
+  "normalized_severities": [
+    "LOW",
+    "MEDIUM",
+    "HIGH",
+    "CRITICAL"
+  ],
+
+  "finding_ids": {
+    "authentication_abuse": "API-001",
+    "object_authorization": "API-002",
+    "token_reuse": "API-003",
+    "object_enumeration": "API-004",
+    "administrative_access": "API-005",
+    "rate_abuse": "API-006"
+  },
+
+  "analyst_guardrails": {
+    "authentication_abuse": "Repeated failed authentication followed by success may indicate credential guessing or user error. It does not prove credential compromise.",
+    "object_authorization": "Requests for unauthorized objects indicate attempted access outside the user's expected scope. Denied requests do not prove successful exploitation.",
+    "token_reuse": "Use of the same token from multiple source IP addresses may indicate token sharing, network changes, proxy use, or token misuse. It does not prove token theft.",
+    "object_enumeration": "Rapid sequential object requests may indicate automated enumeration or scripted access. The pattern alone does not prove exploitation.",
+    "administrative_access": "A non-administrator requesting an administrative endpoint represents unauthorized function access. A denied request does not prove administrative compromise.",
+    "rate_abuse": "High request volume may represent automation, legitimate application behavior, or abuse. Rate alone does not establish malicious intent."
+  }
+}
