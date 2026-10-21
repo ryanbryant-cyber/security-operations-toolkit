@@ -1,0 +1,114 @@
+name: API Security Analysis
+
+on:
+  push:
+    paths:
+      - "application-security/api-security-abuse-detection-lab/**"
+      - ".github/workflows/api-security-analysis.yml"
+
+  pull_request:
+    paths:
+      - "application-security/api-security-abuse-detection-lab/**"
+      - ".github/workflows/api-security-analysis.yml"
+
+  workflow_dispatch:
+
+jobs:
+  api-security-analysis:
+    name: API Security Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run API analysis foundation
+        run: |
+          python application-security/api-security-abuse-detection-lab/analyze_api_activity.py
+
+      - name: Verify normalized output
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+
+          path = (
+              "application-security/"
+              "api-security-abuse-detection-lab/"
+              "output/"
+              "normalized_api_events.json"
+          )
+
+          with open(
+              path,
+              "r",
+              encoding="utf-8"
+          ) as file:
+              report = json.load(file)
+
+          events = report["events"]
+
+          unexpected_ip_events = sum(
+              1
+              for event in events
+              if (
+                  event["user"]
+                  and not event["source_ip_expected"]
+              )
+          )
+
+          out_of_scope_objects = sum(
+              1
+              for event in events
+              if event[
+                  "object_in_expected_scope"
+              ] is False
+          )
+
+          print()
+          print("API Analysis Foundation Verification")
+          print("====================================")
+          print(
+              f"Normalized events:      "
+              f"{len(events)}"
+          )
+          print(
+              f"Unexpected-source:      "
+              f"{unexpected_ip_events}"
+          )
+          print(
+              f"Out-of-scope objects:   "
+              f"{out_of_scope_objects}"
+          )
+
+          if (
+              len(events) != 27
+              or unexpected_ip_events != 2
+              or out_of_scope_objects != 7
+          ):
+              print()
+              print(
+                  "FAILED - Foundation results "
+                  "do not match expected ground truth."
+              )
+              sys.exit(1)
+
+          print()
+          print(
+              "PASSED - API enrichment and "
+              "normalization match expected results."
+          )
+          PY
+
+      - name: Upload API analysis output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-security-analysis-output
+          path: |
+            application-security/api-security-abuse-detection-lab/output/normalized_api_events.json
