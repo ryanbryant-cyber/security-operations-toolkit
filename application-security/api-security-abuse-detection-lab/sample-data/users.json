@@ -1,0 +1,52 @@
+[
+  {
+    "user": "finance.user",
+    "display_name": "Finance Analyst",
+    "role": "finance",
+    "department": "Finance",
+    "status": "active",
+    "expected_source_ips": [
+      "198.51.100.24"
+    ]
+  },
+  {
+    "user": "contractor.user",
+    "display_name": "External Contractor",
+    "role": "contractor",
+    "department": "Contract Services",
+    "status": "active",
+    "expected_source_ips": [
+      "203.0.113.55"
+    ]
+  },
+  {
+    "user": "admin.user",
+    "display_name": "Application Administrator",
+    "role": "administrator",
+    "department": "Information Technology",
+    "status": "active",
+    "expected_source_ips": [
+      "198.51.100.15"
+    ]
+  },
+  {
+    "user": "svc.reports",
+    "display_name": "Reporting Service Account",
+    "role": "service_account",
+    "department": "Application Services",
+    "status": "active",
+    "expected_source_ips": [
+      "10.10.30.12"
+    ]
+  },
+  {
+    "user": "alex.employee",
+    "display_name": "Standard Employee",
+    "role": "employee",
+    "department": "Human Resources",
+    "status": "active",
+    "expected_source_ips": [
+      "198.51.100.40"
+    ]
+  }
+]
