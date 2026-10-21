@@ -1,0 +1,51 @@
+{
+  "accounts": {
+    "finance.user": [
+      "1001"
+    ],
+    "contractor.user": [
+      "3001"
+    ],
+    "admin.user": [
+      "1001",
+      "1002",
+      "1003",
+      "3001"
+    ],
+    "svc.reports": [],
+    "alex.employee": []
+  },
+
+  "invoices": {
+    "finance.user": [
+      "INV-1001",
+      "INV-1002"
+    ],
+    "contractor.user": [],
+    "admin.user": [
+      "INV-1001",
+      "INV-1002",
+      "INV-2001"
+    ],
+    "svc.reports": [],
+    "alex.employee": []
+  },
+
+  "reports": {
+    "finance.user": [
+      "finance-summary"
+    ],
+    "contractor.user": [],
+    "admin.user": [
+      "finance-summary",
+      "daily-summary",
+      "audit-summary"
+    ],
+    "svc.reports": [
+      "daily-summary"
+    ],
+    "alex.employee": [
+      "public-summary"
+    ]
+  }
+}
