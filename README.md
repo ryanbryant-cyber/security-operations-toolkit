@@ -486,6 +486,72 @@ API-004 | HIGH   | Sequential Object Enumeration
 API-005 | HIGH   | Unauthorized Administrative Endpoint Access
 API-006 | MEDIUM | Excessive API Request Rate
 
+### Threat Modeling & Secure Architecture
+
+#### Northstar Customer Portal — Threat Modeling & Secure Architecture Review
+
+Proactive security architecture project focused on identifying threats, trust boundaries, sensitive assets, data flows, control gaps, and security requirements before deployment of a fictional enterprise customer portal.
+
+The assessment applies STRIDE threat modeling and qualitative risk analysis across a synthetic architecture containing customer-facing web services, APIs, Microsoft Entra ID, databases, cloud storage, administrative interfaces, monitoring infrastructure, backup systems, and third-party payment and email providers.
+
+Key project outcomes:
+
+- Documented **12 primary system components**
+- Identified and classified **17 protected assets**
+- Mapped **7 trust boundaries**
+- Documented **10 major data flows**
+- Applied the STRIDE methodology across **12 threat scenarios**
+- Evaluated likelihood and business impact for every threat
+- Identified **5 Critical** and **7 High** initial risks
+- Assessed threats including:
+  - Stolen customer session tokens
+  - Broken object-level authorization
+  - Cloud storage data exposure
+  - Compromised administrative accounts
+  - Application secret exposure
+  - Audit-log tampering
+  - Third-party payment compromise
+  - Application denial of service
+  - Database query injection
+  - Backup destruction
+  - Unauthorized privilege modification
+  - Third-party email abuse
+- Documented existing controls and architectural gaps
+- Developed threat-specific mitigation strategies
+- Performed residual-risk analysis
+- Reduced modeled residual risk to:
+  - **0 Critical**
+  - **2 High**
+  - **9 Moderate**
+  - **1 Low**
+- Identified compromised administrative accounts and third-party payment compromise as the highest remaining residual risks
+- Produced **67 security requirements** across identity, authorization, application security, secrets management, data protection, logging, resilience, backup, and third-party security
+- Reinforced the distinction between authentication and authorization
+- Applied least privilege, Zero Trust, defense-in-depth, and secure-by-design principles
+- Produced an executive threat-model summary suitable for architecture review
+
+**Initial Risk Summary:**
+
+```text
+Critical: 5
+High:     7
+Moderate: 0
+Low:      0
+```
+
+**Residual Risk Summary:**
+
+```text
+Critical: 0
+High:     2
+Moderate: 9
+Low:      1
+```
+
+**Skills:** Threat Modeling | STRIDE | Secure Architecture | Security Architecture Review | Trust Boundary Analysis | Data Flow Analysis | Asset Classification | Risk Assessment | Residual Risk Analysis | Security Requirements | Mitigation Planning | Application Security | API Security | IAM | Cloud Security | Third-Party Risk | Database Security | Zero Trust | Defense in Depth | Business Continuity
+
+[View the Northstar Customer Portal Threat Modeling & Secure Architecture Review](threat-modeling/secure-architecture-review/)
+
 ## Repository Goals
 
 This repository is designed to demonstrate hands-on cybersecurity skills including:
