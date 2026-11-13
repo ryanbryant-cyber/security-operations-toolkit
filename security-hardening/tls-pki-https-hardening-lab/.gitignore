@@ -1,0 +1,13 @@
+# Keep all locally generated trust material out of this project.
+*.key
+*.pem
+*.crt
+*.cer
+*.csr
+*.srl
+*.p12
+*.pfx
+.env
+.venv/
+__pycache__/
+*.py[cod]

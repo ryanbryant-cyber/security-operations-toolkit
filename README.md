@@ -128,6 +128,25 @@ Key project outcomes:
 
 [View the Secure Baseline Audit Tool](security-hardening/secure-baseline-audit-tool/)
 
+#### TLS/PKI Certificate Validation and HTTPS Hardening Lab
+
+Hands-on local TLS/PKI lab focused on certificate trust, hostname validation, HTTP-to-HTTPS redirection, and interpreting HTTP Strict Transport Security (HSTS) response policies.
+
+Key project outcomes:
+
+- Verified a lab CA and server certificate with OpenSSL
+- Compared successful HTTPS validation with untrusted-issuer and wrong-hostname failures
+- Demonstrated a 308 HTTP redirect and an HTTPS 200 response with HSTS `max-age=300`
+- Preserved terminal screenshots, server logs, and a post-stop listener check
+- Documented the architecture, reproduction commands, remediation lessons, and limits of the evidence
+- Kept private keys and generated certificate material out of the repository
+
+This loopback-only teaching exercise demonstrates certificate-validation behavior and header emission, not production hardening or browser HSTS enforcement.
+
+**Skills:** TLS | PKI | Certificate Validation | OpenSSL | curl | HTTPS | HSTS | Linux | Python | Evidence Documentation | Security Hardening
+
+[View the TLS/PKI Certificate Validation and HTTPS Hardening Lab](security-hardening/tls-pki-https-hardening-lab/)
+
 ### Email Security
 
 #### Phishing Email Investigation Lab
